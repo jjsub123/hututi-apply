@@ -588,7 +588,7 @@ body {
 /* Scroll to Top Button */
 .fixed-wrapper {
   position: fixed;
-  bottom: 85px; /* 하단 팝업 버튼 위에 위치 */
+  bottom: 110px; /* 하단 CTA 영역(신청하기 버튼 박스)과 겹치지 않도록 충분한 여백 확보 */
   left: 0;
   right: 0;
   max-width: 480px;
