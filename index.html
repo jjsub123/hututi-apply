@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>내일사장 '함께해요' | 양도자 전용 프리미엄 커뮤니티</title>
+  
+  <!-- Pretendard Font -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Supabase JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Header -->
+    <header class="header">
+      <div class="header-inner">
+        <h1 class="logo">
+          <img src="logo.png" alt="내일사장 로고" class="header-logo">
+          <span class="logo-text">내일사장 <span class="highlight">'함께해요'</span></span>
+        </h1>
+      </div>
+      <nav class="nav-tabs">
+        <a href="#" class="tab active">홈</a>
+        <a href="#" class="tab trigger-apply">신청하기</a>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-bg-grid"></div>
+        <div class="hero-content">
+          <h2 class="hero-title">
+            <span class="sub-text">양도자들만의 프라이빗 커뮤니티</span><br>
+            함께 모여 원하는 권리금 받고<br>가게를 팔아보세요!
+          </h2>
+          
+          <div class="floating-badges">
+            <div class="badge badge-blue">
+              <span class="emoji">🤫</span> 양도 사장님 전용
+            </div>
+            <div class="badge badge-darkblue">
+              <span class="emoji">🛡️</span> 권리금 방어 프로젝트
+            </div>
+            <div class="badge badge-lightblue">
+              프랜차이즈 전문가 직접 지원 <span class="emoji">👨‍💼</span>
+            </div>
+          </div>
+          
+          <!-- Decorative Background Elements -->
+          <div class="glow-blob top-right"></div>
+          <div class="glow-blob bottom-left"></div>
+        </div>
+      </section>
+
+      <!-- Problem/Persuasion Section -->
+      <section class="problem-section">
+        <div class="section-container">
+          <h3 class="section-title">
+            매장 판매까지 평균 1년.<br>
+            사장님의 권리금은 안녕하신가요?
+          </h3>
+          
+          <div class="problem-card">
+            <p class="desc">
+              대부분의 양도자가 초기 목표했던 권리금을 지키지 못합니다. 
+              매각 기간이 길어질수록 <strong>"이제 내 매장이 아니다"</strong>라는 생각에 관리가 소홀해지고, 이는 매출 하락과 운영 상태 악화로 직결됩니다.
+            </p>
+            <div class="divider"></div>
+            <p class="solution">
+              나홀로 지치지 않게, 양도자 커뮤니티에서 함께 으쌰으쌰하며 
+              <span class="highlight-text">끝까지 매장을 최상의 상태로 유지하세요!</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Benefits Section -->
+      <section class="benefits-section">
+        <div class="section-container">
+          <h3 class="section-title text-center">커뮤니티 '함께해요' 가입 혜택</h3>
+          
+          <ul class="benefits-list">
+            <li class="benefit-item">
+              <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></div>
+              <div class="benefit-text">
+                <h4>전문가 밀착 지원</h4>
+                <p>프랜차이즈 관리 경력자들의 1:1 노하우 및 피드백 제공</p>
+              </div>
+            </li>
+            <li class="benefit-item">
+              <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
+              <div class="benefit-text">
+                <h4>동기부여 및 상태 체크</h4>
+                <p>의지 하락 방지를 위한 주기적 활동 및 체크리스트 미션 수행</p>
+              </div>
+            </li>
+            <li class="benefit-item">
+              <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></div>
+              <div class="benefit-text">
+                <h4>실전 템플릿 제공</h4>
+                <p>양도 체크리스트 등 거래에 꼭 필요한 필수 문서 템플릿 무료 제공</p>
+              </div>
+            </li>
+            <li class="benefit-item">
+              <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+              <div class="benefit-text">
+                <h4>활동 리워드 수익</h4>
+                <p>커뮤니티 활동 및 미션 달성 시 매주 일정 금액의 리워드 지급</p>
+              </div>
+            </li>
+            <li class="benefit-item highlight">
+              <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 6.91 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+              <div class="benefit-text">
+                <h4>특별 혜택</h4>
+                <p>인증 매장 등록 비용(10만 원) <strong>전액 면제</strong></p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Call to Action Banner -->
+      <section class="cta-banner" id="apply">
+        <div class="banner-content">
+          <h3>새로운 출발을 위한 여정에 필요한 모든 것을 내일사장과 함께해요!</h3>
+          <div class="banner-illust">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" class="receipt-icon" stroke="#ffffff" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" class="search-icon" stroke="#2d68ff" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Spacer for bottom fixed bar -->
+      <div class="bottom-spacer"></div>
+      
+    </main>
+
+    <!-- Bottom Fixed Actions -->
+    <div class="bottom-actions">
+      <button class="btn btn-primary trigger-apply">신청하기</button>
+    </div>
+
+  </div>
+  <!-- Modal Overlay -->
+  <div class="modal-overlay" id="applyModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>커뮤니티 입장 신청</h3>
+        <button class="close-modal-btn" id="closeModal">&times;</button>
+      </div>
+      <form id="applyForm" class="modal-body">
+        <div class="form-group">
+          <label for="name">이름 *</label>
+          <input type="text" id="name" required placeholder="홍길동">
+        </div>
+        <div class="form-group">
+          <label for="address">양도매물 주소 *</label>
+          <input type="text" id="address" required placeholder="서울시 강남구 역삼로 123">
+        </div>
+        <div class="form-group">
+          <label for="phone">핸드폰 번호 *</label>
+          <input type="tel" id="phone" required placeholder="010-1234-5678">
+        </div>
+        <div class="form-group">
+          <label for="invite_code">초대 번호 (선택)</label>
+          <input type="text" id="invite_code" placeholder="초대받으신 경우 입력해주세요">
+        </div>
+        
+        <div class="form-group checkbox-group">
+          <input type="checkbox" id="consent" required>
+          <label for="consent">
+            수집하는 개인정보 항목 및 이용목적(커뮤니티 가입 안내)에 동의합니다.
+          </label>
+        </div>
+        
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" id="cancelBtn">취소</button>
+          <button type="submit" class="btn btn-primary" id="submitBtn">가입 신청하기</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
