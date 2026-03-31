@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           if (error) throw error;
 
-          alert("입장 대기 신청이 완료되었습니다! 검토 후 연락드리겠습니다.");
+          alert("입장 대기 신청이 완료되었습니다! 5명 이상 모여 클럽이 개설되면 문자로 안내해 드리겠습니다.");
           closeModal();
         } catch (err) {
           console.error(err);
@@ -107,19 +107,61 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }
-    // 맨 위로 가기 버튼 제어
+    // 맨 위로 가기 버튼 및 상단 스크롤 알림창 제어
     const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-    if (scrollToTopBtn) {
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 200) {
-          scrollToTopBtn.classList.add('visible');
-        } else {
-          scrollToTopBtn.classList.remove('visible');
-        }
-      });
+    const scrollNotice = document.getElementById('scrollNotice');
+    const closeNoticeBtn = document.getElementById('closeNoticeBtn');
+    let isNoticeClosed = false;
 
+    if (closeNoticeBtn) {
+      closeNoticeBtn.addEventListener('click', () => {
+        isNoticeClosed = true;
+        if (scrollNotice) scrollNotice.classList.remove('visible');
+      });
+    }
+
+    // 공통 스크롤 이벤트
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY > 200;
+      
+      if (scrollToTopBtn) {
+        if (scrolled) scrollToTopBtn.classList.add('visible');
+        else scrollToTopBtn.classList.remove('visible');
+      }
+
+      if (scrollNotice) {
+        if (scrolled && !isNoticeClosed) scrollNotice.classList.add('visible');
+        else scrollNotice.classList.remove('visible');
+      }
+    });
+
+    if (scrollToTopBtn) {
       scrollToTopBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // 개인정보 처리방침 모달 제어
+    const privacyModal = document.getElementById('privacyModal');
+    const openPrivacyBtn = document.getElementById('openPrivacyBtn');
+    const closePrivacyBtn = document.getElementById('closePrivacyBtn');
+
+    if (openPrivacyBtn && privacyModal) {
+      openPrivacyBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        privacyModal.classList.add('active');
+      });
+    }
+
+    const closePrivacy = () => {
+      if (privacyModal) privacyModal.classList.remove('active');
+    };
+
+    if (closePrivacyBtn) closePrivacyBtn.addEventListener('click', closePrivacy);
+    
+    if (privacyModal) {
+      privacyModal.addEventListener('click', (e) => {
+        if (e.target === privacyModal) closePrivacy();
       });
     }
   } catch (err) {
