@@ -107,6 +107,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }
+    // 맨 위로 가기 버튼 제어
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+    if (scrollToTopBtn) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 200) {
+          scrollToTopBtn.classList.add('visible');
+        } else {
+          scrollToTopBtn.classList.remove('visible');
+        }
+      });
+
+      scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
   } catch (err) {
     console.warn("모달 초기화 중 에러 발생:", err);
   }

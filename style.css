@@ -584,3 +584,48 @@ body {
   padding: 14px;
   font-size: 15px;
 }
+
+/* Scroll to Top Button */
+.fixed-wrapper {
+  position: fixed;
+  bottom: 85px; /* 하단 팝업 버튼 위에 위치 */
+  left: 0;
+  right: 0;
+  max-width: 480px;
+  margin: 0 auto;
+  pointer-events: none;
+  z-index: 99;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 20px;
+}
+
+.scroll-to-top {
+  pointer-events: auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--white);
+  color: var(--primary);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-to-top:active {
+  background-color: var(--primary-light);
+  color: var(--white);
+}
