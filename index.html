@@ -24,6 +24,11 @@
           <span class="logo-text">내일사장 <span class="highlight">'함께해요'</span></span>
         </h1>
       </div>
+      <nav class="nav-tabs">
+        <a href="#" class="tab active" data-tab="tab-home">소개</a>
+        <a href="#" class="tab require-auth" data-tab="tab-community">커뮤니티</a>
+        <a href="#" class="tab require-auth" data-tab="tab-mypage">리워드함</a>
+      </nav>
     </header>
 
     <!-- Scroll State Notice Banner -->
@@ -37,118 +42,371 @@
     <!-- Main Content -->
     <main class="main-content">
       
-      <!-- Hero Section -->
-      <section class="hero-section">
-        <div class="hero-bg-grid"></div>
-        <div class="hero-content">
-          <h2 class="hero-title">
-            <span class="sub-text">양도자들만의 프라이빗 커뮤니티</span><br>
-            함께 모여 원하는 권리금 받고<br>가게를 팔아보세요!
-          </h2>
+      <!-- [Home Tab]: 기존 랜딩페이지 컨텐츠 -->
+      <div id="tab-home" class="tab-pane active">
+        <!-- Hero Section -->
+        <section class="hero-section">
+          <div class="hero-bg-grid"></div>
+          <div class="hero-content">
+            <h2 class="hero-title">
+              <span class="sub-text">양도자들만의 프라이빗 커뮤니티</span><br>
+              함께 모여 원하는 권리금 받고<br>가게를 팔아보세요!
+            </h2>
+            
+            <div class="floating-badges">
+              <div class="badge badge-blue">
+                <span class="emoji">🤫</span> 양도 사장님 전용
+              </div>
+              <div class="badge badge-darkblue">
+                <span class="emoji">🛡️</span> 권리금 방어 프로젝트
+              </div>
+              <div class="badge badge-lightblue">
+                프랜차이즈 전문가 직접 지원 <span class="emoji">👨‍💼</span>
+              </div>
+            </div>
+            
+            <!-- Decorative Background Elements -->
+            <div class="glow-blob top-right"></div>
+            <div class="glow-blob bottom-left"></div>
+          </div>
+        </section>
+
+        <!-- Problem/Persuasion Section -->
+        <section class="problem-section">
+          <div class="section-container">
+            <h3 class="section-title">
+              매장 판매까지 평균 1년.<br>
+              사장님의 권리금은 안녕하신가요?
+            </h3>
+            
+            <div class="problem-card">
+              <p class="desc">
+                대부분의 양도자가 초기 목표했던 권리금을 지키지 못합니다. 
+                매각 기간이 길어질수록 <strong>"이제 내 매장이 아니다"</strong>라는 생각에 관리가 소홀해지고, 이는 매출 하락과 운영 상태 악화로 직결됩니다.
+              </p>
+              <div class="divider"></div>
+              <p class="solution">
+                나홀로 지치지 않게, 양도자 커뮤니티에서 함께 으쌰으쌰하며 
+                <span class="highlight-text">끝까지 매장을 최상의 상태로 유지하세요!</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits-section">
+          <div class="section-container">
+            <h3 class="section-title text-center">커뮤니티 '함께해요' 가입 혜택</h3>
+            
+            <ul class="benefits-list">
+              <li class="benefit-item">
+                <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></div>
+                <div class="benefit-text">
+                  <h4>전문가 밀착 지원</h4>
+                  <p>프랜차이즈 관리 경력자들의 1:1 노하우 및 피드백 제공</p>
+                </div>
+              </li>
+              <li class="benefit-item">
+                <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
+                <div class="benefit-text">
+                  <h4>동기부여 및 상태 체크</h4>
+                  <p>의지 하락 방지를 위한 주기적 활동 및 체크리스트 미션 수행</p>
+                </div>
+              </li>
+              <li class="benefit-item">
+                <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></div>
+                <div class="benefit-text">
+                  <h4>실전 템플릿 제공</h4>
+                  <p>양도 체크리스트 등 거래에 꼭 필요한 필수 문서 템플릿 무료 제공</p>
+                </div>
+              </li>
+              <li class="benefit-item">
+                <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+                <div class="benefit-text">
+                  <h4>활동 리워드 수익</h4>
+                  <p>커뮤니티 활동 및 미션 달성 시 매주 일정 금액의 리워드 지급</p>
+                </div>
+              </li>
+              <li class="benefit-item highlight">
+                <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 6.91 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+                <div class="benefit-text">
+                  <h4>특별 혜택</h4>
+                  <p>인증 매장 등록 비용(10만 원) <strong>전액 면제</strong></p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Call to Action Banner -->
+        <section class="cta-banner" id="apply">
+          <div class="banner-content">
+            <h3>새로운 출발을 위한 여정에 필요한 모든 것을<br>내일사장과 함께해요!</h3>
+            <div class="banner-illust">
+              <svg width="60" height="60" viewBox="0 0 24 24" fill="none" class="receipt-icon" stroke="#ffffff" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" class="search-icon" stroke="#2d68ff" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
+          </div>
+        </section>
+      </div><!-- End #tab-home -->
+
+      <!-- [Community Tab] -->
+      <div id="tab-community" class="tab-pane" style="display: none;">
+        
+        <!-- Checklist Section -->
+        <section class="community-section">
+          <div class="section-header">
+            <h3>🔥 오늘도 잘 버텼다 (일일 미션)</h3>
+            <p>매일 3~7개의 미션을 골라서 실천해 보세요!</p>
+          </div>
           
-          <div class="floating-badges">
-            <div class="badge badge-blue">
-              <span class="emoji">🤫</span> 양도 사장님 전용
+          <!-- 미션 선택/활성 상태 UI -->
+          <div id="missionSelectState" class="mission-empty-state">
+            <p style="font-size: 14px; font-weight: 600; margin-bottom: 12px; color: var(--text-main);">오늘 실천할 미션을 추천해 드려요!</p>
+            <div style="display: flex; gap: 8px; justify-content: center;">
+              <button class="btn btn-secondary" id="btnRandomMission" style="padding: 10px 16px; font-size: 14px; min-width: auto; flex: none;">
+                🔄 추천받기
+              </button>
+              <button class="btn btn-primary" id="btnOpenMissionModal" style="padding: 10px 16px; font-size: 14px; box-shadow: none;">
+                ✏️ 직접 고르기
+              </button>
             </div>
-            <div class="badge badge-darkblue">
-              <span class="emoji">🛡️</span> 권리금 방어 프로젝트
+          </div>
+
+          <!-- State 2: After selecting missions -->
+          <div id="missionActiveState" class="mission-active-state" style="display: none;">
+            <div class="mission-list" id="activeMissionList">
+              <!-- JS will populate selected missions here -->
             </div>
-            <div class="badge badge-lightblue">
-              프랜차이즈 전문가 직접 지원 <span class="emoji">👨‍💼</span>
+            <div class="mission-progress-container">
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 0%;" id="missionProgress"></div>
+              </div>
+              <div class="progress-text">오늘의 완료 달성: <span id="missionCount">0</span>/<span id="missionTotal">0</span></div>
+            </div>
+            <button class="text-link" style="margin-top: 12px; display: block; text-align: center; width: 100%;" id="btnEditMissions">미션 다시 고르기</button>
+          </div>
+        </section>
+
+        <!-- CTAs for Consultation / Templates -->
+        <section class="community-cta-group">
+          <!-- 카카오 링크 모달 트리거 변경 예정 -->
+          <div class="cta-card cta-consulting" id="btnConsulting">
+            <div class="cta-icon">
+              <!-- 사람 모양 SVG -->
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+              </svg>
+            </div>
+            <div class="cta-info">
+              <h4>전문가 밀착 지원</h4>
+              <p>프랜차이즈 관리 경력자의 1:1 상담</p>
+            </div>
+          </div>
+          <!-- 템플릿 페이지 모달 트리거 -->
+          <div class="cta-card cta-template" id="btnTemplate">
+            <div class="cta-icon">
+              <!-- 문서 모양 SVG -->
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+            </div>
+            <div class="cta-info">
+              <h4>실전 템플릿 제공</h4>
+              <p>양도·양수 필수 체크리스트</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Free Board Section & Retro Board -->
+        <section class="community-section" id="boardSection">
+          <div class="section-header">
+            <div class="board-tabs" id="boardTabs">
+              <button class="board-tab active" data-board="board-free">익명 자유 게시판</button>
+              <button class="board-tab" data-board="board-retro">일일 회고 게시판</button>
+            </div>
+            <p id="boardDesc">사장님들과 자유롭게 이야기를 나눠보세요.</p>
+          </div>
+          
+          <div class="board-pane active" id="board-free">
+            <div class="feed-list" id="feedList">
+              <!-- Mock Feed Item 1 -->
+              <div class="feed-card" data-post-id="1">
+                <div class="feed-header">
+                  <div class="feed-author">
+                    <div class="author-avatar bg-blue">내</div>
+                    <span class="author-name">내일사장</span>
+                    <span class="feed-time">10분 전</span>
+                  </div>
+                </div>
+                <div class="feed-content">
+                  오늘 첫 손님한테 먼저 인사했는데, 진짜 표정이 달라지는 게 느껴지네요. 기분 좋은 하루 시작입니다!
+                </div>
+                <div class="feed-actions">
+                  <button class="action-btn btn-like"><span class="icon">🤍</span> <span class="count">2</span></button>
+                  <button class="action-btn btn-comment"><span class="icon">💬</span> <span class="count">0</span></button>
+                </div>
+                <!-- Comment Section (Hidden by default) -->
+                <div class="feed-comments" style="display: none;">
+                  <div class="comment-list">
+                    <!-- No comments yet -->
+                    <div class="empty-comment">첫 댓글을 남겨보세요.</div>
+                  </div>
+                  <div class="comment-input-area">
+                    <input type="text" placeholder="따뜻한 한마디를 입력해주세요" class="comment-input">
+                    <button class="btn btn-primary submit-comment">등록</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Mock Feed Item 2 -->
+              <div class="feed-card" data-post-id="2">
+                <div class="feed-header">
+                  <div class="feed-author">
+                    <div class="author-avatar bg-orange">행</div>
+                    <span class="author-name">행복가게</span>
+                    <span class="feed-time">1시간 전</span>
+                  </div>
+                </div>
+                <div class="feed-content">
+                  어제 마감하고 그냥 가지 않고 커피 한 잔 마시면서 여유를 가졌습니다. 번아웃 오기 전에 미리 충전하는게 중요한 것 같아요. 다들 파이팅합시다.
+                </div>
+                <div class="feed-actions">
+                  <button class="action-btn btn-like"><span class="icon">🤍</span> <span class="count">5</span></button>
+                  <button class="action-btn btn-comment"><span class="icon">💬</span> <span class="count">1</span></button>
+                </div>
+                <!-- Comment Section -->
+                <div class="feed-comments" style="display: none;">
+                  <div class="comment-list">
+                    <div class="comment-item">
+                      <span class="comment-author">내일사장</span>맞아요, 자신을 돌보지 않으면 매장도 돌보기 힘들더라고요. 화이팅!
+                    </div>
+                  </div>
+                  <div class="comment-input-area">
+                    <input type="text" placeholder="따뜻한 한마디를 입력해주세요" class="comment-input">
+                    <button class="btn btn-primary submit-comment">등록</button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           
-          <!-- Decorative Background Elements -->
-          <div class="glow-blob top-right"></div>
-          <div class="glow-blob bottom-left"></div>
-        </div>
-      </section>
+          <!-- Retro Board Pane -->
+          <div class="board-pane" id="board-retro" style="display: none;">
+            <div class="feed-list">
+              <div class="feed-card">
+                <div class="feed-header">
+                  <div class="feed-author">
+                    <div class="author-avatar bg-blue">내</div>
+                    <span class="author-name">내일사장</span>
+                    <span class="feed-time">방금 전</span>
+                  </div>
+                </div>
+                <div class="feed-content">
+                  <p>오늘 추천받은 미션을 모두 완료했습니다! 처음엔 귀찮았는데 막상 체크하고 나니까 성취감이 크네요. 내일도 화이팅입니다.</p>
+                  <div style="margin-top: 12px; padding: 12px; background: #f9f9f9; border-radius: 8px;">
+                    <span class="tag tag-blue">청결</span> 손님이 기다리는 동안 빈 테이블 치우기 완료!<br>
+                    <span class="tag tag-orange">서비스</span> 오늘 첫 손님 먼저 인사하기 완료!<br>
+                    <span class="tag tag-green">루틴</span> 내일 오픈 준비 미리 챙기기 완료!
+                  </div>
+                </div>
+                <div class="feed-actions">
+                  <button class="action-btn btn-like"><span class="icon">🤍</span> <span class="count">0</span></button>
+                  <button class="action-btn btn-comment"><span class="icon">💬</span> <span class="count">0</span></button>
+                </div>
+                <div class="feed-comments" style="display: none;">
+                  <div class="comment-list">
+                    <div class="empty-comment">첫 댓글을 남겨보세요.</div>
+                  </div>
+                  <div class="comment-input-area">
+                    <input type="text" placeholder="따뜻한 한마디를 입력해주세요" class="comment-input">
+                    <button class="btn btn-primary submit-comment">등록</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Floating Write Button -->
+        <button class="fab-write" id="fabWriteBtn" style="display: none;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+        </button>
 
-      <!-- Problem/Persuasion Section -->
-      <section class="problem-section">
-        <div class="section-container">
-          <h3 class="section-title">
-            매장 판매까지 평균 1년.<br>
-            사장님의 권리금은 안녕하신가요?
-          </h3>
-          
-          <div class="problem-card">
-            <p class="desc">
-              대부분의 양도자가 초기 목표했던 권리금을 지키지 못합니다. 
-              매각 기간이 길어질수록 <strong>"이제 내 매장이 아니다"</strong>라는 생각에 관리가 소홀해지고, 이는 매출 하락과 운영 상태 악화로 직결됩니다.
-            </p>
-            <div class="divider"></div>
-            <p class="solution">
-              나홀로 지치지 않게, 양도자 커뮤니티에서 함께 으쌰으쌰하며 
-              <span class="highlight-text">끝까지 매장을 최상의 상태로 유지하세요!</span>
-            </p>
+      </div><!-- End #tab-community -->
+
+      <!-- [My Page Tab] -->
+      <div id="tab-mypage" class="tab-pane" style="display: none;">
+        
+        <div class="profile-header">
+          <div class="profile-avatar">👤</div>
+          <div class="profile-info">
+            <h3 id="displayUserId">내일사장</h3>
+            <p>오늘도 함께 이겨내요!</p>
           </div>
         </div>
-      </section>
 
-      <!-- Benefits Section -->
-      <section class="benefits-section">
-        <div class="section-container">
-          <h3 class="section-title text-center">커뮤니티 '함께해요' 가입 혜택</h3>
-          
-          <ul class="benefits-list">
-            <li class="benefit-item">
-              <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></div>
-              <div class="benefit-text">
-                <h4>전문가 밀착 지원</h4>
-                <p>프랜차이즈 관리 경력자들의 1:1 노하우 및 피드백 제공</p>
-              </div>
-            </li>
-            <li class="benefit-item">
-              <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
-              <div class="benefit-text">
-                <h4>동기부여 및 상태 체크</h4>
-                <p>의지 하락 방지를 위한 주기적 활동 및 체크리스트 미션 수행</p>
-              </div>
-            </li>
-            <li class="benefit-item">
-              <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></div>
-              <div class="benefit-text">
-                <h4>실전 템플릿 제공</h4>
-                <p>양도 체크리스트 등 거래에 꼭 필요한 필수 문서 템플릿 무료 제공</p>
-              </div>
-            </li>
-            <li class="benefit-item">
-              <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
-              <div class="benefit-text">
-                <h4>활동 리워드 수익</h4>
-                <p>커뮤니티 활동 및 미션 달성 시 매주 일정 금액의 리워드 지급</p>
-              </div>
-            </li>
-            <li class="benefit-item highlight">
-              <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 6.91 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
-              <div class="benefit-text">
-                <h4>특별 혜택</h4>
-                <p>인증 매장 등록 비용(10만 원) <strong>전액 면제</strong></p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Call to Action Banner -->
-      <section class="cta-banner" id="apply">
-        <div class="banner-content">
-          <h3>새로운 출발을 위한 여정에 필요한 모든 것을<br>내일사장과 함께해요!</h3>
-          <div class="banner-illust">
-            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" class="receipt-icon" stroke="#ffffff" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" class="search-icon" stroke="#2d68ff" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <section class="mypage-section reward-dashboard">
+          <div class="section-header">
+            <h3>🏆 나의 리워드 현황</h3>
           </div>
-        </div>
-      </section>
+          <div class="reward-grid">
+            <div class="reward-item">
+              <div class="reward-icon">🎉</div>
+              <div class="reward-title">신규 가입</div>
+              <div class="reward-status complete">달성완료</div>
+            </div>
+            <div class="reward-item">
+              <div class="reward-icon">🔥</div>
+              <div class="reward-title">연속 3일 작성</div>
+              <div class="reward-status">2/3 진행중</div>
+            </div>
+            <div class="reward-item">
+              <div class="reward-icon">⭐</div>
+              <div class="reward-title">베스트 리뷰어</div>
+              <div class="reward-status">미달성</div>
+            </div>
+            <div class="reward-item">
+              <div class="reward-icon">💬</div>
+              <div class="reward-title">공지 댓글</div>
+              <div class="reward-status">참여완료</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="mypage-section coupon-box">
+          <div class="section-header">
+            <h3>🎁 내 쿠폰함</h3>
+            <p>수령한 리워드(기프티콘)가 보관되는 곳입니다.</p>
+          </div>
+          
+          <div class="coupon-grid" id="couponGrid">
+            <!-- Mock Coupon View -->
+            <div class="coupon-card">
+              <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=200&auto=format&fit=crop" alt="쿠폰">
+              <div class="coupon-info">아메리카노 교환권</div>
+            </div>
+            <div class="coupon-card empty">
+              <span>쿠폰을 모아보세요!</span>
+            </div>
+            <div class="coupon-card empty">
+              <span>비어있음</span>
+            </div>
+            <div class="coupon-card empty">
+              <span>비어있음</span>
+            </div>
+          </div>
+        </section>
+
+      </div><!-- End #tab-mypage -->
       
       <!-- Spacer for bottom fixed bar -->
       <div class="bottom-spacer"></div>
       
     </main>
 
-    <!-- Bottom Fixed Actions -->
-    <div class="bottom-actions">
+    <!-- Bottom Fixed Actions (Show only on Home tab initially) -->
+    <div class="bottom-actions" id="homeActions">
       <button class="btn btn-primary trigger-apply">신청하기</button>
     </div>
 
@@ -158,8 +416,38 @@
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
       </button>
     </div>
-
   </div>
+
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>커뮤니티 로그인</h3>
+        <button class="close-modal-btn" id="closeLoginBtn">&times;</button>
+      </div>
+      <p class="modal-desc">폐쇄형 커뮤니티로 초대된 사장님만 입장 가능합니다.</p>
+      <form id="loginForm" class="modal-body">
+        <div class="form-group">
+          <label for="userId">아이디</label>
+          <input type="text" id="userId" required placeholder="아이디를 입력하세요">
+        </div>
+        <div class="form-group">
+          <label for="userPw">비밀번호</label>
+          <input type="password" id="userPw" required placeholder="비밀번호를 입력하세요">
+        </div>
+        
+        <div class="modal-actions">
+          <button type="submit" class="btn btn-primary block-btn">로그인</button>
+        </div>
+        
+        <div class="login-help">
+          <p>아이디/비밀번호를 잃어버리셨나요?</p>
+          <a href="https://open.kakao.com/o/sometestlink" target="_blank" class="text-link">운영자에게 1:1 카톡 문의하기</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- Modal Overlay -->
   <div class="modal-overlay" id="applyModal">
     <div class="modal-content">
@@ -235,6 +523,354 @@
           - 귀하는 동의를 거부할 권리가 있으나, 필수 항목 동의 거부 시 서비스 이용이 제한됩니다.
         </p>
       </div>
+    </div>
+  </div>
+
+  <!-- Write Post Action Sheet -->
+  <div class="action-sheet-overlay" id="writeActionSheet">
+    <div class="action-sheet-content">
+      <button class="action-option" id="btnWriteFree">자유 글쓰기</button>
+      <button class="action-option" id="btnWriteRetro">미션 회고 쓰기</button>
+      <button class="action-option cancel" id="btnCancelActionSheet">취소</button>
+    </div>
+  </div>
+
+  <!-- Write Post Modal (글쓰기 팝업) -->
+  <div class="modal-overlay" id="writeModal">
+    <div class="modal-content" style="max-height: 80vh;">
+      <div class="modal-header">
+        <h3 id="writeModalTitle">글쓰기</h3>
+        <button class="close-modal-btn" id="closeWriteBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="board-type-switcher">
+          <button class="type-btn active" id="typeFreeBtn">자유글</button>
+          <button class="type-btn" id="typeRetroBtn">회고글</button>
+        </div>
+        <!-- 안내문구 공간 (회고글 작성 시 표시) -->
+        <div id="retroMissionsContainer" style="display: none; background: var(--bg-color); padding: 12px; border-radius: 8px; margin-bottom: 16px;">
+          <p style="font-size: 13px; font-weight: 600; color: var(--primary); margin-bottom: 8px;">완료한 미션이 자동 포함됩니다.</p>
+          <div id="myRetroTags" style="font-size: 13px; color: var(--text-main); line-height: 1.4;">
+            <!-- 태그 추가 영역 -->
+          </div>
+        </div>
+        <textarea id="postContent" class="form-textarea" placeholder="사장님들과 나누고 싶은 이야기를 적어보세요." rows="6"></textarea>
+      </div>
+      <div class="modal-actions" style="padding: 20px; border-top: 1px solid var(--border-color); margin-top: 0;">
+        <button class="btn btn-secondary" id="cancelWriteBtn">취소</button>
+        <button class="btn btn-primary" id="submitWriteBtn">등록하기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mission Selection Bottom Sheet -->
+  <div class="modal-overlay bottom-sheet" id="missionModal">
+    <div class="modal-content sheet-content">
+      <div class="modal-header">
+        <h3>오늘 도전할 미션 (3~7개)</h3>
+        <button class="close-modal-btn" id="closeMissionBtn">&times;</button>
+      </div>
+      <div class="modal-body mission-pool">
+        <p class="modal-desc">매일매일 지키고 싶은 사장님만의 루틴을 장바구니에 담듯 골라주세요.</p>
+        <div class="mission-picker-list" id="missionPickerList">
+          <!-- Dynamically populated via JS, but we put full list here for parsing -->
+          <!-- (We'll store them in JS or pull from DOM later. Let's write them here directly) -->
+        </div>
+      </div>
+      <div class="sheet-actions">
+        <button class="btn btn-primary block-btn" id="saveMissionBtn">미션 설정 완료</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Template Sub-page (전체 화면 사이드) -->
+  <div class="sub-page-overlay" id="templatePage">
+    <div class="sub-page-header">
+      <button class="btn-icon" id="closeTemplateBtn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-main)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      </button>
+      <h3>권리금 보호 체크리스트</h3>
+    </div>
+    
+    <div class="sub-page-content">
+        <!-- Sub-page specific Scroll To Top -->
+        <div class="sub-fixed-wrapper">
+          <button class="scroll-to-top" id="scrollToTopSubBtn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <div class="template-header-area">
+          <h1>양도양수 진행 중<br>권리금 보호 체크리스트</h1>
+          <p>양도 협의 시작부터 잔금 완료까지, 권리금을 지키기 위한 주기별 점검표</p>
+          
+          <div class="badge-legend">
+            <span class="tb-badge tb-core">핵심 (즉각 대응)</span>
+            <span class="tb-badge tb-import">중요 (주기적 확인)</span>
+            <span class="tb-badge tb-rec">권장 (여유 있을 때)</span>
+          </div>
+        </div>
+
+      <!-- Categories -->
+      <div class="template-body" id="templateListContent">
+        
+        <!-- 매일 점검 -->
+        <h2 class="template-group-title">매일 점검</h2>
+        <div class="template-group">
+          <!-- 매출·고객 유지 -->
+          <div class="template-item">
+            <input type="checkbox" class="mission-checkbox" style="margin-top:4px;">
+            <div class="template-item-content">
+              <span class="tag tag-blue" style="margin-bottom:8px;">매출·고객 유지</span>
+              <h4 class="tooltip-trigger">매출추이가 평소 대비 급감하지 않았나요? 💡</h4>
+              <div class="template-item-desc">양도 협의 중에 매출이 눈에 띄게 줄어들면 나중에 권리금 협상할 때 불리해질 수 있어요.</div>
+            </div>
+            <div class="template-badge-col"><span class="tb-badge tb-core">핵심</span></div>
+          </div>
+          <div class="template-item">
+            <input type="checkbox" class="mission-checkbox" style="margin-top:4px;">
+            <div class="template-item-content">
+              <h4 class="tooltip-trigger">단골 고객 관리가 잘 되고 있나요? 💡</h4>
+              <div class="template-item-desc">구매 이력이나 포인트 적립 등 기존 고객을 관리하는 시스템이 활성화되어 있는지 점검해보세요.</div>
+            </div>
+            <div class="template-badge-col"><span class="tb-badge tb-core">핵심</span></div>
+          </div>
+          <div class="template-item">
+            <input type="checkbox" class="mission-checkbox" style="margin-top:4px;">
+            <div class="template-item-content">
+              <h4 class="tooltip-trigger">갑작스러운 퇴사 의사를 밝힌 직원이 있나요? 💡</h4>
+              <div class="template-item-desc">양도양수 전후로 주요 직원이 이탈하면 인수하는 분이 운영에 큰 부담을 느껴 권리금을 깎아달라 할 수 있어요.</div>
+            </div>
+            <div class="template-badge-col"><span class="tb-badge tb-core">핵심</span></div>
+          </div>
+        </div>
+
+        <div class="template-group">
+          <!-- 정보 보안 -->
+          <div class="template-item">
+            <input type="checkbox" class="mission-checkbox" style="margin-top:4px;">
+            <div class="template-item-content">
+              <span class="tag tag-blue" style="margin-bottom:8px;">정보 보안</span>
+              <h4 class="tooltip-trigger">가게를 넘긴다는 사실이 불필요하게 새어나가지 않았나요? 💡</h4>
+              <div class="template-item-desc">소문이 먼저 돌면 주변 거래처에서 조건을 바꾸자고 하거나 직원들이 동요할 수 있어서 곤란해질 수 있어요.</div>
+            </div>
+            <div class="template-badge-col"><span class="tb-badge tb-core">핵심</span></div>
+          </div>
+          <div class="template-item">
+            <input type="checkbox" class="mission-checkbox" style="margin-top:4px;">
+            <div class="template-item-content">
+              <h4 class="tooltip-trigger">매출 자료나 거래처 정보를 너무 빨리 넘겨주지는 않았나요? 💡</h4>
+              <div class="template-item-desc">최종 계약서 도장을 찍기 전까지는 핵심 노하우나 정보는 꼭 필요한 것만 보여주는 게 안전해요.</div>
+            </div>
+            <div class="template-badge-col"><span class="tb-badge tb-import">중요</span></div>
+          </div>
+        </div>
+
+        <!-- 주간 점검 -->
+        <h2 class="template-group-title">주간 점검</h2>
+        <div class="template-group">
+          <!-- 재무·세금 -->
+          <div class="template-item">
+            <input type="checkbox" class="mission-checkbox" style="margin-top:4px;">
+            <div class="template-item-content">
+              <span class="tag tag-green" style="margin-bottom:8px;">재무·세금</span>
+              <h4 class="tooltip-trigger">최근 3개월치 매출 기록이 잘 정리되어 있나요? 💡</h4>
+              <div class="template-item-desc">권리금 산정의 가장 큰 근거예요! 나중에 금액이 맞니 틀리니 하는 큰 분쟁을 막아줍니다.</div>
+            </div>
+            <div class="template-badge-col"><span class="tb-badge tb-core">핵심</span></div>
+          </div>
+          <div class="template-item">
+            <input type="checkbox" class="mission-checkbox" style="margin-top:4px;">
+            <div class="template-item-content">
+              <h4 class="tooltip-trigger">혹시 4대보험이나 밀린 세금은 없으신가요? 💡</h4>
+              <div class="template-item-desc">세금이 밀려있으면 실사 단계에서 바로 들키고 신뢰가 깨지거나 권리금이 깎일 수 있어요.</div>
+            </div>
+            <div class="template-badge-col"><span class="tb-badge tb-core">핵심</span></div>
+          </div>
+          <div class="template-item">
+            <input type="checkbox" class="mission-checkbox" style="margin-top:4px;">
+            <div class="template-item-content">
+              <h4 class="tooltip-trigger">카드단말기와 포스기 매출 내역을 맞춰보셨나요? 💡</h4>
+              <div class="template-item-desc">매출 증빙의 기본! 두 자료가 불일치하면 인수자가 의심을 품게 될 수 있어요.</div>
+            </div>
+            <div class="template-badge-col"><span class="tb-badge tb-import">중요</span></div>
+          </div>
+        </div>
+
+        <div class="template-group">
+          <!-- 계약·법무 -->
+          <div class="template-item">
+            <input type="checkbox" class="mission-checkbox" style="margin-top:4px;">
+            <div class="template-item-content">
+              <span class="tag tag-green" style="margin-bottom:8px;">계약·법무</span>
+              <h4 class="tooltip-trigger">지금 상가 임대차 계약의 남은 기간과 조건을 다시 한번 확인하셨나요? 💡</h4>
+              <div class="template-item-desc">잔여 기간이 너무 짧으면 권리금 회수가 불확실해져서 인수하는 분이 망설일 수 있어요.</div>
+            </div>
+            <div class="template-badge-col"><span class="tb-badge tb-core">핵심</span></div>
+          </div>
+          <div class="template-item">
+            <input type="checkbox" class="mission-checkbox" style="margin-top:4px;">
+            <div class="template-item-content">
+              <h4 class="tooltip-trigger">건물주(임대인)에게 양도양수에 대한 동의 여부를 넌지시 여쭤보셨나요? 💡</h4>
+              <div class="template-item-desc">건물주가 계약서 안써주면 양도 자체가 엎어지니 미리 긍정적인지 체크가 꼭 필요해요.</div>
+            </div>
+            <div class="template-badge-col"><span class="tb-badge tb-core">핵심</span></div>
+          </div>
+          <div class="template-item">
+            <input type="checkbox" class="mission-checkbox" style="margin-top:4px;">
+            <div class="template-item-content">
+              <h4 class="tooltip-trigger">본사(프랜차이즈)의 양도 제한 규정이나 페널티가 없는지 점검하셨나요? 💡</h4>
+              <div class="template-item-desc">본사 허락 없이 넘겼다가는 계약 위반으로 오히려 법적 책임을 지고 권리금도 날아갈 수 있어요.</div>
+            </div>
+            <div class="template-badge-col"><span class="tb-badge tb-import">중요</span></div>
+          </div>
+        </div>
+
+        <div class="template-group">
+          <!-- 인수자 관리 -->
+          <div class="template-item">
+            <input type="checkbox" class="mission-checkbox" style="margin-top:4px;">
+            <div class="template-item-content">
+              <span class="tag tag-green" style="margin-bottom:8px;">인수자 관리</span>
+              <h4 class="tooltip-trigger">가게를 인수할 분이 자금 준비는 순조롭게 하고 있는지 물어보셨나요? 💡</h4>
+              <div class="template-item-desc">정말 돈이 있는지 확신 없이 너무 많은 정보를 열어주면 위험할 수 있으니 진행 상황 파악은 필수예요.</div>
+            </div>
+            <div class="template-badge-col"><span class="tb-badge tb-import">중요</span></div>
+          </div>
+          <div class="template-item">
+            <input type="checkbox" class="mission-checkbox" style="margin-top:4px;">
+            <div class="template-item-content">
+              <h4 class="tooltip-trigger">인수자가 요구한 자료가 너무 예민한 정보가 아닌지 고민해 보셨나요? 💡</h4>
+              <div class="template-item-desc">계약서 도장 찍기 전에 원가나 도매상 연락처 같은 핵심 영업 기밀을 다 넘기는 건 조심해야 해요.</div>
+            </div>
+            <div class="template-badge-col"><span class="tb-badge tb-import">중요</span></div>
+          </div>
+          <div class="template-item">
+            <input type="checkbox" class="mission-checkbox" style="margin-top:4px;">
+            <div class="template-item-content">
+              <h4 class="tooltip-trigger">협상 과정의 중요한 내용들은 문자로라도 잘 남겨두고 계신가요? 💡</h4>
+              <div class="template-item-desc">말로만 '이렇게 합시다' 했던 것들은 꼭 문제 생기면 증명할 방법이 없답니다. 작은 기록이 큰 보험이 됩니다.</div>
+            </div>
+            <div class="template-badge-col"><span class="tb-badge tb-rec">권장</span></div>
+          </div>
+        </div>
+
+        <!-- 계약 단계 -->
+        <h2 class="template-group-title">계약 단계</h2>
+        <div class="template-group">
+          <!-- 권리금 계약서 필수 확인 -->
+          <div class="template-item">
+            <input type="checkbox" class="mission-checkbox" style="margin-top:4px;">
+            <div class="template-item-content">
+              <span class="tag tag-orange" style="margin-bottom:8px;">권리금 계약서 필수 확인</span>
+              <h4 class="tooltip-trigger">계약서에 확정된 권리금 액수가 정확하게 숫자로 써있나요? 💡</h4>
+              <div class="template-item-desc">막연하게 '추후 합의'라거나 비워두면 나중에 분쟁 생겼을 때 정말 골치아파져요.</div>
+            </div>
+            <div class="template-badge-col"><span class="tb-badge tb-core">핵심</span></div>
+          </div>
+          <div class="template-item">
+            <input type="checkbox" class="mission-checkbox" style="margin-top:4px;">
+            <div class="template-item-content">
+              <h4 class="tooltip-trigger">돈을 언제 어떻게 줄지(계약금/잔금 일정) 꼼꼼하게 적혀있나요? 💡</h4>
+              <div class="template-item-desc">구체적으로 날짜와 방법을 정해놔야 서로 얼굴 붉히는 일을 막을 수 있습니다.</div>
+            </div>
+            <div class="template-badge-col"><span class="tb-badge tb-core">핵심</span></div>
+          </div>
+          <div class="template-item">
+            <input type="checkbox" class="mission-checkbox" style="margin-top:4px;">
+            <div class="template-item-content">
+              <h4 class="tooltip-trigger">건물주(임대인)가 중간에 조건 확 올려서 방해하면 안된다는 조항도 살피셨나요? 💡</h4>
+              <div class="template-item-desc">현행 상가법(제10조의4)에 따라 임대인의 방해 행위를 금지한다는 내용을 꼭 넣어두는 게 좋아요.</div>
+            </div>
+            <div class="template-badge-col"><span class="tb-badge tb-core">핵심</span></div>
+          </div>
+          <div class="template-item">
+            <input type="checkbox" class="mission-checkbox" style="margin-top:4px;">
+            <div class="template-item-content">
+              <h4 class="tooltip-trigger">만약 인수자 마음이 바뀌어서 계약 파기되면 위약금 어떻게 할지 정해두셨나요? 💡</h4>
+              <div class="template-item-desc">시간 날리고 다른 사람한테 팔 기회도 날아갈 수 있으니, 계약금 몰수 등 최소한의 보전 장치가 필요해요.</div>
+            </div>
+            <div class="template-badge-col"><span class="tb-badge tb-core">핵심</span></div>
+          </div>
+        </div>
+
+        <div class="template-group">
+          <!-- 양도양수 계약서 필수 확인 -->
+          <div class="template-item">
+            <input type="checkbox" class="mission-checkbox" style="margin-top:4px;">
+            <div class="template-item-content">
+              <span class="tag tag-orange" style="margin-bottom:8px;">양도양수 계약서 필수 확인</span>
+              <h4 class="tooltip-trigger">식기, 주방 집기, 에어컨 등 눈에 보이는 것들 목록이 첨부되어 있나요? 💡</h4>
+              <div class="template-item-desc">목록을 안 만들어두면 한참 뒤에 '이건 왜 없냐' 하면서 싸움이 날 수 있어요. 목록 첨부는 필수!</div>
+            </div>
+            <div class="template-badge-col"><span class="tb-badge tb-core">핵심</span></div>
+          </div>
+          <div class="template-item">
+            <input type="checkbox" class="mission-checkbox" style="margin-top:4px;">
+            <div class="template-item-content">
+              <h4 class="tooltip-trigger">나만의 소스나 레시피, 단골 장부 등 '무형의 자산' 넘겨줄 범위를 명확히 하셨나요? 💡</h4>
+              <div class="template-item-desc">어디까지 알려주고 넘길지 경계가 모호하면 인수 후에도 계속 시달릴(?) 수 있어요.</div>
+            </div>
+            <div class="template-badge-col"><span class="tb-badge tb-import">중요</span></div>
+          </div>
+          <div class="template-item">
+            <input type="checkbox" class="mission-checkbox" style="margin-top:4px;">
+            <div class="template-item-content">
+              <h4 class="tooltip-trigger">마지막 잔금 주기 직전, 매출이나 재고 현황을 다시 한 번 같이 점검하기로 했나요? 💡</h4>
+              <div class="template-item-desc">큰 돈이 오가기 직전, 마지막으로 특이사항이 없는지 클리어하게 하고 넘어가야 깔끔하답니다.</div>
+            </div>
+            <div class="template-badge-col"><span class="tb-badge tb-import">중요</span></div>
+          </div>
+          <div class="template-item">
+            <input type="checkbox" class="mission-checkbox" style="margin-top:4px;">
+            <div class="template-item-content">
+              <h4 class="tooltip-trigger">가게를 다른 사람 명의로 넘기는 등 우회 양도가 아닌지 확인하셨나요? 💡</h4>
+              <div class="template-item-desc">혹시 모를 명의 위장이나 세금 문제를 예방하려면 꼼꼼한 확인이 필요해요.</div>
+            </div>
+            <div class="template-badge-col"><span class="tb-badge tb-rec">권장</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="sub-page-actions">
+       <button id="btnConsultKakao" class="btn btn-primary block-btn" style="text-decoration: none;">내용이 어렵다면? 전문가 상담받기</button>
+    </div>
+  </div>
+
+  <!-- Standard Confirm Modal (Used for Kakao Chat warning) -->
+  <div class="modal-overlay" id="kakaoConfirmModal">
+    <div class="modal-content" style="padding-top: 20px;">
+      <div class="modal-body" style="text-align: center;">
+        <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--text-main);">전문가 지원 안내</h3>
+        <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6;">심층 상담을 위해 카카오톡 채널로 이동합니다.<br>이동하시겠습니까?</p>
+      </div>
+      <div class="modal-actions" style="padding: 20px;">
+        <button class="btn btn-secondary" id="kakaoCancelBtn">아니요</button>
+        <button class="btn btn-primary" id="kakaoConfirmBtn">이동하기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reward Info Modal -->
+  <div class="modal-overlay" id="rewardInfoModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="rewardInfoTitle">보상 달성 조건</h3>
+        <button class="close-modal-btn" id="closeRewardInfoBtn">&times;</button>
+      </div>
+      <div class="modal-body" style="padding: 24px;">
+        <p id="rewardInfoDesc" style="font-size: 14px; color: var(--text-main); line-height: 1.6;"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Coupon Image Dimmed Viewer -->
+  <div class="image-viewer-modal" id="couponImageViewer">
+    <div class="viewer-content">
+      <img id="couponImageTarget" src="" alt="쿠폰 상세 이미지">
     </div>
   </div>
 
