@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>내일사장 '해볼래요' | 양도자 전용 프리미엄 커뮤니티</title>
+  <title>내일사장 '함께해요' | 양도자 전용 프리미엄 커뮤니티</title>
   
   <!-- Pretendard Font -->
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
@@ -21,7 +21,7 @@
       <div class="header-inner">
         <h1 class="logo">
           <img src="logo.png" alt="내일사장 로고" class="header-logo">
-          <span class="logo-text">내일사장 <span class="highlight">'해볼래요'</span></span>
+          <span class="logo-text">내일사장 <span class="highlight">'함께해요'</span></span>
         </h1>
       </div>
       <nav class="nav-tabs">
@@ -143,82 +143,85 @@
         <section class="community-section intro-entry-section">
           <button type="button" class="community-intro-card" id="btnOpenCommunityIntro">
             <div class="community-intro-copy">
-              <span class="community-intro-badge">COMMUNITY GUIDE</span>
-              <h3>Owners who keep records get picked first</h3>
-              <p>See why operating records change trust and transfer value.</p>
+              <span class="community-intro-badge">📘 커뮤니티 가이드</span>
+              <h3>매일 매장 상태를 기록해야 하는 이유</h3>
             </div>
-            <span class="community-intro-arrow">-></span>
+            <span class="community-intro-arrow" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M5 3L9 7L5 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </span>
           </button>
         </section>
 
         <section class="community-section hero-log-section" id="statusCheckSection">
           <div class="section-header center-align">
-            <h3 class="hero-title">Store status check</h3>
-            <p class="hero-subtitle">Small records make effort and performance clearer.</p>
+            <h3 class="hero-title">📝 오늘 매장 상태 기록하기</h3>
+            <p class="hero-subtitle">작은 기록이 쌓일수록 내 노력과 성과가 더 분명하게 남습니다.</p>
           </div>
           <div class="trust-dashboard">
             <div class="trust-info-wrap">
-              <button type="button" class="trust-tooltip-trigger" aria-label="Count guide">Count guide</button>
-              <div class="trust-tooltip-bubble">Shows cumulative counts for operation records and expert questions.</div>
+              <button type="button" class="trust-tooltip-trigger" aria-label="집계 기준 보기">집계 기준 보기</button>
+              <div class="trust-tooltip-bubble">누적 집계 기준으로 내가 남긴 운영기록과 전문가 질문 수를 보여줍니다. 카드를 누르면 전체 목록을 확인할 수 있습니다.</div>
             </div>
             <div class="trust-dashboard-stats">
               <div class="trust-stat trust-stat-button" onclick="openTrustAssetModal('retro')">
                 <span class="stat-num" id="trustRetroCount">0</span>
-                <span class="stat-label">Operation records</span>
+                <span class="stat-label">운영 기록</span>
               </div>
               <div class="trust-stat trust-stat-button" onclick="openTrustAssetModal('expert')">
                 <span class="stat-num" id="trustExpertCount">0</span>
-                <span class="stat-label">Expert questions</span>
+                <span class="stat-label">전문가 질문</span>
               </div>
             </div>
           </div>
           <div class="hero-action-container compact">
-            <button class="btn btn-primary btn-hero-action compact" id="btnOpenLogModal">Record today's store status</button>
+            <button class="btn btn-primary btn-hero-action compact" id="btnOpenLogModal">오늘의 매장 상태 1분 기록하기</button>
           </div>
         </section>
 
         <section class="community-section expert-section">
           <div class="section-header expert-header">
-            <h3>Expert Q&amp;A</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Experts answer directly.</p>
+            <h3>👨‍💼 전문가 Q&amp;A</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">전문가가 직접 답변해 드립니다.</p>
           </div>
           <div class="expert-card" style="cursor: pointer;" onclick="openExpertBoard('expert-1')">
             <div class="expert-question">
-              <span class="q-mark">Q.</span> Is 50M premium fair for 12M sales?
+              <span class="q-mark">Q.</span> 권리금 5천 vs 매출 1,200, 적정한 금액일까요?
             </div>
             <div class="expert-answer">
-              <span class="a-mark">A.</span> It depends on structure, not sales alone. Check the full answer in the board.
+              <span class="a-mark">A.</span> 권리금은 매출 총액보다 운영 구조와 이후 고정비를 함께 봐야 합니다. 게시판에서 전체 답변을 확인해보세요.
             </div>
           </div>
           <div class="expert-related-links" style="margin-top: 12px;">
-            <a href="#" onclick="openExpertBoard('expert-2'); return false;">Expert Q&amp;A | What not to discount first in negotiation</a>
-            <a href="#" onclick="openExpertBoard('expert-3'); return false;">Expert Q&amp;A | Three hidden costs buyers miss</a>
+            <a href="#" onclick="openExpertBoard('expert-2'); return false;">전문가 Q&amp;A | 권리금 협상 시 '이것'만은 절대 깎지 마세요</a>
+            <a href="#" onclick="openExpertBoard('expert-3'); return false;">전문가 Q&amp;A | 양수자가 놓치기 쉬운 숨은 비용 3가지</a>
           </div>
           <div class="expert-actions" style="display:flex; justify-content:center;">
-            <button class="btn-expert-action" onclick="openQuestionModal()" style="max-width: 250px;">Ask an expert</button>
+            <button class="btn-expert-action" onclick="openQuestionModal()" style="max-width: 250px;">내 상황 전문가에게 질문하기</button>
           </div>
         </section>
 
         <section class="community-section insight-section">
           <div class="section-header">
-            <h3>What owners check most</h3>
+            <h3>🔎 사장님들이 많이 보는 기준</h3>
           </div>
           <div class="insight-list" id="insightScrollContainer">
-            <div class="insight-card-large" onclick="openDetailModal('Premium pricing guide', 'Check recovery period and operating structure, not sales only.')">
-              <h4>Premium pricing guide</h4>
-              <p>Check recovery period and operating structure, not sales only.</p>
+            <div class="insight-card-large" onclick="openDetailModal('권리금 책정 가이드', '매출 숫자만 보지 말고 회수 기간과 운영 구조까지 함께 확인해보세요.')">
+              <h4>권리금 책정 가이드</h4>
+              <p>매출 숫자만 보지 말고 회수 기간과 운영 구조까지 함께 확인해보세요.</p>
             </div>
-            <div class="insight-card-large" onclick="openDetailModal('Three store checks', 'These are the signals buyers review first.')">
-              <h4>Three store checks</h4>
-              <p>These are the signals buyers review first.</p>
+            <div class="insight-card-large" onclick="openDetailModal('양수자가 먼저 보는 3가지', '양수자는 매장의 어떤 신호를 먼저 확인하는지 살펴보세요.')">
+              <h4>양수자가 먼저 보는 3가지</h4>
+              <p>양수자는 매장의 어떤 신호를 먼저 확인하는지 살펴보세요.</p>
             </div>
             <div class="insight-card-large" onclick="document.getElementById('btnScrollToInsight').click();">
-              <h4>Practical template</h4>
-              <p>See what needs to be prepared before writing a good listing.</p>
+              <h4>실전 템플릿</h4>
+              <p>좋은 매물 소개를 쓰기 전에 어떤 준비가 필요한지 확인해보세요.</p>
             </div>
             <div class="insight-card-large insight-card-checklist" id="btnScrollToInsight">
-              <h4>Prepare with records</h4>
-              <p>If it feels hard, start by building records in the community.</p>
+              <h4>기록부터 준비하기</h4>
+              <p>막막하다면 커뮤니티에서 기록을 쌓는 것부터 시작해보세요.</p>
             </div>
           </div>
           <div class="carousel-nav" style="display:flex; justify-content:flex-end; align-items:center; gap:8px; margin-top:12px; padding-right:16px;">
@@ -229,8 +232,8 @@
 
         <section class="community-section" id="boardSection">
           <div class="section-header board-group-header">
-            <h3>Community board</h3>
-            <p>Check operation logs, expert Q&amp;A, and free posts by tab.</p>
+            <h3>🗂️ 커뮤니티 게시판</h3>
+            <p>운영기록, 전문가 Q&amp;A, 자유/질문을 탭별로 나눠 확인할 수 있습니다.</p>
           </div>
           <div class="section-header flex-header" style="display: flex; justify-content: space-between; align-items: flex-end;">
             <div class="board-tabs" id="boardTabs" style="margin-bottom: 0;">
