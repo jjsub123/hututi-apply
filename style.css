@@ -791,11 +791,11 @@ body {
 }
 
 .community-intro-copy h3 {
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 1.35;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.3;
   margin: 0;
-  color: #7f8aa3;
+  color: #50607a;
   flex: 1;
   min-width: 0;
 }
@@ -2532,6 +2532,7 @@ body {
   background-color: #ffffff;
   border: 1px solid #f4f4f4;
   border-radius: 20px;
+  position: relative;
 }
 .expert-header h3 {
   font-size: 20px;
@@ -2652,6 +2653,7 @@ body {
   background-color: #ffffff;
   border: 1px solid #f4f4f4;
   border-radius: 20px;
+  position: relative;
 }
 #boardSection .section-header {
   margin-bottom: 16px;
@@ -2748,7 +2750,7 @@ body {
   background: rgba(255,255,255,0.82);
   border: 1px solid rgba(45, 104, 255, 0.08);
   border-radius: 16px;
-  padding: 18px 0 12px;
+  padding: 14px 0 12px;
   margin-top: 20px;
   margin-bottom: 20px;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.65);
@@ -2758,7 +2760,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: stretch;
-  padding-top: 10px;
+  padding-top: 26px;
 }
 .trust-stat {
   flex: 1;
@@ -2781,12 +2783,13 @@ body {
 
 .trust-info-wrap {
   position: absolute;
-  top: -20px;
-  right: 14px;
   display: flex;
   justify-content: flex-end;
+  top: 12px;
+  right: 14px;
+  padding: 0;
   margin: 0;
-  z-index: 3;
+  z-index: 4;
 }
 
 .trust-tooltip-trigger {
@@ -2865,9 +2868,9 @@ body {
   content: "";
   position: absolute;
   right: 0;
-  top: 10%;
+  top: 18px;
   width: 1px;
-  height: 80%;
+  height: calc(100% - 26px);
   background-color: #f2f2f2;
 }
 .stat-num, .stat-badge {
@@ -2946,10 +2949,10 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding-top: 0;
-  margin-top: 10px;
+  padding-top: 14px;
+  margin-top: 14px;
   margin-bottom: 20px;
-  border-top: none;
+  border-top: 1px solid #e7edf5;
 }
 .expert-related-links a {
   display: block;
@@ -2965,6 +2968,17 @@ body {
 }
 .expert-related-links a:hover {
   text-decoration: underline;
+}
+
+.expert-section::after,
+#boardSection::after {
+  content: "";
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 0;
+  height: 1px;
+  background: #e7edf5;
 }
 .expert-actions {
   display: flex;

@@ -763,9 +763,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }).join('');
 
       pagination.innerHTML = `
-        <button type="button" class="page-btn" data-page-target="${boardId}" data-page-number="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''}>Prev</button>
+        <button type="button" class="page-btn" data-page-target="${boardId}" data-page-number="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''}>\uC774\uC804</button>
         ${pageButtons}
-        <button type="button" class="page-btn" data-page-target="${boardId}" data-page-number="${currentPage + 1}" ${currentPage === totalPages ? 'disabled' : ''}>Next</button>
+        <button type="button" class="page-btn" data-page-target="${boardId}" data-page-number="${currentPage + 1}" ${currentPage === totalPages ? 'disabled' : ''}>\uB2E4\uC74C</button>
       `;
 
       pagination.querySelectorAll('[data-page-number]').forEach(button => {
@@ -1014,14 +1014,6 @@ document.addEventListener('DOMContentLoaded', () => {
         templateGuideLink: "\uC2E4\uC804 \uD15C\uD50C\uB9BF \uAC00\uC774\uB4DC",
         insight: [
           {
-            title: "\uAD8C\uB9AC\uAE08 \uACC4\uC0B0 \uAE30\uC900",
-            desc: "\uB9E4\uCD9C\uB9CC \uBCF4\uBA74 \uC548 \uB429\uB2C8\uB2E4. \uD68C\uC218 \uAE30\uAC04\uACFC \uAD6C\uC870\uAE4C\uC9C0 \uD568\uAED8 \uBD10\uC57C \uD569\uB2C8\uB2E4."
-          },
-          {
-            title: "\uB9E4\uC7A5 \uCCB4\uD06C 3\uAC00\uC9C0",
-            desc: "\uC591\uC218\uC790\uAC00 \uAC00\uC7A5 \uBA3C\uC800 \uD655\uC778\uD558\uB294 \uD575\uC2EC \uC6B4\uC601 \uC2E0\uD638\uB97C \uC815\uB9AC\uD588\uC2B5\uB2C8\uB2E4."
-          },
-          {
             title: "\uC2E4\uC804 \uD15C\uD50C\uB9BF",
             desc: "\uC88B\uC740 \uB9E4\uBB3C \uC18C\uAC1C\uB97C \uC4F0\uB824\uBA74 \uBB34\uC5C7\uC744 \uBBF8\uB9AC \uC900\uBE44\uD574\uC57C \uD558\uB294\uC9C0 \uBA3C\uC800 \uD655\uC778\uD574\uBCF4\uC138\uC694."
           },
@@ -1132,8 +1124,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (homeBadges[2]) homeBadges[2].innerHTML = '<span class="emoji">\uD83D\uDC68\u200D\uD83D\uDCBC</span> \uD504\uB79C\uCC28\uC774\uC988 \uC804\uBB38\uAC00 \uC9C1\uC811 \uC9C0\uC6D0';
       setHtml('.home-problem-title', '\uB9E4\uC7A5 \uD310\uB9E4\uAE4C\uC9C0 \uD3C9\uADE0 1\uB144.<br>\uC0AC\uC7A5\uB2D8\uC758 \uAD8C\uB9AC\uAE08\uC740 \uC548\uB155\uD558\uC2E0\uAC00\uC694?');
       setHtml('.home-problem-desc', '\uB300\uBD80\uBD84\uC758 \uC591\uB3C4\uC790\uAC00 \uCD08\uAE30 \uBAA9\uD45C\uD588\uB358 \uAD8C\uB9AC\uAE08\uC744 \uC9C0\uD0A4\uC9C0 \uBABB\uD569\uB2C8\uB2E4. \uB9E4\uAC01 \uAE30\uAC04\uC774 \uAE38\uC5B4\uC9C8\uC218\uB85D <strong>"\uC774\uC81C \uB0B4 \uB9E4\uC7A5\uC774 \uC544\uB2C8\uB2E4"</strong>\uB77C\uB294 \uC0DD\uAC01\uC5D0 \uAD00\uB9AC\uAC00 \uC18C\uD640\uD574\uC9C0\uACE0, \uC774\uB294 \uB9E4\uCD9C \uD558\uB77D\uACFC \uC6B4\uC601 \uC0C1\uD0DC \uC545\uD654\uB85C \uC774\uC5B4\uC9D1\uB2C8\uB2E4.');
-      setHtml('.home-problem-solution', '\uB098\uD640\uB85C \uC9C0\uCE58\uC9C0 \uC54A\uAC8C, \uC591\uB3C4\uC790 \uCEE4\uBBA4\uB2C8\uD2F0\uC5D0\uC11C \uD568\uAED8 \uC73C\uC40C\uC73C\uC40C\uD558\uBA70 <span class="inline-primary-strong">\uB05D\uAE4C\uC9C0 \uB9E4\uC7A5\uC744 \uCD5C\uC0C1\uC758 \uC0C1\uD0DC\uB85C \uC720\uC9C0\uD558\uC138\uC694!</span>');
-      setText('.home-benefits-title', "\uCEE4\uBBA4\uB2C8\uD2F0 '\uD574\uBCFC\uB798\uC694' \uAC00\uC785 \uD61C\uD0DD");
+      setHtml('.home-problem-solution', '\uB098\uD640\uB85C \uC9C0\uCE58\uC9C0 \uC54A\uAC8C, \uC591\uB3C4\uC790 \uCEE4\uBBA4\uB2C8\uD2F0\uC5D0\uC11C \uD568\uAED8 \uC73C\uC330\uC73C\uC330\uD558\uBA70 <span class="inline-primary-strong">\uB05D\uAE4C\uC9C0 \uB9E4\uC7A5\uC744 \uCD5C\uC0C1\uC758 \uC0C1\uD0DC\uB85C \uC720\uC9C0\uD558\uC138\uC694!</span>');
+      setText('.home-benefits-title', "\uCEE4\uBBA4\uB2C8\uD2F0 '\uD568\uAED8\uD574\uC694' \uAC00\uC785 \uD61C\uD0DD");
       const benefitItems = document.querySelectorAll('.benefits-list .benefit-item');
       const benefitCopy = [
         ['\uC804\uBB38\uAC00 \uBC00\uCC29 \uC9C0\uC6D0', '\uD504\uB79C\uCC28\uC774\uC988 \uAD00\uB9AC \uACBD\uD5D8\uC790\uB4E4\uC758 1:1 \uB178\uD558\uC6B0 \uBC0F \uD53C\uB4DC\uBC31 \uC81C\uACF5'],
@@ -1217,20 +1209,19 @@ document.addEventListener('DOMContentLoaded', () => {
       setAttr('#questionContent', 'placeholder', '\uC0C1\uD669\uACFC \uC9C8\uBB38\uC744 \uAD6C\uCCB4\uC801\uC73C\uB85C \uC801\uC5B4\uC8FC\uC138\uC694.');
       setText('#submitQuestionBtn', '\uB4F1\uB85D\uD558\uAE30');
 
-      setText('.community-intro-badge', '\uCEE4\uBBA4\uB2C8\uD2F0 \uAC00\uC774\uB4DC');
-      setText('.community-intro-copy h3', '\uAE30\uB85D\uD558\uB294 \uC0AC\uC7A5\uB2D8\uB9CC, \uC120\uD0DD\uBC1B\uC2B5\uB2C8\uB2E4');
+      setText('.community-intro-badge', '\uD83D\uDCD8 \uCEE4\uBBA4\uB2C8\uD2F0 \uAC00\uC774\uB4DC');
+      setText('.community-intro-copy h3', '\uB9E4\uC77C \uB9E4\uC7A5 \uC0C1\uD0DC\uB97C \uAE30\uB85D\uD574\uC57C \uD558\uB294 \uC774\uC720');
       setText('.community-intro-copy p', '\uC591\uC218\uC790\uC758 \uC2DC\uC120\uC73C\uB85C \uC65C \uC6B4\uC601\uAE30\uB85D\uC774 \uAD8C\uB9AC\uAE08\uACFC \uC2E0\uB8B0\uB97C \uBC14\uAFB8\uB294\uC9C0 \uBA3C\uC800 \uD655\uC778\uD574\uBCF4\uC138\uC694.');
-      setText('.community-intro-arrow', '\u2192');
 
-      setText('.hero-title', '\uC624\uB298 \uB9E4\uC7A5 \uC0C1\uD0DC \uC778\uC99D\uD558\uAE30');
-      setText('.hero-subtitle', '\uC791\uC740 \uAE30\uB85D\uC774 \uC313\uC77C\uC218\uB85D \uB0B4 \uB178\uB825\uACFC \uC131\uACFC\uAC00 \uB354 \uBD84\uBA85\uD558\uAC8C \uB0A8\uC2B5\uB2C8\uB2E4.');
-      setText('.trust-tooltip-trigger', '\uC9D1\uACC4 \uAE30\uC900 \uBCF4\uAE30');
-      setText('.trust-tooltip-bubble', '\uB204\uC801 \uC9D1\uACC4 \uAE30\uC900\uC73C\uB85C \uB0B4\uAC00 \uB0A8\uAE34 \uC6B4\uC601\uAE30\uB85D\uACFC \uC804\uBB38\uAC00 \uC9C8\uBB38 \uC218\uB97C \uBCF4\uC5EC\uC90D\uB2C8\uB2E4. \uCE74\uB4DC\uB97C \uB204\uB974\uBA74 \uC804\uCCB4 \uBAA9\uB85D\uC744 \uD655\uC778\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.');
+      setText('#statusCheckSection .hero-title', '\uD83D\uDCDD \uC624\uB298 \uB9E4\uC7A5 \uC0C1\uD0DC \uAE30\uB85D\uD558\uAE30');
+      setText('#statusCheckSection .hero-subtitle', '\uC791\uC740 \uAE30\uB85D\uC774 \uC313\uC77C\uC218\uB85D \uB0B4 \uB178\uB825\uACFC \uC131\uACFC\uAC00 \uB354 \uBD84\uBA85\uD558\uAC8C \uB0A8\uC2B5\uB2C8\uB2E4.');
+      setText('#statusCheckSection .trust-tooltip-trigger', '\uC9D1\uACC4 \uAE30\uC900 \uBCF4\uAE30');
+      setText('#statusCheckSection .trust-tooltip-bubble', '\uB204\uC801 \uC9D1\uACC4 \uAE30\uC900\uC73C\uB85C \uB0B4\uAC00 \uB0A8\uAE34 \uC6B4\uC601\uAE30\uB85D\uACFC \uC804\uBB38\uAC00 \uC9C8\uBB38 \uC218\uB97C \uBCF4\uC5EC\uC90D\uB2C8\uB2E4. \uCE74\uB4DC\uB97C \uB204\uB974\uBA74 \uC804\uCCB4 \uBAA9\uB85D\uC744 \uD655\uC778\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.');
       setText('#statusCheckSection .trust-stat:nth-child(1) .stat-label', '\uC6B4\uC601 \uAE30\uB85D');
       setText('#statusCheckSection .trust-stat:nth-child(2) .stat-label', '\uC804\uBB38\uAC00 \uC9C8\uBB38');
       if (btnOpenLogModal) btnOpenLogModal.textContent = '\uC624\uB298\uC758 \uB9E4\uC7A5 \uC0C1\uD0DC 1\uBD84 \uAE30\uB85D\uD558\uAE30';
 
-      setText('.expert-header h3', '\uC804\uBB38\uAC00 Q&A');
+      setText('.expert-header h3', '\uD83D\uDC68\u200D\uD83D\uDCBC \uC804\uBB38\uAC00 Q&A');
       setText('.expert-header p', '\uC804\uBB38\uAC00\uAC00 \uC9C1\uC811 \uB2F5\uBCC0\uD574 \uB4DC\uB9BD\uB2C8\uB2E4.');
       setHtml('.expert-card .expert-question', '<span class=\"q-mark\">Q.</span> \uAD8C\uB9AC\uAE08 5\uCC9C vs \uB9E4\uCD9C 1,200, \uC801\uC815\uD55C \uAE08\uC561\uC77C\uAE4C\uC694?');
       setHtml('.expert-card .expert-answer', '<span class=\"a-mark\">A.</span> \uAD8C\uB9AC\uAE08\uC740 \uB9E4\uCD9C \uCD1D\uC561\uBCF4\uB2E4 \uC6B4\uC601 \uAD6C\uC870\uC640 \uC774\uD6C4 \uACE0\uC815\uBE44\uB97C \uD568\uAED8 \uBD10\uC57C \uD569\uB2C8\uB2E4. \uAC8C\uC2DC\uD310\uC5D0\uC11C \uC804\uCCB4 \uB2F5\uBCC0\uC744 \uD655\uC778\uD574\uBCF4\uC138\uC694.');
@@ -1239,11 +1230,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (expertLinks[1]) expertLinks[1].textContent = '\uC804\uBB38\uAC00 Q&A | \uC591\uC218\uC790\uAC00 \uB193\uCE58\uAE30 \uC26C\uC6B4 \uC228\uC740 \uBE44\uC6A9 3\uAC00\uC9C0';
       setText('.btn-expert-action', '\uB0B4 \uC0C1\uD669 \uC804\uBB38\uAC00\uC5D0\uAC8C \uC9C8\uBB38\uD558\uAE30');
 
-      setText('.insight-section .section-header h3', '\uC0AC\uC7A5\uB2D8\uB4E4\uC774 \uB9CE\uC774 \uBCF4\uB294 \uAE30\uC900');
+      setText('.insight-section .section-header h3', '\uD83D\uDD0E \uC0AC\uC7A5\uB2D8\uB4E4\uC774 \uB9CE\uC774 \uBCF4\uB294 \uAE30\uC900');
       const boardHeader = document.querySelector('.board-group-header');
       if (boardHeader) {
-        setText('h3', '\uCEE4\uBBA4\uB2C8\uD2F0 \uAC8C\uC2DC\uD310', boardHeader);
-        setText('p', '\uC6B4\uC601\uAE30\uB85D, \uC804\uBB38\uAC00 Q&A, \uC790\uC720/\uC9C8\uBB38\uC744 \uD0ED\uBCC4\uB85C \uB098\uB220 \uD655\uC778\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.', boardHeader);
+        setText('h3', '\uD83D\uDDD2\uFE0F \uCEE4\uBBA4\uB2C8\uD2F0 \uAC8C\uC2DC\uD310', boardHeader);
+        setText('p', '\uB9E4\uC7A5 \uC6B4\uC601 \uD750\uB984\uC744 \uC313\uACE0, \uC804\uBB38\uAC00 \uB2F5\uBCC0\uC744 \uBC1B\uACE0, \uBE44\uC2B7\uD55C \uACE0\uBBFC\uC744 \uB098\uB204\uB294 \uACF5\uAC04\uC785\uB2C8\uB2E4.', boardHeader);
       }
       const boardTabs = document.querySelectorAll('#boardTabs .board-tab');
       if (boardTabs[0]) boardTabs[0].textContent = '\uC6B4\uC601\uAE30\uB85D';
@@ -1472,10 +1463,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const desc = card.querySelector('p');
         if (title) title.textContent = copy.title;
         if (desc) desc.textContent = copy.desc;
-        if (index < 2) {
-          card.onclick = () => openDetailModal(copy.title, copy.desc);
-        }
-        if (index === 2) {
+        if (index === 0) {
           card.onclick = () => {
             const insightTrigger = document.getElementById('btnScrollToInsight');
             if (insightTrigger) insightTrigger.click();
