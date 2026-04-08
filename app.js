@@ -1405,52 +1405,104 @@
       setText('#rewardInfoTitle', '\uBCF4\uC0C1 \uB2EC\uC131 \uC870\uAC74');
 
       if (communityIntroPage) {
-        setText('.sub-page-header h3', '\uCEE4\uBBA4\uB2C8\uD2F0 \uC18C\uAC1C', communityIntroPage);
-        setText('.intro-eyebrow', '\uB9E4\uC7A5 \uC0C1\uD0DC \uC778\uC99D \uAC00\uC774\uB4DC', communityIntroPage);
-        setText('.intro-hero-panel h1', '\uC9C0\uAE08 \uB9E4\uC7A5, \uC124\uBA85\uD560 \uC218 \uC788\uC73C\uC138\uC694?', communityIntroPage);
-        setText('.intro-hero-panel p', '\uB9E4\uCD9C\uC740 \uBCF4\uC5EC\uC904 \uC218 \uC788\uC2B5\uB2C8\uB2E4. \uD558\uC9C0\uB9CC \uC65C \uADF8 \uB9E4\uCD9C\uC774 \uB098\uC624\uB294\uC9C0 \uC124\uBA85\uD560 \uC218 \uC788\uB098\uC694? \uC591\uC218\uD558\uB824\uB294 \uC0AC\uC7A5\uB2D8\uC740 \uC22B\uC790\uAC00 \uC544\uB2C8\uB77C \uC6B4\uC601\uC758 \uAD6C\uC870\uB97C \uBD05\uB2C8\uB2E4.', communityIntroPage);
-        const bubbles = communityIntroPage.querySelectorAll('.intro-bubble');
-        if (bubbles[0]) bubbles[0].textContent = '\uC9C0\uAE08 \uC774 \uB9E4\uC7A5, \uC65C \uB418\uB294\uC9C0 \uC124\uBA85\uD560 \uC218 \uC788\uC73C\uC138\uC694?';
-        if (bubbles[1]) bubbles[1].textContent = '\uB9E4\uCD9C\uC740 \uC788\uC9C0\uB9CC \uC6B4\uC601 \uAD6C\uC870\uB294 \uC544\uC9C1 \uD750\uB9BF\uD574\uC694.';
-        if (bubbles[2]) bubbles[2].textContent = '\uC591\uC218\uC790\uB294 \uACB0\uAD6D \uAE30\uB85D\uC73C\uB85C \uD310\uB2E8\uD569\uB2C8\uB2E4.';
-        setText('.intro-panel-why .intro-chip', '\uC65C \uAE30\uB85D\uC774 \uD544\uC694\uD55C\uAC00', communityIntroPage);
-        setText('.intro-panel-why h2', '\uC591\uC218\uC790\uB294 \uC22B\uC790\uBCF4\uB2E4 \uC6B4\uC601 \uADFC\uAC70\uB97C \uBD05\uB2C8\uB2E4', communityIntroPage);
-        setText('.intro-panel-why .intro-panel-lead', '\uB9E4\uCD9C \uC218\uCE58\uAC00 \uC88B\uC544 \uBCF4\uC5EC\uB3C4, \uADF8 \uC22B\uC790\uAC00 \uC65C \uB098\uC624\uB294\uC9C0\uAC00 \uC5C6\uC73C\uBA74 \uB9E4\uC7A5\uC740 \uB9AC\uC2A4\uD06C \uC788\uB294 \uB9E4\uBB3C\uB85C \uBCF4\uC785\uB2C8\uB2E4.', communityIntroPage);
-        setText('.intro-panel-why .intro-column:nth-child(1) .intro-column-title', '\uC591\uC218\uC790\uAC00 \uBA3C\uC800 \uBCF4\uB294 \uC9C8\uBB38', communityIntroPage);
-        const introQuestions = communityIntroPage.querySelectorAll('.intro-question-list li');
-        ['\uC774 \uB9E4\uCD9C \uC218\uC900, \uB0B4\uAC00 \uC720\uC9C0\uD560 \uC218 \uC788\uC744\uAE4C?', '\uB2E8\uACE8\uACE0\uAC1D\uC740 \uC591\uB3C4 \uD6C4\uC5D0\uB3C4 \uB0A8\uC744\uAE4C?', '\uC9C1\uC6D0 \uC6B4\uC601\uACFC \uACE0\uC815\uBE44 \uAD6C\uC870\uAC00 \uC548\uC815\uC801\uC778\uAC00?', '\uB0B4\uAC00 \uB354 \uAC1C\uC120\uD560 \uC5EC\uC9C0\uAC00 \uC788\uB294\uAC00?'].forEach((item, index) => {
-          if (introQuestions[index]) introQuestions[index].textContent = item;
+        const introCopy = {
+          hero: {
+            eyebrow: '커뮤니티 소개',
+            title: '손님처럼 고민해 가게를 바꿨다면, 양수자 관점으로는 설명해보셨나요?',
+            body: '사장님은 이미 알고 계십니다. 손님 입장에서 봐야 가게가 좋아진다는 걸요. 양도양수도 같습니다. 양수자는 매출이 아니라 <strong>“이 가게가 왜 유지되는지”</strong>를 봅니다.'
+          },
+          problem: {
+            chip: '문제 인식',
+            title: '그래서 대부분의 매물이 비슷해 보입니다',
+            lead: '매출도 있고, 사진도 있고, 설명도 있지만 양수자 입장에서는 이렇게 느껴집니다.',
+            items: [
+              '다 비슷한 말들 (“단골 많습니다”, “상권 좋습니다”)',
+              '근거 없이 적힌 매출',
+              '운영 방식은 보이지 않음'
+            ],
+            quote: '인수 후에 운영을 했을 때 괜찮은 매장인지 상상이 되지 않습니다.'
+          },
+          criteria: {
+            chip: '양수자의 기준',
+            title: '양수자는 이렇게 판단합니다',
+            items: [
+              '이 매출, 내가 이어갈 수 있을까?',
+              '단골은 계속 남을까?',
+              '운영 구조는 재현 가능한가?',
+              '내가 개선할 수 있는 여지가 있을까?'
+            ],
+            quote: '이 질문에 답이 없으면 모든 매물은 비슷해 보입니다.'
+          },
+          solution: {
+            chip: '해결과 기록의 가치',
+            title: '운영을 설명할 수 있는 기록을 남깁니다',
+            lead: '매출을 더 좋아 보이게 만드는 기능이 아닙니다. 운영이 어떻게 돌아가는지 보이게 만드는 기록입니다.',
+            values: [
+              { title: '양도에서', body: '운영이 보이면 납득됩니다.' },
+              { title: '지금 운영에서', body: '기록을 쌓으면 패턴이 보입니다.' }
+            ],
+            note: '그래서 기록 = 매출 유지 장치입니다.'
+          },
+          trust: {
+            chip: '신뢰',
+            title: '신뢰는 증명하는 게 아니라, 의심을 줄이는 구조가 필요합니다',
+            lead: '숫자가 아니라 흔적이 더 의심을 줄이고 신뢰를 줄 수 있습니다.',
+            compare: [
+              '아무 기록도 없는 매장',
+              '운영 흔적이 남아 있는 매장'
+            ],
+            quote: '양수자는 “정답”이 아니라 “진짜 운영한 흔적”을 보고 판단합니다.'
+          },
+          cta: {
+            title: '기록하는 사장님만, 선택받습니다',
+            body: '양수자 시선에서 내 매장을 설명할 근거를 커뮤니티에서 쌓아보세요.',
+            button: '지금 바로 시작하기'
+          }
+        };
+
+        setText('.sub-page-header h3', '커뮤니티 소개', communityIntroPage);
+        setText('.intro-eyebrow', introCopy.hero.eyebrow, communityIntroPage);
+        setText('.intro-hero-panel h1', introCopy.hero.title, communityIntroPage);
+        setHtml('.intro-hero-body', introCopy.hero.body, communityIntroPage);
+
+        setText('.intro-panel-problem .intro-chip', introCopy.problem.chip, communityIntroPage);
+        setText('.intro-panel-problem h2', introCopy.problem.title, communityIntroPage);
+        setText('.intro-panel-problem .intro-panel-lead', introCopy.problem.lead, communityIntroPage);
+        const introProblemItems = communityIntroPage.querySelectorAll('.intro-problem-list li');
+        introCopy.problem.items.forEach((item, index) => {
+          if (introProblemItems[index]) introProblemItems[index].textContent = item;
         });
-        setText('.intro-panel-why .intro-column:nth-child(2) .intro-column-title', '\uAE30\uB85D\uC774 \uB9CC\uB4DC\uB294 \uCC28\uC774', communityIntroPage);
-        const benefitTitles = communityIntroPage.querySelectorAll('.intro-benefit-item strong');
-        const benefitBodies = communityIntroPage.querySelectorAll('.intro-benefit-item p');
-        ['\uC591\uB3C4 \uC18D\uB3C4', '\uAD8C\uB9AC\uAE08 \uC124\uB4DD\uB825', '\uC2DC\uC7A5 \uC2E0\uB8B0'].forEach((item, index) => {
-          if (benefitTitles[index]) benefitTitles[index].textContent = item;
+        setText('.intro-panel-problem .intro-highlight-quote', introCopy.problem.quote, communityIntroPage);
+
+        setText('.intro-panel-criteria .intro-chip', introCopy.criteria.chip, communityIntroPage);
+        setText('.intro-panel-criteria h2', introCopy.criteria.title, communityIntroPage);
+        const introCriteriaItems = communityIntroPage.querySelectorAll('.intro-criteria-list li');
+        introCopy.criteria.items.forEach((item, index) => {
+          if (introCriteriaItems[index]) introCriteriaItems[index].textContent = item;
         });
-        ['\uBE44\uC2B7\uD55C \uB9E4\uBB3C \uC911\uC5D0\uC11C\uB3C4 \uAE30\uB85D \uC788\uB294 \uB9E4\uC7A5\uC774 \uBA3C\uC800 \uAC80\uD1A0\uB429\uB2C8\uB2E4.', '\uC6B4\uC601 \uAD6C\uC870\uAC00 \uC99D\uBA85\uB418\uBA74 \uAC00\uACA9 \uC124\uBA85\uC774 \uD6E8\uC52C \uC790\uC5F0\uC2A4\uB7EC\uC6CC\uC9D1\uB2C8\uB2E4.', '\uBD88\uD22C\uBA85\uD55C \uC2DC\uC7A5\uC5D0\uC11C \uAE30\uB85D \uC790\uCCB4\uAC00 \uCC28\uBCC4\uD654\uAC00 \uB429\uB2C8\uB2E4.'].forEach((item, index) => {
-          if (benefitBodies[index]) benefitBodies[index].textContent = item;
+        setText('.intro-panel-criteria .intro-highlight-quote', introCopy.criteria.quote, communityIntroPage);
+
+        setText('.intro-panel-solution .intro-chip', introCopy.solution.chip, communityIntroPage);
+        setText('.intro-panel-solution h2', introCopy.solution.title, communityIntroPage);
+        setText('.intro-panel-solution .intro-panel-lead', introCopy.solution.lead, communityIntroPage);
+        const introValueItems = communityIntroPage.querySelectorAll('.intro-value-item');
+        introCopy.solution.values.forEach((item, index) => {
+          if (introValueItems[index]) introValueItems[index].innerHTML = `<strong>${item.title}</strong>${item.body}`;
         });
-        setText('.intro-highlight-quote', '\uACB0\uAD6D \uC591\uC218\uC790\uB294 \uC6B4 \uC88B\uC740 \uB9E4\uC7A5\uC778\uC9C0, \uAD6C\uC870\uAC00 \uC88B\uC740 \uB9E4\uC7A5\uC778\uC9C0\uBD80\uD130 \uAD6C\uBD84\uD558\uB824\uACE0 \uD569\uB2C8\uB2E4.', communityIntroPage);
-        setText('.intro-panel-how .intro-chip', '\uC5B4\uB5BB\uAC8C \uC313\uC744\uAE4C', communityIntroPage);
-        setText('.intro-panel-how h2', '\uB9E4\uC77C 1\uBD84 \uAE30\uB85D\uC774 \uC6B4\uC601 \uAD6C\uC870\uB85C \uB0A8\uC2B5\uB2C8\uB2E4', communityIntroPage);
-        setText('.intro-panel-how .intro-panel-lead', '\uBCF4\uACE0\uC11C\uAC00 \uD544\uC694\uD55C \uAC8C \uC544\uB2D9\uB2C8\uB2E4. \uC9E7\uC740 \uC77C\uC77C \uAE30\uB85D\uB9CC \uC313\uC5EC\uB3C4 \uB9E4\uC7A5 \uC6B4\uC601\uC744 \uC124\uBA85\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.', communityIntroPage);
-        const introChipList = communityIntroPage.querySelectorAll('.intro-chip-list span');
-        ['\uB2E8\uACE8 vs \uC2E0\uADDC \uACE0\uAC1D \uBE44\uC911', '\uC9C1\uC6D0 \uADFC\uBB34 \uC778\uC6D0', '\uC9C4\uD589\uD55C \uB9C8\uCF00\uD305 / \uC911\uB2E8\uD55C \uB9C8\uCF00\uD305', '\uACE0\uAC1D \uC5F0\uB839\uCE35', '\uD640 vs \uBC30\uB2EC \uBE44\uC911', '\uC0C1\uAD8C \uBCC0\uD654', '\uC9D1\uAE30/\uC6B4\uC601 \uBCC0\uD654'].forEach((item, index) => {
-          if (introChipList[index]) introChipList[index].textContent = item;
+        setText('.intro-reading-note', introCopy.solution.note, communityIntroPage);
+
+        setText('.intro-panel-trust .intro-chip', introCopy.trust.chip, communityIntroPage);
+        setText('.intro-panel-trust h2', introCopy.trust.title, communityIntroPage);
+        setText('.intro-panel-trust .intro-panel-lead', introCopy.trust.lead, communityIntroPage);
+        const introCompareItems = communityIntroPage.querySelectorAll('.intro-compare-item');
+        introCopy.trust.compare.forEach((item, index) => {
+          if (introCompareItems[index]) introCompareItems[index].textContent = item;
         });
-        setText('.intro-action-block:nth-child(1) .intro-column-title', '\uC774 \uC21C\uC11C\uB85C \uC313\uC2B5\uB2C8\uB2E4', communityIntroPage);
-        const introActionSteps = communityIntroPage.querySelectorAll('.intro-action-steps li');
-        ['\uC624\uB298 \uC6B4\uC601 \uC0C1\uD0DC\uB97C \uC9E7\uAC8C \uAE30\uB85D\uD569\uB2C8\uB2E4.', '\uAC19\uC740 \uD56D\uBAA9\uC73C\uB85C \uACC4\uC18D \uB0A8\uACA8 \uBCC0\uD654\uB97C \uBCF4\uC774\uAC8C \uD569\uB2C8\uB2E4.', '\uB204\uC801\uB41C \uADFC\uAC70\uB97C \uB9E4\uBB3C \uC18C\uAC1C\uC640 \uC0C1\uB2F4\uC5D0 \uC7AC\uD65C\uC6A9\uD569\uB2C8\uB2E4.'].forEach((item, index) => {
-          if (introActionSteps[index]) introActionSteps[index].textContent = item;
-        });
-        setText('.intro-action-block:nth-child(2) .intro-column-title', '\uC804\uBB38\uAC00\uC640 \uD568\uAED8 \uBCF4\uBA74', communityIntroPage);
-        const introActionPoints = communityIntroPage.querySelectorAll('.intro-action-points li');
-        ['\uD504\uB79C\uCC28\uC774\uC988 \uC0AC\uC7A5\uB2D8\uC740 \uAD6C\uC870 \uCD5C\uC801\uD654 \uD3EC\uC778\uD2B8\uB97C \uBA3C\uC800 \uBCFC \uC218 \uC788\uC2B5\uB2C8\uB2E4.', '\uAC1C\uC778 \uC0AC\uC7A5\uB2D8\uC740 \uB354 \uC548\uC815\uC801\uC778 \uC6B4\uC601 \uC2DC\uC2A4\uD15C\uC744 \uB9CC\uB4E4 \uC218 \uC788\uC2B5\uB2C8\uB2E4.', '\uACB0\uAD6D \uAE30\uB85D\uC740 \uC591\uB3C4 \uC900\uBE44\uBFD0 \uC544\uB2C8\uB77C \uD604\uC7AC \uC6B4\uC601 \uAC1C\uC120\uC5D0\uB3C4 \uB0A8\uC2B5\uB2C8\uB2E4.'].forEach((item, index) => {
-          if (introActionPoints[index]) introActionPoints[index].textContent = item;
-        });
-        setText('.intro-panel-cta h3', '\uAE30\uB85D\uD558\uB294 \uC0AC\uC7A5\uB2D8\uB9CC, \uC120\uD0DD\uBC1B\uC2B5\uB2C8\uB2E4', communityIntroPage);
-        setText('.intro-panel-cta p', '\uAE30\uB2A5 \uC124\uBA85\uBCF4\uB2E4 \uBA3C\uC800, \uC591\uC218\uC790 \uC2DC\uC120\uC5D0\uC11C \uB0B4 \uB9E4\uC7A5\uC744 \uB0A9\uB4DD\uC2DC\uD0A4\uB294 \uAD6C\uC870\uB97C \uB9CC\uB4DC\uC138\uC694.', communityIntroPage);
-        if (btnIntroStart) btnIntroStart.textContent = '\uC9C0\uAE08 \uBC14\uB85C \uC2DC\uC791\uD558\uAE30';
+        setText('.intro-panel-trust .intro-highlight-quote', introCopy.trust.quote, communityIntroPage);
+
+        setText('.intro-panel-cta h3', introCopy.cta.title, communityIntroPage);
+        setText('.intro-panel-cta p', introCopy.cta.body, communityIntroPage);
+        if (btnIntroStart) btnIntroStart.textContent = introCopy.cta.button;
       }
 
       if (btnTemplate) {
