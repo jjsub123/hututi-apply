@@ -182,6 +182,7 @@
     // --- 신규 기능: 로그인 및 탭 전환 로직 ---
     const demoAccounts = {
       boss: { id: 'boss', password: '1234', displayName: '내일 사장님', role: 'owner' },
+      empty_owner: { id: 'empty_owner', password: '1234', displayName: '새로운 사장님', role: 'owner' },
       expert_guide: { id: 'expert_guide', password: 'Qna!2026Pro', displayName: '전문가', role: 'expert' }
     };
 
@@ -337,7 +338,7 @@
             switchTab('tab-community');
           }
         } else {
-          alert('존재하지 않는 아이디거나 비밀번호가 일치하지 않습니다.\n※ 테스트 계정: boss / 1234, expert_guide / Qna!2026Pro');
+          alert('존재하지 않는 아이디거나 비밀번호가 일치하지 않습니다.\n※ 테스트 계정: boss / 1234, empty_owner / 1234, expert_guide / Qna!2026Pro');
         }
       });
     }
