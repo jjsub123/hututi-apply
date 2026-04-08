@@ -221,10 +221,65 @@
     const tabs = document.querySelectorAll('.nav-tabs .tab');
     const tabPanes = document.querySelectorAll('.tab-pane');
     const homeActions = document.getElementById('homeActions');
+    const TAB_SECTION_TO_ID = {
+      intro: 'tab-home',
+      community: 'tab-community',
+      mypage: 'tab-mypage'
+    };
+    const TAB_ID_TO_SECTION = Object.fromEntries(
+      Object.entries(TAB_SECTION_TO_ID).map(([section, id]) => [id, section])
+    );
+    let pendingProtectedRoute = null;
+    let lockedRouteTabId = null;
+
+    const canAccessProtectedTabs = () => isLoggedIn;
+    const isProtectedSection = (section = 'intro') => section !== 'intro';
+    const parseHashRoute = (hash = window.location.hash) => {
+      const raw = String(hash || '').replace(/^#/, '').trim();
+      if (!raw) return { section: 'intro', rest: [], fullHash: '#intro' };
+      const parts = raw.split('/').filter(Boolean);
+      const [section = 'intro', ...rest] = parts;
+      return {
+        section,
+        rest,
+        fullHash: `#${[section, ...rest].join('/')}`
+      };
+    };
+    const normalizeRoute = (inputRoute) => {
+      const route = typeof inputRoute === 'string' ? parseHashRoute(inputRoute) : (inputRoute || {});
+      const section = TAB_SECTION_TO_ID[route.section] ? route.section : 'intro';
+      const rest = section === 'intro' ? [] : (Array.isArray(route.rest) ? route.rest.filter(Boolean) : []);
+      return {
+        section,
+        rest,
+        fullHash: `#${[section, ...rest].join('/')}`
+      };
+    };
+    const clearRouteLock = () => {
+      if (!lockedRouteTabId) return;
+      const pane = document.getElementById(lockedRouteTabId);
+      if (pane) pane.classList.remove('is-route-locked');
+      lockedRouteTabId = null;
+    };
+    const lockRoutePane = (targetId) => {
+      clearRouteLock();
+      const pane = document.getElementById(targetId);
+      if (!pane) return;
+      pane.classList.add('is-route-locked');
+      lockedRouteTabId = targetId;
+    };
+    const openLoginModal = () => {
+      if (loginModal) loginModal.classList.add('active');
+    };
 
     // 로그인 모달 닫기
-    const closeLoginModal = () => {
+    const closeLoginModal = ({ preserveRoute = false } = {}) => {
       if (loginModal) loginModal.classList.remove('active');
+      if (!preserveRoute && lockedRouteTabId) {
+        pendingProtectedRoute = null;
+        clearRouteLock();
+        applyRoute({ section: 'intro', rest: [], fullHash: '#intro' }, { updateHash: true });
+      }
     };
 
     if (closeLoginBtn) closeLoginBtn.addEventListener('click', closeLoginModal);
@@ -240,6 +295,8 @@
         localStorage.removeItem('currentUser');
         isLoggedIn = false;
         currentUser = null;
+        pendingProtectedRoute = null;
+        clearRouteLock();
         btnLogout.style.display = 'none';
         if(displayUserId) displayUserId.textContent = '로그인이 필요해요';
         alert('로그아웃 되었습니다.');
@@ -268,26 +325,28 @@
           if (displayUserId) displayUserId.textContent = matchedAccount.displayName;
           if (btnLogout) btnLogout.style.display = 'block';
 
-          closeLoginModal();
-          // 로그인 성공 후 커뮤니티 탭으로 바로 이동
-          switchTab('tab-community');
+          const resumeRoute = pendingProtectedRoute ? parseHashRoute(pendingProtectedRoute) : null;
+          pendingProtectedRoute = null;
+          clearRouteLock();
+          closeLoginModal({ preserveRoute: true });
+
+          if (resumeRoute) {
+            applyRoute(resumeRoute, { updateHash: true });
+          } else {
+            // 일반 로그인은 기존처럼 커뮤니티 탭으로 연결
+            switchTab('tab-community');
+          }
         } else {
           alert('존재하지 않는 아이디거나 비밀번호가 일치하지 않습니다.\n※ 테스트 계정: boss / 1234, expert_guide / Qna!2026Pro');
         }
       });
     }
 
-    // 탭 전환 함수
-    const switchTab = (targetId) => {
-      // 권한 체크
-      if (targetId !== 'tab-home' && !isLoggedIn) {
-        if (loginModal) loginModal.classList.add('active');
-        return;
-      }
-
+    const renderTab = (targetId, { scrollTop = true } = {}) => {
       // UI 업데이트
       tabs.forEach(t => t.classList.remove('active'));
-      document.querySelector(`[data-tab="${targetId}"]`).classList.add('active');
+      const activeTab = document.querySelector(`[data-tab="${targetId}"]`);
+      if (activeTab) activeTab.classList.add('active');
 
       tabPanes.forEach(pane => {
         if (pane.id === targetId) {
@@ -310,7 +369,35 @@
       }
 
       // 상단 스크롤
-      window.scrollTo(0, 0);
+      if (scrollTop) window.scrollTo(0, 0);
+    };
+
+    const applyRoute = (inputRoute, { updateHash = false, fromPopstate = false, allowLockedView = true } = {}) => {
+      const route = normalizeRoute(inputRoute);
+      if (updateHash && window.location.hash !== route.fullHash) {
+        window.location.hash = route.fullHash;
+        return;
+      }
+
+      const targetId = TAB_SECTION_TO_ID[route.section] || 'tab-home';
+
+      if (isProtectedSection(route.section) && !canAccessProtectedTabs()) {
+        pendingProtectedRoute = route.fullHash;
+        renderTab(targetId, { scrollTop: !fromPopstate });
+        if (allowLockedView) lockRoutePane(targetId);
+        openLoginModal();
+        return;
+      }
+
+      pendingProtectedRoute = null;
+      clearRouteLock();
+      renderTab(targetId, { scrollTop: !fromPopstate });
+    };
+
+    // 탭 전환 함수
+    const switchTab = (targetId) => {
+      const section = TAB_ID_TO_SECTION[targetId] || 'intro';
+      applyRoute({ section, rest: [], fullHash: `#${section}` }, { updateHash: true });
     };
 
     // 탭 클릭 이벤트
@@ -321,6 +408,12 @@
         switchTab(targetId);
       });
     });
+
+    window.addEventListener('hashchange', () => {
+      applyRoute(parseHashRoute(window.location.hash), { fromPopstate: true, allowLockedView: true });
+    });
+
+    applyRoute(parseHashRoute(window.location.hash), { updateHash: true, allowLockedView: true });
 
     // --- 신규 기능: 데일리 상태 체크 로직 ---
     const statusChecks = [
@@ -1160,8 +1253,8 @@
       setText('#homeApplyBtn', '\uC2E0\uCCAD\uD558\uAE30');
       setAttr('#scrollToTopBtn', 'aria-label', '\uCD5C\uC0C1\uB2E8\uC73C\uB85C \uC774\uB3D9');
 
-      setText('#loginModalTitle', '\uCEE4\uBBA4\uB2C8\uD2F0 \uB85C\uADF8\uC778');
-      setText('#loginModalDesc', '\uC778\uC99D\uB41C \uC591\uB3C4 \uC0AC\uC7A5\uB2D8\uB9CC \uCEE4\uBBA4\uB2C8\uD2F0\uC5D0 \uB4E4\uC5B4\uC624\uC2E4 \uC218 \uC788\uC2B5\uB2C8\uB2E4.');
+      setText('#loginModalTitle', '\uB85C\uADF8\uC778\uC774 \uD544\uC694\uD569\uB2C8\uB2E4');
+      setText('#loginModalDesc', '\uC778\uC99D\uB41C \uC0AC\uC6A9\uC790\uB9CC \uC774 \uD398\uC774\uC9C0\uC5D0 \uC811\uADFC\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.');
       setText('#userIdLabel', '\uC544\uC774\uB514');
       setText('#userPwLabel', '\uBE44\uBC00\uBC88\uD638');
       setAttr('#userId', 'placeholder', '\uC544\uC774\uB514\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694');

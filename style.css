@@ -115,6 +115,40 @@ body {
   padding-top: 102px; /* Offset for fixed header (logo 56 + tabs 46) */
 }
 
+.tab-pane {
+  position: relative;
+  min-height: calc(100vh - 102px);
+}
+
+.tab-pane.is-route-locked {
+  overflow: hidden;
+}
+
+.tab-pane.is-route-locked > * {
+  filter: blur(6px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.tab-pane.is-route-locked::after {
+  content: "\B85C\ADF8\C778 \D6C4 \D655\C778\D560 \C218 \C788\C2B5\B2C8\B2E4.";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  background: rgba(247, 249, 255, 0.72);
+  color: #20314d;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.7;
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+}
+
 /* Hero Section */
 .hero-section {
   position: relative;
