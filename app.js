@@ -1015,12 +1015,16 @@ document.addEventListener('DOMContentLoaded', () => {
         templateGuideLink: "\uC2E4\uC804 \uD15C\uD50C\uB9BF \uAC00\uC774\uB4DC",
         insight: [
           {
+            kicker: "템플릿",
             title: "\uC2E4\uC804 \uD15C\uD50C\uB9BF",
-            desc: "\uC88B\uC740 \uB9E4\uBB3C \uC18C\uAC1C\uB97C \uC4F0\uB824\uBA74 \uBB34\uC5C7\uC744 \uBBF8\uB9AC \uC900\uBE44\uD574\uC57C \uD558\uB294\uC9C0 \uBA3C\uC800 \uD655\uC778\uD574\uBCF4\uC138\uC694."
+            desc: "\uC591\uB3C4 \uAE00\uC5D0 \uBC14\uB85C \uC4F8 \uD575\uC2EC \uD56D\uBAA9\uACFC \uC608\uC2DC \uBB38\uC7A5\uC744 \uD55C \uBC88\uC5D0 \uC815\uB9AC\uD55C \uBB38\uC11C\uC785\uB2C8\uB2E4.",
+            cta: "\uD15C\uD50C\uB9BF \uC2DC\uD2B8 \uBCF4\uAE30"
           },
           {
+            kicker: "\uCE7C\uB7FC",
             title: "\uAE30\uB85D\uC73C\uB85C \uC900\uBE44\uD558\uAE30",
-            desc: "\uB9C9\uB9C9\uD558\uB2E4\uBA74 \uD55C \uBC88\uC5D0 \uC4F0\uC9C0 \uB9D0\uACE0, \uCEE4\uBBA4\uB2C8\uD2F0 \uAE30\uB85D\uBD80\uD130 \uC313\uC544\uBCF4\uC138\uC694."
+            desc: "\uC591\uC218\uC790\uAC00 \uBB34\uC5C7\uC744 \uBCF4\uACE0 \uD310\uB2E8\uD558\uB294\uC9C0\uBD80\uD130, \uC5B4\uB5A4 \uAE30\uB85D\uC774 \uADFC\uAC70\uAC00 \uB418\uB294\uC9C0 \uC77D\uB294 \uD398\uC774\uC9C0\uC785\uB2C8\uB2E4.",
+            cta: "\uCE7C\uB7FC \uC77D\uAE30"
           }
         ],
         hero: {
@@ -1030,86 +1034,51 @@ document.addEventListener('DOMContentLoaded', () => {
           desc: "\uC544\uB798 \uD56D\uBAA9\uC774 \uB9C9\uD788\uC2E0\uB2E4\uBA74 \uC815\uC0C1\uC785\uB2C8\uB2E4. \uB300\uBD80\uBD84 \uC900\uBE44\uAC00 \uC548 \uB41C \uC0C1\uD0DC\uC5D0\uC11C \uC4F0\uB824\uACE0 \uD558\uAE30 \uB54C\uBB38\uC785\uB2C8\uB2E4.",
           note: "\uC2E4\uC804 \uD15C\uD50C\uB9BF\uC744 \uC4F0\uAE30 \uC804\uC5D0, \uBA3C\uC800 \uC5B4\uB5A4 \uC815\uBCF4\uAC00 \uD544\uC694\uD55C\uC9C0 \uD655\uC778\uD574\uBCF4\uC138\uC694."
         },
-        section: {
-          chip: "\uB9E4\uBB3C \uC18C\uAC1C \uD56D\uBAA9",
+        sheet: {
+          chip: "\uD15C\uD50C\uB9BF \uC2DC\uD2B8",
           title: "\uC88B\uC740 \uB9E4\uBB3C \uAE00\uC740 \uACB0\uAD6D \uC900\uBE44\uB41C \uC815\uBCF4\uC5D0\uC11C \uC2DC\uC791\uB429\uB2C8\uB2E4",
-          desc: "\uD56D\uBAA9\uC744 \uD3BC\uCE58\uBA74, \uC18C\uAC1C\uAE00\uC5D0 \uB4E4\uC5B4\uAC08 \uB0B4\uC6A9\uACFC \uADF8 \uC804\uC5D0 \uC900\uBE44\uD574\uC57C \uD560 \uC815\uBCF4\uB97C \uD568\uAED8 \uBCFC \uC218 \uC788\uC2B5\uB2C8\uB2E4."
-        },
-        cards: [
-          {
-            kicker: "\uD575\uC2EC \uD56D\uBAA9 1",
-            title: "\uB9E4\uCD9C / \uC218\uC775",
-            peek: "\uC6D4 \uB9E4\uCD9C, \uC6D4 \uC21C\uC218\uC775, \uACE0\uC815\uBE44",
-            infoItems: ["\uC6D4 \uB9E4\uCD9C", "\uC6D4 \uC21C\uC218\uC775", "\uACE0\uC815\uBE44"],
-            prepItems: ["\uCD5C\uADFC 3\uAC1C\uC6D4 \uB9E4\uCD9C \uC815\uB9AC", "\uC21C\uC218\uC775 \uACC4\uC0B0", "\uACE0\uC815\uBE44 \uC815\uB9AC", "\uC131\uC218\uAE30/\uBE44\uC218\uAE30 \uCC28\uC774 \uD30C\uC545"]
-          },
-          {
-            kicker: "\uD575\uC2EC \uD56D\uBAA9 2",
-            title: "\uB9E4\uCD9C \uAD6C\uC870",
-            peek: "\uD3C9\uC77C \uB9E4\uCD9C \uD750\uB984, \uC8FC\uB9D0 \uB9E4\uCD9C \uD750\uB984, \uB2E8\uACE8 / \uBC30\uB2EC / \uC720\uC785 \uAD6C\uC870",
-            infoItems: ["\uD3C9\uC77C \uB9E4\uCD9C \uD750\uB984", "\uC8FC\uB9D0 \uB9E4\uCD9C \uD750\uB984", "\uB2E8\uACE8 / \uBC30\uB2EC / \uC720\uC785 \uAD6C\uC870"],
-            prepItems: ["\uC8FC\uC694 \uACE0\uAC1D\uCE35 \uC815\uB9AC", "\uC2DC\uAC04\uB300\uBCC4 \uB9E4\uCD9C \uD750\uB984 \uD30C\uC545", "\uB2E8\uACE8 \uBE44\uC911 \uC815\uB9AC", "\uBC30\uB2EC/\uD640 \uBE44\uC911 \uD30C\uC545"]
-          },
-          {
-            kicker: "\uD575\uC2EC \uD56D\uBAA9 3",
-            title: "\uC6B4\uC601 \uBC29\uC2DD",
-            peek: "\uC6B4\uC601 \uC778\uC6D0, \uC6B4\uC601 \uB09C\uC774\uB3C4, \uC7AC\uACE0 \uAD6C\uC870",
-            infoItems: ["\uC6B4\uC601 \uC778\uC6D0", "\uC6B4\uC601 \uB09C\uC774\uB3C4", "\uC7AC\uACE0 \uAD6C\uC870"],
-            prepItems: ["\uBA87 \uBA85\uC774 \uC788\uC5B4\uC57C \uC6B4\uC601 \uAC00\uB2A5\uD55C\uC9C0 \uC815\uB9AC", "\uCD08\uBCF4\uC790 \uC6B4\uC601 \uAC00\uB2A5 \uC5EC\uBD80 \uD310\uB2E8", "\uC7AC\uACE0 \uBD80\uB2F4 \uD30C\uC545", "\uC790\uC8FC \uC0DD\uAE30\uB294 \uC6B4\uC601 \uBCC0\uC218 \uC815\uB9AC"]
-          },
-          {
-            kicker: "\uD575\uC2EC \uD56D\uBAA9 4",
-            title: "\uB9E4\uC7A5 \uC0C1\uD0DC",
-            peek: "\uC678\uAD00 \uC0C1\uD0DC, \uB0B4\uBD80 \uCEE8\uB514\uC158, \uC0AC\uC9C4",
-            infoItems: ["\uC678\uAD00 \uC0C1\uD0DC", "\uB0B4\uBD80 \uCEE8\uB514\uC158", "\uC0AC\uC9C4"],
-            prepItems: ["\uC678\uBD80/\uB0B4\uBD80 \uC0AC\uC9C4 \uB2E4\uC2DC \uCD2C\uC601", "\uB178\uD6C4 \uC694\uC18C \uC810\uAC80", "\uAD50\uCCB4/\uBCF4\uC218 \uD544\uC694 \uD56D\uBAA9 \uD655\uC778", "\uC601\uC5C5 \uBD84\uC704\uAE30 \uBCF4\uC774\uB294 \uC790\uB8CC \uC900\uBE44"]
-          },
-          {
-            kicker: "\uD575\uC2EC \uD56D\uBAA9 5",
-            title: "\uAD8C\uB9AC\uAE08 \uADFC\uAC70",
-            peek: "\uAD8C\uB9AC\uAE08, \uD3EC\uD568 \uD56D\uBAA9, \uC0B0\uC815 \uC774\uC720",
-            infoItems: ["\uAD8C\uB9AC\uAE08", "\uD3EC\uD568 \uD56D\uBAA9", "\uC0B0\uC815 \uC774\uC720"],
-            prepItems: ["\uC2DC\uC124/\uC9D1\uAE30 \uD3EC\uD568 \uBC94\uC704 \uC815\uB9AC", "\uC218\uC775 \uB300\uBE44 \uD68C\uC218\uAE30\uAC04 \uACC4\uC0B0", "\uC0C1\uAD8C \uAE30\uC900 \uBE44\uAD50", "\uD611\uC758 \uAC00\uB2A5 \uBC94\uC704 \uC815\uB9AC"]
-          }
-        ],
-        labels: {
-          toggle: "\uB0B4\uC6A9 \uBCF4\uAE30",
-          infoTitle: "\uB9E4\uBB3C \uC18C\uAC1C\uC5D0 \uB4E4\uC5B4\uAC08 \uC815\uBCF4",
-          prepTitle: "\uC774\uAC78 \uC801\uC73C\uB824\uBA74 \uD544\uC694\uD55C \uC900\uBE44",
-          helper: "\uC774 \uC815\uBCF4\uAC00 \uC900\uBE44\uB418\uBA74 \uB9E4\uBB3C \uC18C\uAC1C\uAE00\uC758 \uC2E0\uB8B0\uB3C4\uAC00 \uC62C\uB77C\uAC11\uB2C8\uB2E4"
-        },
-        persuasion: {
-          chip: "\uC911\uAC04 \uC124\uB4DD",
-          title: "\uADF8\uB798\uC11C \uB300\uBD80\uBD84 \uC5EC\uAE30\uC11C \uBA48\uCD65\uB2C8\uB2E4",
-          items: [
-            "\uBB58 \uC368\uC57C \uD560\uC9C0 \uBAA8\uB974\uACA0\uACE0",
-            "\uC790\uB8CC\uB3C4 \uD769\uC5B4\uC838 \uC788\uACE0",
-            "\uB9C9\uB9C9\uD574\uC11C \uB9E4\uBB3C \uB4F1\uB85D\uC744 \uBBF8\uB8E8\uAC8C \uB429\uB2C8\uB2E4"
+          desc: "\uC2E4\uBB34\uC5D0\uC11C \uBC14\uB85C \uC4F8 \uC218 \uC788\uB3C4\uB85D, \uC4F0\uC784\uC0C8\uC640 \uD575\uC2EC \uC815\uBCF4\uB97C \uD55C \uBC88\uC5D0 \uC815\uB9AC\uD55C \uC2DC\uD2B8\uB85C \uBCF4\uC138\uC694.",
+          contextTitle: "\uC774\ub7F0 \uB54C \uC4F0\uC138\uC694",
+          contexts: [
+            "\uB9E4\uBB3C \uC18C\uAC1C \uAD6C\uC870\uB97C \uBA3C\uC800 \uC7A1\uACE0 \uC2F6\uC744 \uB54C",
+            "\uB9E4\uCD9C\uC740 \uC788\uC9C0\uB9CC \uC124\uBA85\uC740 \uC544\uC9C1 \uB9C9\uB9C9\uD560 \uB54C",
+            "\uC591\uC218\uC790\uAC00 \uBCF4\uB294 \uADFC\uAC70\uB97C \uD55C \uC7A5\uC73C\uB85C \uC815\uB9AC\uD558\uACE0 \uC2F6\uC744 \uB54C"
           ],
-          desc: "\uADF8\uB798\uC11C \uB0B4\uC77C\uC0AC\uC7A5\uC740 \uD55C \uBC88\uC5D0 \uC4F0\uB294 \uBC29\uC2DD\uBCF4\uB2E4, \uC870\uAE08\uC529 \uC313\uB294 \uBC29\uC2DD\uC744 \uC81C\uC548\uD569\uB2C8\uB2E4."
+          inputTitle: "\uBA3C\uC800 \uC815\uB9AC\uD560 \uD56D\uBAA9",
+          inputs: [
+            "\uC6D4 \uB9E4\uCD9C\uACFC \uC21C\uC218\uC775 \uC694\uC57D",
+            "\uB2E8\uACE8 \uBE44\uC911\uACFC \uD3C9\uC77C/\uC8FC\uB9D0 \uD750\uB984",
+            "\uC778\uB825 \uAD6C\uC131\uACFC \uC6B4\uC601 \uB09C\uC774\uB3C4",
+            "\uB9E4\uC7A5 \uC0C1\uD0DC\uC640 \uAD8C\uB9AC\uAE08 \uADFC\uAC70"
+          ],
+          exampleTitle: "\uC608\uC2DC \uBB38\uC7A5",
+          exampleLead: "\uC22B\uC790\uBCF4\uB2E4 \uBA3C\uC800, \uC6B4\uC601 \uAD6C\uC870\uAC00 \uBCF4\uC774\uAC8C \uC4F0\uB294 \uAC8C \uD3EC\uC778\uD2B8\uC785\uB2C8\uB2E4.",
+          exampleParagraphs: [
+            "\uC774 \uB9E4\uC7A5\uC740 \uD3C9\uC77C\uC5D0\uB294 \uC624\uD53C\uC2A4 \uB2E8\uACE8 \uC218\uC694\uAC00 \uC548\uC815\uC801\uC73C\uB85C \uBC1B\uCCD0\uC8FC\uACE0, \uC8FC\uB9D0\uC5D0\uB294 \uBC30\uB2EC \uBE44\uC911\uC73C\uB85C \uCD94\uAC00 \uB9E4\uCD9C\uC744 \uB9CC\uB4ED\uB2C8\uB2E4.",
+            "\uC9C1\uC6D0 \uAD6C\uC131, \uACE0\uC815\uBE44, \uB9E4\uC7A5 \uCEE8\uB514\uC158, \uAD8C\uB9AC\uAE08 \uADFC\uAC70\uAE4C\uC9C0 \uC815\uB9AC\uB3FC \uC788\uC5B4 \uD64D\uBCF4\uC131 \uBB38\uAD6C\uBCF4\uB2E4 \uADFC\uAC70 \uC911\uC2EC \uC18C\uAC1C\uB85C \uC77D\uD799\uB2C8\uB2E4."
+          ],
+          copyLabel: "\uBC14\uB85C \uBCF5\uBD99\uC6A9 \uC18C\uAC1C \uBB38\uC7A5",
+          copyBody: "\uC6D4 \uB9E4\uCD9C, \uB2E8\uACE8 \uBE44\uC911, \uC778\uB825 \uAD6C\uC131, \uB9E4\uC7A5 \uC0C1\uD0DC\uAE4C\uC9C0 \uC6B4\uC601 \uAD6C\uC870\uAC00 \uC815\uB9AC\uB3FC \uC788\uC5B4, \uC591\uC218\uC790\uAC00 \uC22B\uC790 \uB4A4\uC758 \uC6B4\uC601 \uADFC\uAC70\uAE4C\uC9C0 \uD568\uAED8 \uC774\uD574\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
         },
-        flow: {
-          chip: "\uCEE4\uBBA4\uB2C8\uD2F0 \uC5F0\uACB0",
-          title: "\uC774 \uC815\uBCF4\uB4E4\uC740 \uCEE4\uBBA4\uB2C8\uD2F0\uC5D0\uC11C \uCC9C\uCC9C\uD788 \uC313\uC744 \uC218 \uC788\uC2B5\uB2C8\uB2E4",
-          desc: "\uB9C9\uD600 \uC788\uB294 \uD56D\uBAA9\uC744 \uC5B5\uC9C0\uB85C \uC4F0\uB294 \uB300\uC2E0, \uAE30\uB85D\uC744 \uB0A8\uAE30\uBA74\uC11C \uC790\uC5F0\uC2A4\uB7FD\uAC8C \uC900\uBE44\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.",
+        guide: {
+          chip: "\uC791\uC131 \uAC00\uC774\uB4DC",
+          title: "\uB9C9\uD788\uB294 \uD56D\uBAA9\uC740 \uAE30\uB85D\uC73C\uB85C \uBA3C\uC800 \uD480\uBA74 \uB429\uB2C8\uB2E4",
+          desc: "\uB9E4\uBB3C \uAE00\uC744 \uC5B5\uC9C0\uB85C \uC4F0\uB824\uACE0 \uD558\uC9C0 \uB9D0\uACE0, \uCEE4\uBBA4\uB2C8\uD2F0 \uAE30\uB85D\uC744 \uC313\uC740 \uB4A4 \uC815\uB9AC\uD558\uBA74 \uB354 \uC27D\uAC8C \uC5F0\uACB0\uB429\uB2C8\uB2E4.",
+          stepsTitle: "\uC774 \uC21C\uC11C\uB85C \uC791\uC131\uD558\uC138\uC694",
           steps: [
-            {
-              title: "\uAE30\uB85D\uD558\uAE30",
-              desc: "\uC624\uB298 \uB9E4\uCD9C, \uACE0\uAC1D \uD750\uB984, \uC9C1\uC6D0 \uC0C1\uD669, \uB9E4\uC7A5 \uC0C1\uD0DC\uB97C \uADF8\uB0A0\uADF8\uB0A0 \uB0A8\uAE41\uB2C8\uB2E4."
-            },
-            {
-              title: "\uC815\uB9AC\uB418\uAE30",
-              desc: "\uB9E4\uCD9C \uB370\uC774\uD130\uAC00 \uC313\uC774\uACE0, \uC6B4\uC601 \uAD6C\uC870\uAC00 \uC815\uB9AC\uB418\uACE0, \uBCC0\uD654 \uAE30\uB85D\uC774 \uB0A8\uC2B5\uB2C8\uB2E4."
-            },
-            {
-              title: "\uB9E4\uBB3C \uC18C\uAC1C\uB85C \uC5F0\uACB0",
-              desc: "\uC18C\uAC1C\uAE00\uC5D0 \uBC14\uB85C \uD65C\uC6A9\uD560 \uC218 \uC788\uB294 \uC22B\uC790\uC640 \uADFC\uAC70\uAC00 \uC0DD\uAE30\uACE0, \uC124\uBA85\uB3C4 \uB354 \uC2E0\uB8B0\uAC10 \uC788\uAC8C \uC815\uB9AC\uB429\uB2C8\uB2E4."
-            }
+            "\uC624\uB298 \uB9E4\uC7A5 \uC0C1\uD0DC\uB97C \uCEE4\uBBA4\uB2C8\uD2F0\uC5D0 \uC9E7\uAC8C \uAE30\uB85D\uD569\uB2C8\uB2E4.",
+            "\uB204\uC801\uB41C \uAE30\uB85D\uC744 \uB9E4\uCD9C, \uACE0\uAC1D, \uC6B4\uC601, \uAD8C\uB9AC\uAE08 \uADFC\uAC70\uB85C \uBB36\uC2B5\uB2C8\uB2E4.",
+            "\uD655\uC778\uB41C \uADFC\uAC70\uB9CC \uB9E4\uBB3C \uC18C\uAC1C\uAE00\uC5D0 \uC62E\uACA8 \uC801\uC2B5\uB2C8\uB2E4."
           ],
-          closing: [
-            "\uC2E4\uC804 \uD15C\uD50C\uB9BF\uC774 \uB9C9\uB9C9\uD558\uB2E4\uBA74, \uBA3C\uC800 \uAE30\uB85D\uBD80\uD130 \uC2DC\uC791\uD574\uBCF4\uC138\uC694.",
-            "\uC88B\uC740 \uB9E4\uBB3C\uC740 \uD55C \uBC88\uC5D0 \uC4F0\uB294 \uAC83\uC774 \uC544\uB2C8\uB77C, \uC900\uBE44\uB418\uBA74\uC11C \uB9CC\uB4E4\uC5B4\uC9D1\uB2C8\uB2E4."
-          ]
+          pointsTitle: "\uB193\uCE58\uAE30 \uC26C\uC6B4 \uD3EC\uC778\uD2B8",
+          points: [
+            "\uB9E4\uCD9C\uB9CC \uC55E\uC138\uC6B0\uC9C0 \uB9D0\uACE0, \uC65C \uADF8 \uB9E4\uCD9C\uC774 \uB098\uC624\uB294\uC9C0\uB97C \uD568\uAED8 \uC4F0\uC138\uC694.",
+            "\uC21C\uC218\uC775\uC740 \uACE0\uC815\uBE44\uC640 \uC778\uB825 \uAD6C\uC131\uC744 \uAC19\uC774 \uC815\uB9AC\uD55C \uB4A4 \uC81C\uC2DC\uD558\uC138\uC694.",
+            "\uAD8C\uB9AC\uAE08\uC740 \uD3EC\uD568 \uD56D\uBAA9\uACFC \uC81C\uC678 \uD56D\uBAA9\uC744 \uD568\uAED8 \uC124\uBA85\uD558\uC138\uC694.",
+            "\uAE30\uC5B5\uBCF4\uB2E4 \uCD5C\uADFC \uAE30\uB85D\uACFC \uC0AC\uC9C4\uC744 \uAE30\uC900\uC73C\uB85C \uC4F0\uC138\uC694."
+          ],
+          quoteTitle: "\uD15C\uD50C\uB9BF\uC774 \uB9C9\uB9C9\uD558\uB2E4\uBA74 \uAE30\uB85D\uC774 \uBA3C\uC800\uC785\uB2C8\uB2E4",
+          quoteBody: "\uC88B\uC740 \uB9E4\uBB3C\uC740 \uD55C \uBC88\uC5D0 \uC644\uC131\uB418\uB294 \uAC8C \uC544\uB2D9\uB2C8\uB2E4. \uB9E4\uC77C \uB0A8\uAE34 \uAE30\uB85D\uC774 \uBAA8\uC5EC \uB9E4\uC7A5\uC744 \uC124\uBA85\uD558\uB294 \uADFC\uAC70\uAC00 \uB429\uB2C8\uB2E4."
         },
         cta: {
           note: "\uC544\uC9C1 \uC815\uB9AC\uAC00 \uC548 \uB410\uB2E4\uBA74, \uB9E4\uBB3C \uB4F1\uB85D\uBCF4\uB2E4 \uAE30\uB85D\uC774 \uBA3C\uC800\uC785\uB2C8\uB2E4.",
@@ -1401,52 +1370,43 @@ document.addEventListener('DOMContentLoaded', () => {
         if (bubbles[0]) bubbles[0].textContent = '\uC9C0\uAE08 \uC774 \uB9E4\uC7A5, \uC65C \uB418\uB294\uC9C0 \uC124\uBA85\uD560 \uC218 \uC788\uC73C\uC138\uC694?';
         if (bubbles[1]) bubbles[1].textContent = '\uB9E4\uCD9C\uC740 \uC788\uC9C0\uB9CC \uC6B4\uC601 \uAD6C\uC870\uB294 \uC544\uC9C1 \uD750\uB9BF\uD574\uC694.';
         if (bubbles[2]) bubbles[2].textContent = '\uC591\uC218\uC790\uB294 \uACB0\uAD6D \uAE30\uB85D\uC73C\uB85C \uD310\uB2E8\uD569\uB2C8\uB2E4.';
-        const introChips = communityIntroPage.querySelectorAll('.intro-chip');
-        const introHeadings = communityIntroPage.querySelectorAll('.intro-section-card h2');
-        if (introChips[0]) introChips[0].textContent = '\uBB38\uC81C \uC778\uC2DD';
-        if (introHeadings[0]) introHeadings[0].textContent = '\uB300\uBD80\uBD84\uC758 \uB9E4\uC7A5\uC740 \uC774\uB807\uAC8C \uBCF4\uC5EC\uC694';
-        const introBullets = communityIntroPage.querySelectorAll('.intro-bullet-list li');
-        ['\uB9E4\uCD9C\uC740 \uC788\uC9C0\uB9CC, \uC65C \uB098\uC624\uB294\uC9C0 \uBAA8\uB984', '\uB2E8\uACE8\uC774 \uB9CE\uC740\uC9C0, \uC2E0\uADDC\uAC00 \uB9CE\uC740\uC9C0 \uBAA8\uB984', '\uB9C8\uCF00\uD305\uC744 \uD588\uB294\uC9C0, \uC548 \uD588\uB294\uC9C0 \uBD88\uBA85\uD655', '\uC9C1\uC6D0 \uC6B4\uC601 \uAD6C\uC870\uB3C4 \uC815\uB9AC \uC548\uB428'].forEach((item, index) => {
-          if (introBullets[index]) introBullets[index].textContent = item;
-        });
-        const introEmphasis = communityIntroPage.querySelectorAll('.intro-emphasis');
-        if (introEmphasis[0]) introEmphasis[0].textContent = '\uACB0\uAD6D \uC6B4 \uC88B\uC740 \uB9E4\uC7A5\uC778\uC9C0, \uC815\uB9D0 \uC88B\uC740 \uB9E4\uC7A5\uC778\uC9C0 \uAD6C\uBD84\uB418\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4.';
-        if (introChips[1]) introChips[1].textContent = '\uC591\uC218\uC790\uC758 \uC2DC\uC120';
-        if (introHeadings[1]) introHeadings[1].textContent = '\uC591\uC218\uC790\uB294 \uC774\uB807\uAC8C \uC0DD\uAC01\uD569\uB2C8\uB2E4';
-        const introQuestions = communityIntroPage.querySelectorAll('.intro-question-item');
-        ['\uC774 \uB9E4\uCD9C, \uB0B4\uAC00 \uC720\uC9C0\uD560 \uC218 \uC788\uC744\uAE4C?', '\uB2E8\uACE8\uC740 \uACC4\uC18D \uC62C\uAE4C?', '\uC6B4\uC601 \uAD6C\uC870\uAC00 \uC548\uC815\uC801\uC778\uAC00?', '\uB0B4\uAC00 \uAC1C\uC120\uD560 \uC5EC\uC9C0\uAC00 \uC788\uB294\uAC00?'].forEach((item, index) => {
+        setText('.intro-panel-why .intro-chip', '\uC65C \uAE30\uB85D\uC774 \uD544\uC694\uD55C\uAC00', communityIntroPage);
+        setText('.intro-panel-why h2', '\uC591\uC218\uC790\uB294 \uC22B\uC790\uBCF4\uB2E4 \uC6B4\uC601 \uADFC\uAC70\uB97C \uBD05\uB2C8\uB2E4', communityIntroPage);
+        setText('.intro-panel-why .intro-panel-lead', '\uB9E4\uCD9C \uC218\uCE58\uAC00 \uC88B\uC544 \uBCF4\uC5EC\uB3C4, \uADF8 \uC22B\uC790\uAC00 \uC65C \uB098\uC624\uB294\uC9C0\uAC00 \uC5C6\uC73C\uBA74 \uB9E4\uC7A5\uC740 \uB9AC\uC2A4\uD06C \uC788\uB294 \uB9E4\uBB3C\uB85C \uBCF4\uC785\uB2C8\uB2E4.', communityIntroPage);
+        setText('.intro-panel-why .intro-column:nth-child(1) .intro-column-title', '\uC591\uC218\uC790\uAC00 \uBA3C\uC800 \uBCF4\uB294 \uC9C8\uBB38', communityIntroPage);
+        const introQuestions = communityIntroPage.querySelectorAll('.intro-question-list li');
+        ['\uC774 \uB9E4\uCD9C \uC218\uC900, \uB0B4\uAC00 \uC720\uC9C0\uD560 \uC218 \uC788\uC744\uAE4C?', '\uB2E8\uACE8\uACE0\uAC1D\uC740 \uC591\uB3C4 \uD6C4\uC5D0\uB3C4 \uB0A8\uC744\uAE4C?', '\uC9C1\uC6D0 \uC6B4\uC601\uACFC \uACE0\uC815\uBE44 \uAD6C\uC870\uAC00 \uC548\uC815\uC801\uC778\uAC00?', '\uB0B4\uAC00 \uB354 \uAC1C\uC120\uD560 \uC5EC\uC9C0\uAC00 \uC788\uB294\uAC00?'].forEach((item, index) => {
           if (introQuestions[index]) introQuestions[index].textContent = item;
         });
-        if (introEmphasis[1]) introEmphasis[1].textContent = '\uADF8\uB798\uC11C \uBCF4\uB294 \uAC74 \uD558\uB098, \uC6B4\uC601\uC758 \uAE30\uB85D\uC785\uB2C8\uB2E4.';
-        if (introChips[2]) introChips[2].textContent = '\uD575\uC2EC \uAC00\uCE58';
-        setText('.intro-solution-panel h2', '\uADF8\uB798\uC11C \u2018\uB9E4\uC7A5 \uC0C1\uD0DC \uC778\uC99D\u2019\uC744 \uB9CC\uB4ED\uB2C8\uB2E4', communityIntroPage);
-        setText('.intro-solution-panel p', '\uB9E4\uCD9C\uC774 \uC544\uB2C8\uB77C, \uC6B4\uC601\uC744 \uC99D\uBA85\uD558\uC138\uC694', communityIntroPage);
-        if (introChips[3]) introChips[3].textContent = '\uB9E4\uC77C 1\uBD84';
-        if (introHeadings[2]) introHeadings[2].textContent = '\uB9E4\uC77C 1\uBD84, \uC774\uB807\uAC8C\uB9CC \uAE30\uB85D\uD558\uC138\uC694';
+        setText('.intro-panel-why .intro-column:nth-child(2) .intro-column-title', '\uAE30\uB85D\uC774 \uB9CC\uB4DC\uB294 \uCC28\uC774', communityIntroPage);
+        const benefitTitles = communityIntroPage.querySelectorAll('.intro-benefit-item strong');
+        const benefitBodies = communityIntroPage.querySelectorAll('.intro-benefit-item p');
+        ['\uC591\uB3C4 \uC18D\uB3C4', '\uAD8C\uB9AC\uAE08 \uC124\uB4DD\uB825', '\uC2DC\uC7A5 \uC2E0\uB8B0'].forEach((item, index) => {
+          if (benefitTitles[index]) benefitTitles[index].textContent = item;
+        });
+        ['\uBE44\uC2B7\uD55C \uB9E4\uBB3C \uC911\uC5D0\uC11C\uB3C4 \uAE30\uB85D \uC788\uB294 \uB9E4\uC7A5\uC774 \uBA3C\uC800 \uAC80\uD1A0\uB429\uB2C8\uB2E4.', '\uC6B4\uC601 \uAD6C\uC870\uAC00 \uC99D\uBA85\uB418\uBA74 \uAC00\uACA9 \uC124\uBA85\uC774 \uD6E8\uC52C \uC790\uC5F0\uC2A4\uB7EC\uC6CC\uC9D1\uB2C8\uB2E4.', '\uBD88\uD22C\uBA85\uD55C \uC2DC\uC7A5\uC5D0\uC11C \uAE30\uB85D \uC790\uCCB4\uAC00 \uCC28\uBCC4\uD654\uAC00 \uB429\uB2C8\uB2E4.'].forEach((item, index) => {
+          if (benefitBodies[index]) benefitBodies[index].textContent = item;
+        });
+        setText('.intro-highlight-quote', '\uACB0\uAD6D \uC591\uC218\uC790\uB294 \uC6B4 \uC88B\uC740 \uB9E4\uC7A5\uC778\uC9C0, \uAD6C\uC870\uAC00 \uC88B\uC740 \uB9E4\uC7A5\uC778\uC9C0\uBD80\uD130 \uAD6C\uBD84\uD558\uB824\uACE0 \uD569\uB2C8\uB2E4.', communityIntroPage);
+        setText('.intro-panel-how .intro-chip', '\uC5B4\uB5BB\uAC8C \uC313\uC744\uAE4C', communityIntroPage);
+        setText('.intro-panel-how h2', '\uB9E4\uC77C 1\uBD84 \uAE30\uB85D\uC774 \uC6B4\uC601 \uAD6C\uC870\uB85C \uB0A8\uC2B5\uB2C8\uB2E4', communityIntroPage);
+        setText('.intro-panel-how .intro-panel-lead', '\uBCF4\uACE0\uC11C\uAC00 \uD544\uC694\uD55C \uAC8C \uC544\uB2D9\uB2C8\uB2E4. \uC9E7\uC740 \uC77C\uC77C \uAE30\uB85D\uB9CC \uC313\uC5EC\uB3C4 \uB9E4\uC7A5 \uC6B4\uC601\uC744 \uC124\uBA85\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.', communityIntroPage);
         const introChipList = communityIntroPage.querySelectorAll('.intro-chip-list span');
         ['\uB2E8\uACE8 vs \uC2E0\uADDC \uACE0\uAC1D \uBE44\uC911', '\uC9C1\uC6D0 \uADFC\uBB34 \uC778\uC6D0', '\uC9C4\uD589\uD55C \uB9C8\uCF00\uD305 / \uC911\uB2E8\uD55C \uB9C8\uCF00\uD305', '\uACE0\uAC1D \uC5F0\uB839\uCE35', '\uD640 vs \uBC30\uB2EC \uBE44\uC911', '\uC0C1\uAD8C \uBCC0\uD654', '\uC9D1\uAE30/\uC6B4\uC601 \uBCC0\uD654'].forEach((item, index) => {
           if (introChipList[index]) introChipList[index].textContent = item;
         });
-        if (introChips[4]) introChips[4].textContent = '\uC65C \uD574\uC57C \uD558\uB098\uC694';
-        if (introHeadings[3]) introHeadings[3].textContent = '\uC774 \uAE30\uB85D \uD558\uB098\uB85C \uB2EC\uB77C\uC9D1\uB2C8\uB2E4';
-        const impactTitles = communityIntroPage.querySelectorAll('.intro-impact-item strong');
-        const impactBodies = communityIntroPage.querySelectorAll('.intro-impact-item p');
-        ['1. \uC591\uB3C4 \uC18D\uB3C4', '2. \uAD8C\uB9AC\uAE08', '3. \uC2E0\uB8B0'].forEach((item, index) => { if (impactTitles[index]) impactTitles[index].textContent = item; });
-        ['\uBE44\uC2B7\uD55C \uB9E4\uBB3C \uC911\uC5D0\uC11C\uB3C4 \uAE30\uB85D \uC788\uB294 \uB9E4\uC7A5\uC774 \uBA3C\uC800 \uC120\uD0DD\uB429\uB2C8\uB2E4.', '\uC6B4\uC601\uC774 \uC99D\uBA85\uB418\uBA74 \uC124\uBA85\uC774 \uC544\uB2C8\uB77C \uB0A9\uB4DD\uC774 \uB429\uB2C8\uB2E4.', '\uBD88\uD22C\uBA85\uD55C \uC2DC\uC7A5\uC5D0\uC11C \uAE30\uB85D \uC790\uCCB4\uAC00 \uCC28\uBCC4\uD654\uAC00 \uB429\uB2C8\uB2E4.'].forEach((item, index) => { if (impactBodies[index]) impactBodies[index].textContent = item; });
-        if (introChips[5]) introChips[5].textContent = '\uC228\uC740 \uAC00\uCE58';
-        if (introHeadings[4]) introHeadings[4].textContent = '\uC0AC\uC2E4 \uC774\uAC74 \uC591\uB3C4\uC6A9 \uAE30\uB2A5\uC774 \uC544\uB2D9\uB2C8\uB2E4';
-        const introSectionPs = communityIntroPage.querySelectorAll('.intro-section-card p:not(.intro-emphasis)');
-        if (introSectionPs[2]) introSectionPs[2].textContent = '\uB9E4\uC77C \uAE30\uB85D\uD558\uB2E4 \uBCF4\uBA74 \uB9E4\uCD9C\uC774 \uB5A8\uC5B4\uC9C0\uB294 \uD328\uD134\uC774 \uBCF4\uC774\uACE0, \uB2E8\uACE8\uC774 \uC904\uC5B4\uB4DC\uB294 \uD0C0\uC774\uBC0D\uC774 \uBCF4\uC774\uACE0, \uBD88\uD544\uC694\uD55C \uB9C8\uCF00\uD305\uC774 \uBCF4\uC785\uB2C8\uB2E4.';
-        if (introEmphasis[2]) introEmphasis[2].textContent = '\uACB0\uAD6D \uC6B4\uC601\uC774 \uAC1C\uC120\uB429\uB2C8\uB2E4.';
-        if (introChips[6]) introChips[6].textContent = '\uC804\uBB38\uAC00 \uC5F0\uACB0';
-        if (introHeadings[5]) introHeadings[5].textContent = '\uD63C\uC790 \uD310\uB2E8\uD558\uC9C0 \uB9C8\uC138\uC694';
-        if (introSectionPs[3]) introSectionPs[3].textContent = '\uD504\uB79C\uCC28\uC774\uC988 \uAD50\uC218 + \uC288\uD37C\uBC14\uC774\uC800 \uCD9C\uC2E0 \uC6B4\uC601\uC790\uAC00 \uC9C1\uC811 \uD53C\uB4DC\uBC31\uD569\uB2C8\uB2E4.';
-        const expertGrid = communityIntroPage.querySelectorAll('.intro-expert-item');
-        if (expertGrid[0]) expertGrid[0].textContent = '\uD504\uCC28 \uC0AC\uC7A5\uB2D8 \u2192 \uAD6C\uC870 \uCD5C\uC801\uD654';
-        if (expertGrid[1]) expertGrid[1].textContent = '\uAC1C\uC778 \uC0AC\uC7A5\uB2D8 \u2192 \uC548\uC815\uC801\uC778 \uC6B4\uC601 \uC2DC\uC2A4\uD15C \uAD6C\uCD95';
-        if (introEmphasis[3]) introEmphasis[3].textContent = '\uD504\uB79C\uCC28\uC774\uC988\uCC98\uB7FC \uC6B4\uC601\uD560 \uC218 \uC788\uAC8C \uB3D5\uC2B5\uB2C8\uB2E4.';
-        setText('.intro-cta-panel h2', '\uAE30\uB85D\uD558\uB294 \uC0AC\uC7A5\uB2D8\uB9CC, \uC120\uD0DD\uBC1B\uC2B5\uB2C8\uB2E4', communityIntroPage);
-        setText('.intro-cta-panel p', '\uAE30\uB2A5 \uC124\uBA85\uBCF4\uB2E4 \uBA3C\uC800, \uC591\uC218\uC790\uC758 \uC2DC\uC120\uC5D0\uC11C \uB0B4 \uB9E4\uC7A5\uC744 \uB0A9\uB4DD\uC2DC\uD0A4\uB294 \uAD6C\uC870\uB97C \uB9CC\uB4DC\uC138\uC694.', communityIntroPage);
+        setText('.intro-action-block:nth-child(1) .intro-column-title', '\uC774 \uC21C\uC11C\uB85C \uC313\uC2B5\uB2C8\uB2E4', communityIntroPage);
+        const introActionSteps = communityIntroPage.querySelectorAll('.intro-action-steps li');
+        ['\uC624\uB298 \uC6B4\uC601 \uC0C1\uD0DC\uB97C \uC9E7\uAC8C \uAE30\uB85D\uD569\uB2C8\uB2E4.', '\uAC19\uC740 \uD56D\uBAA9\uC73C\uB85C \uACC4\uC18D \uB0A8\uACA8 \uBCC0\uD654\uB97C \uBCF4\uC774\uAC8C \uD569\uB2C8\uB2E4.', '\uB204\uC801\uB41C \uADFC\uAC70\uB97C \uB9E4\uBB3C \uC18C\uAC1C\uC640 \uC0C1\uB2F4\uC5D0 \uC7AC\uD65C\uC6A9\uD569\uB2C8\uB2E4.'].forEach((item, index) => {
+          if (introActionSteps[index]) introActionSteps[index].textContent = item;
+        });
+        setText('.intro-action-block:nth-child(2) .intro-column-title', '\uC804\uBB38\uAC00\uC640 \uD568\uAED8 \uBCF4\uBA74', communityIntroPage);
+        const introActionPoints = communityIntroPage.querySelectorAll('.intro-action-points li');
+        ['\uD504\uB79C\uCC28\uC774\uC988 \uC0AC\uC7A5\uB2D8\uC740 \uAD6C\uC870 \uCD5C\uC801\uD654 \uD3EC\uC778\uD2B8\uB97C \uBA3C\uC800 \uBCFC \uC218 \uC788\uC2B5\uB2C8\uB2E4.', '\uAC1C\uC778 \uC0AC\uC7A5\uB2D8\uC740 \uB354 \uC548\uC815\uC801\uC778 \uC6B4\uC601 \uC2DC\uC2A4\uD15C\uC744 \uB9CC\uB4E4 \uC218 \uC788\uC2B5\uB2C8\uB2E4.', '\uACB0\uAD6D \uAE30\uB85D\uC740 \uC591\uB3C4 \uC900\uBE44\uBFD0 \uC544\uB2C8\uB77C \uD604\uC7AC \uC6B4\uC601 \uAC1C\uC120\uC5D0\uB3C4 \uB0A8\uC2B5\uB2C8\uB2E4.'].forEach((item, index) => {
+          if (introActionPoints[index]) introActionPoints[index].textContent = item;
+        });
+        setText('.intro-panel-cta h3', '\uAE30\uB85D\uD558\uB294 \uC0AC\uC7A5\uB2D8\uB9CC, \uC120\uD0DD\uBC1B\uC2B5\uB2C8\uB2E4', communityIntroPage);
+        setText('.intro-panel-cta p', '\uAE30\uB2A5 \uC124\uBA85\uBCF4\uB2E4 \uBA3C\uC800, \uC591\uC218\uC790 \uC2DC\uC120\uC5D0\uC11C \uB0B4 \uB9E4\uC7A5\uC744 \uB0A9\uB4DD\uC2DC\uD0A4\uB294 \uAD6C\uC870\uB97C \uB9CC\uB4DC\uC138\uC694.', communityIntroPage);
         if (btnIntroStart) btnIntroStart.textContent = '\uC9C0\uAE08 \uBC14\uB85C \uC2DC\uC791\uD558\uAE30';
       }
 
@@ -1458,16 +1418,14 @@ document.addEventListener('DOMContentLoaded', () => {
       insightCards.forEach((card, index) => {
         const copy = t.insight[index];
         if (!copy) return;
+        const kicker = card.querySelector('.insight-card-kicker');
         const title = card.querySelector('h4');
         const desc = card.querySelector('p');
+        const cta = card.querySelector('.insight-card-cta');
+        if (kicker) kicker.textContent = copy.kicker;
         if (title) title.textContent = copy.title;
         if (desc) desc.textContent = copy.desc;
-        if (index === 0) {
-          card.onclick = () => {
-            const insightTrigger = document.getElementById('btnScrollToInsight');
-            if (insightTrigger) insightTrigger.click();
-          };
-        }
+        if (cta) cta.textContent = copy.cta;
       });
 
       if (!templatePage) return;
@@ -1484,69 +1442,49 @@ document.addEventListener('DOMContentLoaded', () => {
       if (heroDesc) heroDesc.textContent = t.hero.desc;
       if (heroNote) heroNote.textContent = t.hero.note;
 
-      const sectionChip = templatePage.querySelector('.template-guide-section .template-section-chip');
-      const sectionTitle = templatePage.querySelector('.template-guide-section .template-section-heading h2');
-      const sectionDesc = templatePage.querySelector('.template-guide-section .template-section-heading p');
-      if (sectionChip) sectionChip.textContent = t.section.chip;
-      if (sectionTitle) sectionTitle.textContent = t.section.title;
-      if (sectionDesc) sectionDesc.textContent = t.section.desc;
+      const sheetChip = templatePage.querySelector('.template-sheet-chip');
+      const sheetTitle = templatePage.querySelector('.template-sheet-title');
+      const sheetDesc = templatePage.querySelector('.template-sheet-desc');
+      const contextTitle = templatePage.querySelector('.template-sheet-block:nth-child(1) .template-sheet-block-title');
+      const contextList = templatePage.querySelector('.template-sheet-context-list');
+      const inputTitle = templatePage.querySelector('.template-sheet-block:nth-child(2) .template-sheet-block-title');
+      const inputList = templatePage.querySelector('.template-sheet-input-list');
+      const exampleTitle = templatePage.querySelector('.template-sheet-example .template-sheet-block-title');
+      const exampleLead = templatePage.querySelector('.template-sheet-example-lead');
+      const exampleBody = templatePage.querySelector('.template-sheet-example-body');
+      const copyLabel = templatePage.querySelector('.template-sheet-copy-label');
+      const copyBody = templatePage.querySelector('.template-sheet-copy-body');
+      if (sheetChip) sheetChip.textContent = t.sheet.chip;
+      if (sheetTitle) sheetTitle.textContent = t.sheet.title;
+      if (sheetDesc) sheetDesc.textContent = t.sheet.desc;
+      if (contextTitle) contextTitle.textContent = t.sheet.contextTitle;
+      if (contextList) contextList.innerHTML = t.sheet.contexts.map((item) => `<li>${item}</li>`).join('');
+      if (inputTitle) inputTitle.textContent = t.sheet.inputTitle;
+      if (inputList) inputList.innerHTML = t.sheet.inputs.map((item) => `<li>${item}</li>`).join('');
+      if (exampleTitle) exampleTitle.textContent = t.sheet.exampleTitle;
+      if (exampleLead) exampleLead.textContent = t.sheet.exampleLead;
+      if (exampleBody) exampleBody.innerHTML = t.sheet.exampleParagraphs.map((item) => `<p>${item}</p>`).join('');
+      if (copyLabel) copyLabel.textContent = t.sheet.copyLabel;
+      if (copyBody) copyBody.textContent = t.sheet.copyBody;
 
-      const guideCards = templatePage.querySelectorAll('.template-guide-card');
-      guideCards.forEach((card, index) => {
-        const copy = t.cards[index];
-        if (!copy) return;
-
-        const kicker = card.querySelector('.template-guide-kicker');
-        const title = card.querySelector('.template-guide-summary strong');
-        const peek = card.querySelector('.template-guide-summary p');
-        const toggle = card.querySelector('.template-guide-toggle');
-        const blockTitles = card.querySelectorAll('.template-guide-block h4');
-        const infoList = card.querySelector('.template-guide-items');
-        const prepList = card.querySelector('.template-check-items');
-        const helper = card.querySelector('.template-guide-helper');
-
-        if (kicker) kicker.textContent = copy.kicker;
-        if (title) title.textContent = copy.title;
-        if (peek) peek.textContent = copy.peek;
-        if (toggle) toggle.textContent = t.labels.toggle;
-        if (blockTitles[0]) blockTitles[0].textContent = t.labels.infoTitle;
-        if (blockTitles[1]) blockTitles[1].textContent = t.labels.prepTitle;
-        if (infoList) infoList.innerHTML = copy.infoItems.map((item) => `<li>${item}</li>`).join('');
-        if (prepList) prepList.innerHTML = copy.prepItems.map((item) => `<li>${item}</li>`).join('');
-        if (helper) helper.textContent = t.labels.helper;
-      });
-
-      const persuasionChip = templatePage.querySelector('.template-persuasion-block .template-section-chip');
-      const persuasionTitle = templatePage.querySelector('.template-persuasion-block h2');
-      const persuasionItems = templatePage.querySelectorAll('.template-persuasion-list li');
-      const persuasionDesc = templatePage.querySelector('.template-persuasion-block p');
-      if (persuasionChip) persuasionChip.textContent = t.persuasion.chip;
-      if (persuasionTitle) persuasionTitle.textContent = t.persuasion.title;
-      t.persuasion.items.forEach((item, index) => {
-        if (persuasionItems[index]) persuasionItems[index].textContent = item;
-      });
-      if (persuasionDesc) persuasionDesc.textContent = t.persuasion.desc;
-
-      const flowChip = templatePage.querySelector('.template-community-flow .template-section-chip');
-      const flowTitle = templatePage.querySelector('.template-community-flow .template-section-heading h2');
-      const flowDesc = templatePage.querySelector('.template-community-flow .template-section-heading p');
-      if (flowChip) flowChip.textContent = t.flow.chip;
-      if (flowTitle) flowTitle.textContent = t.flow.title;
-      if (flowDesc) flowDesc.textContent = t.flow.desc;
-
-      const flowSteps = templatePage.querySelectorAll('.template-flow-step');
-      flowSteps.forEach((step, index) => {
-        const copy = t.flow.steps[index];
-        if (!copy) return;
-        const title = step.querySelector('h4');
-        const desc = step.querySelector('p');
-        if (title) title.textContent = copy.title;
-        if (desc) desc.textContent = copy.desc;
-      });
-
-      const flowClosing = templatePage.querySelectorAll('.template-flow-closing p');
-      if (flowClosing[0]) flowClosing[0].textContent = t.flow.closing[0];
-      if (flowClosing[1]) flowClosing[1].textContent = t.flow.closing[1];
+      const guideChip = templatePage.querySelector('.template-guide-check-chip');
+      const guideTitle = templatePage.querySelector('.template-guide-check-title');
+      const guideDesc = templatePage.querySelector('.template-guide-check-desc');
+      const stepsTitle = templatePage.querySelector('.template-checklist-block:nth-child(1) .template-checklist-block-title');
+      const stepsList = templatePage.querySelector('.template-checklist-steps');
+      const pointsTitle = templatePage.querySelector('.template-checklist-block:nth-child(2) .template-checklist-block-title');
+      const pointsList = templatePage.querySelector('.template-checklist-points');
+      const quoteTitle = templatePage.querySelector('.template-checklist-quote-title');
+      const quoteBody = templatePage.querySelector('.template-checklist-quote-body');
+      if (guideChip) guideChip.textContent = t.guide.chip;
+      if (guideTitle) guideTitle.textContent = t.guide.title;
+      if (guideDesc) guideDesc.textContent = t.guide.desc;
+      if (stepsTitle) stepsTitle.textContent = t.guide.stepsTitle;
+      if (stepsList) stepsList.innerHTML = t.guide.steps.map((item) => `<li>${item}</li>`).join('');
+      if (pointsTitle) pointsTitle.textContent = t.guide.pointsTitle;
+      if (pointsList) pointsList.innerHTML = t.guide.points.map((item) => `<li>${item}</li>`).join('');
+      if (quoteTitle) quoteTitle.textContent = t.guide.quoteTitle;
+      if (quoteBody) quoteBody.textContent = t.guide.quoteBody;
 
       const ctaNote = templatePage.querySelector('.template-cta-note');
       if (ctaNote) ctaNote.textContent = t.cta.note;

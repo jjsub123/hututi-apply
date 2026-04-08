@@ -208,18 +208,18 @@
             <h3>사장님들이 많이 보는 기준</h3>
           </div>
           <div class="insight-list" id="insightScrollContainer">
-            <div class="insight-card-large" onclick="document.getElementById('btnScrollToInsight').click();">
+            <button type="button" class="insight-card-large insight-card-feature" id="btnScrollToInsight">
+              <span class="insight-card-kicker">템플릿</span>
               <h4>실전 템플릿</h4>
-              <p>좋은 매물 소개를 쓰기 전에 어떤 준비가 필요한지 확인해보세요.</p>
-            </div>
-            <div class="insight-card-large insight-card-checklist" id="btnScrollToInsight">
+              <p>양도 글에 바로 쓸 핵심 항목과 예시 문장을 한 번에 정리한 문서입니다.</p>
+              <span class="insight-card-cta">템플릿 시트 보기</span>
+            </button>
+            <button type="button" class="insight-card-large insight-card-checklist" onclick="document.getElementById('btnOpenCommunityIntro').click();">
+              <span class="insight-card-kicker">칼럼</span>
               <h4>기록부터 준비하기</h4>
-              <p>막막하다면 커뮤니티에서 기록을 쌓는 것부터 시작해보세요.</p>
-            </div>
-          </div>
-          <div class="carousel-nav" style="display:flex; justify-content:flex-end; align-items:center; gap:8px; margin-top:12px; padding-right:16px;">
-            <button class="btn-icon" onclick="document.getElementById('insightScrollContainer').scrollBy({left:-220, behavior:'smooth'})" style="background:#f1f3f5; border-radius:50%; width:32px; height:32px;">&lt;</button>
-            <button class="btn-icon" onclick="document.getElementById('insightScrollContainer').scrollBy({left:220, behavior:'smooth'})" style="background:#f1f3f5; border-radius:50%; width:32px; height:32px;">&gt;</button>
+              <p>양수자가 무엇을 보고 판단하는지부터, 어떤 기록이 근거가 되는지 읽는 페이지입니다.</p>
+              <span class="insight-card-cta">칼럼 읽기</span>
+            </button>
           </div>
         </section>
 
@@ -812,56 +812,74 @@
           <div class="template-guide-note">Check what information you need before trying to write the listing.</div>
         </section>
 
-        <section class="template-guide-section">
+        <section class="template-guide-panel template-sheet-panel">
           <div class="template-section-heading">
-            <span class="template-section-chip">Listing items</span>
-            <h2>These are the core blocks that go into a strong listing</h2>
-            <p>Open each card to see what goes in the listing and what must be prepared first.</p>
+            <span class="template-section-chip template-sheet-chip">Template sheet</span>
+            <h2 class="template-sheet-title">These are the core blocks that go into a strong listing</h2>
+            <p class="template-sheet-desc">Open each card to see what goes in the listing and what must be prepared first.</p>
           </div>
-
-          <div class="template-guide-list">
-            <details class="template-guide-card" open>
-              <summary class="template-guide-summary"><div><span class="template-guide-kicker">Core item 1</span><strong>Sales / Profit</strong><p>Monthly sales, net profit, fixed cost</p></div><span class="template-guide-toggle">Open</span></summary>
-              <div class="template-guide-body"><div class="template-guide-block"><h4>Listing info</h4><ul class="template-guide-items"><li>Monthly sales</li><li>Monthly net profit</li><li>Fixed cost</li></ul></div><div class="template-guide-block"><h4>What you need first</h4><ul class="template-check-items"><li>Last 3 months sales</li><li>Net profit calculation</li><li>Fixed-cost summary</li><li>Peak / off-season pattern</li></ul></div><p class="template-guide-helper">Prepared information improves listing trust.</p></div>
-            </details>
-            <details class="template-guide-card">
-              <summary class="template-guide-summary"><div><span class="template-guide-kicker">Core item 2</span><strong>Sales structure</strong><p>Weekday flow, weekend flow, loyal / delivery / inflow</p></div><span class="template-guide-toggle">Open</span></summary>
-              <div class="template-guide-body"><div class="template-guide-block"><h4>Listing info</h4><ul class="template-guide-items"><li>Weekday sales flow</li><li>Weekend sales flow</li><li>Loyal / delivery / inflow mix</li></ul></div><div class="template-guide-block"><h4>What you need first</h4><ul class="template-check-items"><li>Customer segments</li><li>Time-slot flow</li><li>Loyal share</li><li>Hall / delivery mix</li></ul></div><p class="template-guide-helper">Prepared information improves listing trust.</p></div>
-            </details>
-            <details class="template-guide-card">
-              <summary class="template-guide-summary"><div><span class="template-guide-kicker">Core item 3</span><strong>Operations</strong><p>Staffing, difficulty, inventory structure</p></div><span class="template-guide-toggle">Open</span></summary>
-              <div class="template-guide-body"><div class="template-guide-block"><h4>Listing info</h4><ul class="template-guide-items"><li>Operating headcount</li><li>Operating difficulty</li><li>Inventory structure</li></ul></div><div class="template-guide-block"><h4>What you need first</h4><ul class="template-check-items"><li>Required staffing</li><li>Beginner suitability</li><li>Inventory burden</li><li>Recurring operating variables</li></ul></div><p class="template-guide-helper">Prepared information improves listing trust.</p></div>
-            </details>
-            <details class="template-guide-card">
-              <summary class="template-guide-summary"><div><span class="template-guide-kicker">Core item 4</span><strong>Store condition</strong><p>Exterior, interior condition, photos</p></div><span class="template-guide-toggle">Open</span></summary>
-              <div class="template-guide-body"><div class="template-guide-block"><h4>Listing info</h4><ul class="template-guide-items"><li>Exterior condition</li><li>Interior condition</li><li>Photos</li></ul></div><div class="template-guide-block"><h4>What you need first</h4><ul class="template-check-items"><li>Retake photos</li><li>Check aging issues</li><li>Check repair items</li><li>Prepare atmosphere references</li></ul></div><p class="template-guide-helper">Prepared information improves listing trust.</p></div>
-            </details>
-            <details class="template-guide-card">
-              <summary class="template-guide-summary"><div><span class="template-guide-kicker">Core item 5</span><strong>Premium basis</strong><p>Premium amount, included items, logic</p></div><span class="template-guide-toggle">Open</span></summary>
-              <div class="template-guide-body"><div class="template-guide-block"><h4>Listing info</h4><ul class="template-guide-items"><li>Premium amount</li><li>Included items</li><li>Pricing logic</li></ul></div><div class="template-guide-block"><h4>What you need first</h4><ul class="template-check-items"><li>Included facility range</li><li>Payback estimate</li><li>Market comparison</li><li>Negotiation range</li></ul></div><p class="template-guide-helper">Prepared information improves listing trust.</p></div>
-            </details>
+          <div class="template-sheet-grid">
+            <div class="template-sheet-block">
+              <h4 class="template-sheet-block-title">Use this when</h4>
+              <ul class="template-sheet-list template-sheet-context-list">
+                <li>You want to draft a clean listing structure first</li>
+                <li>You have sales but the explanation is still vague</li>
+                <li>You need one page that organizes proof before writing</li>
+              </ul>
+            </div>
+            <div class="template-sheet-block">
+              <h4 class="template-sheet-block-title">What to prepare first</h4>
+              <ul class="template-sheet-list template-sheet-input-list">
+                <li>Monthly sales and profit summary</li>
+                <li>Customer mix and weekday/weekend flow</li>
+                <li>Staffing and operating difficulty</li>
+                <li>Store condition and premium logic</li>
+              </ul>
+            </div>
+            <div class="template-sheet-block template-sheet-example">
+              <h4 class="template-sheet-block-title">Example sentence</h4>
+              <p class="template-sheet-example-lead">Show the operating structure first, then let the number make sense.</p>
+              <div class="template-sheet-example-body">
+                <p>This store keeps stable weekday demand through loyal office workers and adds delivery volume on weekends.</p>
+                <p>Because staffing, fixed cost, and premium basis are already organized, the listing reads like proof instead of promotion.</p>
+              </div>
+            </div>
+            <div class="template-sheet-copy">
+              <span class="template-sheet-copy-label">Ready-to-use line</span>
+              <p class="template-sheet-copy-body">Monthly sales, loyal-customer mix, staffing, and store condition are already organized, so the buyer can understand not only the number but also the operating structure behind it.</p>
+            </div>
           </div>
         </section>
 
-        <section class="template-persuasion-block">
-          <span class="template-section-chip accent">Why owners stop here</span>
-          <h2>Most people pause at this point</h2>
-          <ul class="template-persuasion-list"><li>They do not know what to write</li><li>The data is scattered</li><li>So they postpone the listing</li></ul>
-          <p>That is why the product suggests building it little by little, not in one sitting.</p>
-        </section>
-
-        <section class="template-community-flow">
+        <section class="template-guide-panel template-checklist-panel">
           <div class="template-section-heading">
-            <span class="template-section-chip">Community flow</span>
-            <h2>You can build this information gradually in the community</h2>
-            <p>Instead of forcing the listing, leave records and let the structure emerge.</p>
+            <span class="template-section-chip template-guide-check-chip">Writing guide</span>
+            <h2 class="template-guide-check-title">You can build this information gradually in the community</h2>
+            <p class="template-guide-check-desc">Instead of forcing the listing, leave records first and let the structure emerge.</p>
           </div>
-          <div class="template-flow-list">
-            <div class="template-flow-step"><span class="template-flow-step-num">1</span><div><h4>Record</h4><p>Sales, customer flow, staff condition, and store state.</p></div></div>
-            <div class="template-flow-step"><span class="template-flow-step-num">2</span><div><h4>Organize</h4><p>Data accumulates and operating structure becomes visible.</p></div></div>
-            <div class="template-flow-step"><span class="template-flow-step-num">3</span><div><h4>Use in listing</h4><p>Numbers and proof are ready to reuse in the listing copy.</p></div></div>
+          <div class="template-checklist-layout">
+            <div class="template-checklist-block">
+              <h4 class="template-checklist-block-title">Writing order</h4>
+              <ol class="template-checklist-list template-checklist-steps">
+                <li>Record the current store status in the community.</li>
+                <li>Group the records into sales, customers, operations, and premium basis.</li>
+                <li>Rewrite only the verified points into the listing.</li>
+              </ol>
+            </div>
+            <div class="template-checklist-block">
+              <h4 class="template-checklist-block-title">Easy-to-miss checks</h4>
+              <ul class="template-checklist-list template-checklist-points">
+                <li>Do not lead with sales only. Add why those sales happen.</li>
+                <li>Organize fixed cost and staffing before talking about profit.</li>
+                <li>State what is included in premium and what is not.</li>
+                <li>Use recent records and photos instead of memory.</li>
+              </ul>
+            </div>
+            <div class="template-checklist-quote">
+              <strong class="template-checklist-quote-title">If the template feels difficult, recording comes first.</strong>
+              <p class="template-checklist-quote-body">Good listings are not written in one sitting. They are assembled from records that already explain the store.</p>
+            </div>
           </div>
-          <div class="template-flow-closing"><p>Start with records if the template feels difficult.</p><p>Good listings are made while you prepare, not all at once.</p></div>
         </section>
       </div>
     </div>
@@ -891,39 +909,40 @@
         </div>
       </section>
 
-      <section class="intro-section-card">
-        <span class="intro-chip">Problem</span>
-        <h2>Most stores are presented like this</h2>
-        <ul class="intro-bullet-list">
-          <li>Sales exist, but the reason is unclear</li>
-          <li>No one knows the mix of loyal and new customers</li>
-          <li>Marketing action is not clearly documented</li>
-          <li>Staff structure is not organized</li>
-        </ul>
-        <p class="intro-emphasis">So buyers cannot tell whether the store is good or simply lucky.</p>
-      </section>
-
-      <section class="intro-section-card">
-        <span class="intro-chip">Buyer view</span>
-        <h2>This is how a buyer thinks</h2>
-        <div class="intro-question-grid">
-          <div class="intro-question-item">Can I keep this level of sales?</div>
-          <div class="intro-question-item">Will loyal customers stay?</div>
-          <div class="intro-question-item">Is the operating structure stable?</div>
-          <div class="intro-question-item">Is there room to improve?</div>
+      <section class="intro-panel intro-panel-why">
+        <div class="intro-panel-heading">
+          <span class="intro-chip">Why records matter</span>
+          <h2>Buyers read operating proof, not just the sales number</h2>
+          <p class="intro-panel-lead">When the reason behind the number is missing, the store looks risky even if the sales look fine.</p>
         </div>
-        <p class="intro-emphasis">So what they really want is the record of operations.</p>
+        <div class="intro-panel-columns">
+          <div class="intro-column">
+            <h3 class="intro-column-title">Questions buyers ask first</h3>
+            <ul class="intro-question-list">
+              <li>Can this sales level be maintained?</li>
+              <li>Will loyal customers remain after transfer?</li>
+              <li>Is the operating structure stable enough?</li>
+              <li>Is there still room to improve?</li>
+            </ul>
+          </div>
+          <div class="intro-column">
+            <h3 class="intro-column-title">What records change</h3>
+            <div class="intro-benefit-list">
+              <div class="intro-benefit-item"><strong>Transfer speed</strong><p>Among similar listings, stores with records get picked first.</p></div>
+              <div class="intro-benefit-item"><strong>Premium trust</strong><p>Once operations are proven, the price explanation becomes easier to accept.</p></div>
+              <div class="intro-benefit-item"><strong>Market trust</strong><p>In an opaque market, the record itself becomes differentiation.</p></div>
+            </div>
+          </div>
+        </div>
+        <p class="intro-highlight-quote">결국 양수자는 운 좋은 매장인지, 구조가 좋은 매장인지부터 구분하려고 합니다.</p>
       </section>
 
-      <section class="intro-solution-panel">
-        <span class="intro-chip accent">Core value</span>
-        <h2>That is why the product builds store status verification</h2>
-        <p>Do not prove sales only. Prove operations.</p>
-      </section>
-
-      <section class="intro-section-card">
-        <span class="intro-chip">1-minute routine</span>
-        <h2>Record only these items each day</h2>
+      <section class="intro-panel intro-panel-how">
+        <div class="intro-panel-heading">
+          <span class="intro-chip">How to build it</span>
+          <h2>One-minute records turn into operational structure</h2>
+          <p class="intro-panel-lead">You do not need a report. Short daily records are enough to explain how the store actually runs.</p>
+        </div>
         <div class="intro-chip-list">
           <span>Loyal vs new customer mix</span>
           <span>Staffing count</span>
@@ -933,40 +952,29 @@
           <span>Trade area changes</span>
           <span>Equipment / operation changes</span>
         </div>
-      </section>
-
-      <section class="intro-section-card">
-        <span class="intro-chip">Why it matters</span>
-        <h2>One record changes three things</h2>
-        <div class="intro-impact-list">
-          <div class="intro-impact-item"><strong>1. Transfer speed</strong><p>Among similar listings, stores with records get picked first.</p></div>
-          <div class="intro-impact-item"><strong>2. Premium</strong><p>Once operations are proven, the explanation becomes easier to accept.</p></div>
-          <div class="intro-impact-item"><strong>3. Trust</strong><p>In an opaque market, the record itself becomes a differentiator.</p></div>
+        <div class="intro-action-grid">
+          <div class="intro-action-block">
+            <h3 class="intro-column-title">Build it in this order</h3>
+            <ol class="intro-action-list intro-action-steps">
+              <li>Leave a short record of today's operating status.</li>
+              <li>Keep the same items so change becomes visible.</li>
+              <li>Reuse the accumulated proof in the listing and consultation.</li>
+            </ol>
+          </div>
+          <div class="intro-action-block">
+            <h3 class="intro-column-title">When experts review it</h3>
+            <ul class="intro-action-list intro-action-points">
+              <li>Franchise owners can optimize the structure first.</li>
+              <li>Independent owners can build a steadier operating system.</li>
+              <li>In the end, the operation itself becomes easier to improve.</li>
+            </ul>
+          </div>
         </div>
-      </section>
-
-      <section class="intro-section-card">
-        <span class="intro-chip">Hidden value</span>
-        <h2>This is not only for transfer</h2>
-        <p>As you record every day, patterns in sales, loyal-customer decline, and ineffective marketing become visible.</p>
-        <p class="intro-emphasis">In the end, the operation itself improves.</p>
-      </section>
-
-      <section class="intro-section-card">
-        <span class="intro-chip">Expert link</span>
-        <h2>Do not decide alone</h2>
-        <p>A franchise professor and supervisor-level operator review the situation directly.</p>
-        <div class="intro-expert-grid">
-          <div class="intro-expert-item">Franchise owner: optimize the structure</div>
-          <div class="intro-expert-item">Independent owner: build a stable operating system</div>
+        <div class="intro-panel-cta">
+          <h3>Owners who keep records get picked first</h3>
+          <p>Start from the buyer's point of view, then build proof in the community.</p>
+          <button type="button" class="btn btn-primary block-btn intro-start-btn" id="btnIntroStart">Start now</button>
         </div>
-        <p class="intro-emphasis">Operate with the discipline of a franchise system.</p>
-      </section>
-
-      <section class="intro-cta-panel">
-        <h2>Owners who keep records get picked first</h2>
-        <p>Start with the buyer's point of view, then build the proof in the community.</p>
-        <button type="button" class="btn btn-primary block-btn intro-start-btn" id="btnIntroStart">Start now</button>
       </section>
     </div>
   </div>
