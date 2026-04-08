@@ -3993,6 +3993,10 @@ body {
   color: #667085;
 }
 
+.template-section-actions {
+  margin-top: 16px;
+}
+
 .template-worksheet-groups {
   display: grid;
   gap: 0;
@@ -4154,25 +4158,25 @@ body {
   gap: 10px;
 }
 
-.template-guide-actions-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 10px;
-}
-
-.template-download-btn {
-  min-height: 56px;
-  border-radius: 18px;
-  font-size: 15px;
-  font-weight: 800;
-  color: var(--primary);
-  background: #ffffff;
+.template-inline-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 180px;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 14px;
   border: 1px solid #dbe5fb;
+  background: #ffffff;
+  color: var(--primary);
+  font-size: 14px;
+  font-weight: 800;
   box-shadow: none;
   text-decoration: none;
+  white-space: nowrap;
 }
 
-.template-download-btn:hover {
+.template-inline-download:hover {
   background: #f7faff;
 }
 
@@ -4207,8 +4211,49 @@ body {
   .template-field-check {
     margin-top: 2px;
   }
+}
 
-  .template-guide-actions-row {
-    grid-template-columns: 1fr;
+@media (max-width: 392px) {
+  .community-intro-card {
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
+  .community-intro-copy {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .community-intro-copy h3 {
+    display: block;
+    min-height: 0;
+    font-size: 13px;
+    line-height: 1.45;
+    white-space: normal;
+    word-break: keep-all;
+  }
+
+  .community-intro-badge {
+    min-height: 24px;
+    padding: 0 8px;
+    font-size: 10px;
+  }
+
+  .community-intro-badge .ri {
+    font-size: 11px;
+  }
+
+  .community-intro-arrow {
+    width: 28px;
+    height: 28px;
+    border-radius: 9px;
+    margin-top: 1px;
+  }
+
+  .template-inline-download {
+    min-width: 0;
+    width: 100%;
   }
 }
