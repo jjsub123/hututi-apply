@@ -195,18 +195,42 @@
     }
     if (isLoggedIn && !currentUser) currentUser = demoAccounts.boss;
 
+    const LEGACY_AUTHOR_ID_MAP = {
+      '내일 사장님': 'boss',
+      '내일사장': 'boss',
+      'Owner': 'boss',
+      '전문가': 'expert_guide'
+    };
+
+    const getCurrentUserId = () => currentUser?.id || '';
     const getCurrentUserDisplayName = () => currentUser?.displayName || '내일 사장님';
     const getCurrentUserRole = () => currentUser?.role || 'owner';
-    const isExpertAuthor = (author = '') => author.startsWith('전문가');
-    const isCurrentUsersAuthor = (author = '') => {
-      return getCurrentUserRole() === 'expert' ? author.includes('전문가') : author.includes('내일');
+    const resolveLegacyAuthorId = (author = '') => LEGACY_AUTHOR_ID_MAP[String(author || '').trim()] || null;
+    const getEffectiveAuthorId = (recordOrAuthor = '', fallbackRole = '') => {
+      if (recordOrAuthor && typeof recordOrAuthor === 'object') {
+        return recordOrAuthor.effectiveAuthorId
+          || recordOrAuthor.author_id
+          || resolveLegacyAuthorId(recordOrAuthor.author || '');
+      }
+      return resolveLegacyAuthorId(String(recordOrAuthor || '').trim());
     };
-    const getAuthorAvatarClass = (author = '') => isExpertAuthor(author) ? 'bg-red' : 'bg-blue';
-    const getAuthorDisplayHtml = (author = '') => {
-      if (!isExpertAuthor(author)) return author;
+    const getEffectiveAuthorRole = (record = {}, fallbackRole = '') => {
+      if (record.author_role) return record.author_role;
+      const effectiveAuthorId = getEffectiveAuthorId(record);
+      if (effectiveAuthorId === 'expert_guide') return 'expert';
+      if (effectiveAuthorId) return 'owner';
+      return fallbackRole || '';
+    };
+    const isExpertAuthor = (author = '', authorRole = '') => authorRole === 'expert' || String(author || '').startsWith('전문가');
+    const isCurrentUsersAuthor = (recordOrAuthor = '', fallbackRole = '') => {
+      return getEffectiveAuthorId(recordOrAuthor, fallbackRole) === getCurrentUserId();
+    };
+    const getAuthorAvatarClass = (author = '', authorRole = '') => isExpertAuthor(author, authorRole) ? 'bg-red' : 'bg-blue';
+    const getAuthorDisplayHtml = (author = '', authorRole = '') => {
+      if (!isExpertAuthor(author, authorRole)) return author;
       return `${author} <span class="author-badge">인증</span>`;
     };
-    const getCurrentAuthorHtml = () => getAuthorDisplayHtml(getCurrentUserDisplayName());
+    const getCurrentAuthorHtml = () => getAuthorDisplayHtml(getCurrentUserDisplayName(), getCurrentUserRole());
     
     const loginModal = document.getElementById('loginModal');
     const closeLoginBtn = document.getElementById('closeLoginBtn');
@@ -301,6 +325,7 @@
         btnLogout.style.display = 'none';
         if(displayUserId) displayUserId.textContent = '로그인이 필요해요';
         alert('로그아웃 되었습니다.');
+        refreshUserScopedUi();
         switchTab('tab-home');
       });
     }
@@ -325,6 +350,7 @@
           
           if (displayUserId) displayUserId.textContent = matchedAccount.displayName;
           if (btnLogout) btnLogout.style.display = 'block';
+          refreshUserScopedUi();
 
           const resumeRoute = pendingProtectedRoute ? parseHashRoute(pendingProtectedRoute) : null;
           pendingProtectedRoute = null;
@@ -539,6 +565,8 @@
           const { error } = await supabaseClient.from('posts').insert([{
             board_type: 'retro',
             author: getCurrentUserDisplayName(),
+            author_id: getCurrentUserId(),
+            author_role: getCurrentUserRole(),
             content: `<strong>오늘 매장 상태 기록</strong><br>${combinedText.trim().replace(/\n/g, '<br>')}`,
             retro_tags: retro_tags ? `<div style="background:var(--bg-color); padding:10px; border-radius:8px; margin-bottom:12px; font-size:13px; color:var(--text-main); line-height:1.4;">${retro_tags}</div>` : null
           }]);
@@ -647,6 +675,8 @@
           const { error } = await supabaseClient.from('comments').insert([{
             post_id: postId,
             author: getCurrentUserDisplayName(),
+            author_id: getCurrentUserId(),
+            author_role: getCurrentUserRole(),
             content: commentText
           }]);
 
@@ -674,8 +704,7 @@
           submitCommentBtn.disabled = false;
           submitCommentBtn.textContent = '등록';
           
-          // 조용히 백그라운드에서 동기화 (전체 DOM을 부수지 않기 위해 삭제하거나 보류 가능)
-          // fetchPosts(); // 화면 깜빡임 방지를 위해 일단 호출 제외
+          if(typeof fetchPosts === 'function') fetchPosts();
         });
       }
     };
@@ -755,6 +784,8 @@
         const { error } = await supabaseClient.from('posts').insert([{
           board_type: board_type,
           author: getCurrentUserDisplayName(),
+          author_id: getCurrentUserId(),
+          author_role: getCurrentUserRole(),
           content: finalContent,
           retro_tags: retro_tags
         }]);
@@ -831,15 +862,88 @@
       const time = card.querySelector('.feed-time')?.textContent || '';
       const postId = card.getAttribute('data-post-id') || `mock-${Math.random().toString(36).slice(2, 10)}`;
       const hasExpertReply = [...card.querySelectorAll('.comment-author')].some(node => node.textContent.includes('전문가'));
+      const effectiveAuthorId = resolveLegacyAuthorId(author);
 
       return {
         postId,
         author,
+        effectiveAuthorId,
         contentText,
         time,
         hasExpertReply,
         html: card.outerHTML
       };
+    };
+
+    const renderCouponGrid = (coupons = []) => {
+      const couponGrid = document.getElementById('couponGrid');
+      if (!couponGrid) return;
+
+      if (!coupons.length) {
+        couponGrid.innerHTML = `
+          <div class="coupon-card empty"><span>받은 쿠폰이 없습니다</span></div>
+          <div class="coupon-card empty"><span>비어있음</span></div>
+          <div class="coupon-card empty"><span>비어있음</span></div>
+          <div class="coupon-card empty"><span>비어있음</span></div>
+        `;
+        return;
+      }
+
+      const couponCards = coupons.map((coupon) => {
+        const title = coupon.title || '쿠폰';
+        const imageUrl = coupon.image_url || '';
+        const status = coupon.status || 'issued';
+        const statusLabel = status === 'used' ? '사용 완료' : status === 'expired' ? '만료됨' : '보관중';
+
+        if (imageUrl) {
+          return `
+            <div class="coupon-card" data-coupon-status="${status}">
+              <img src="${imageUrl}" alt="${title}" data-coupon-image="true">
+              <div class="coupon-info">${title}</div>
+            </div>
+          `;
+        }
+
+        return `
+          <div class="coupon-card empty" data-coupon-status="${status}">
+            <span>${title} · ${statusLabel}</span>
+          </div>
+        `;
+      });
+
+      while (couponCards.length < 4) {
+        couponCards.push('<div class="coupon-card empty"><span>비어있음</span></div>');
+      }
+
+      couponGrid.innerHTML = couponCards.join('');
+    };
+
+    const fetchUserCoupons = async () => {
+      if (!supabaseClient || !getCurrentUserId()) {
+        renderCouponGrid([]);
+        return;
+      }
+
+      const { data, error } = await supabaseClient
+        .from('user_coupons')
+        .select('id, user_id, title, image_url, status, issued_at')
+        .eq('user_id', getCurrentUserId())
+        .order('issued_at', { ascending: false });
+
+      if (error) {
+        console.error('쿠폰 불러오기 실패:', error);
+        renderCouponGrid([]);
+        return;
+      }
+
+      renderCouponGrid(data || []);
+    };
+
+    const refreshUserScopedUi = () => {
+      renderRewardDashboard();
+      updateTrustDashboardCounts();
+      if (typeof renderTrustActivityList === 'function') renderTrustActivityList();
+      fetchUserCoupons();
     };
 
     const renderBoardPagination = (boardId, totalPages) => {
@@ -899,7 +1003,7 @@
 
     function renderRewardDashboard() {
       const postsData = window.latestPostsData || [];
-      const myPosts = postsData.filter(post => isCurrentUsersAuthor(post.author || ''));
+      const myPosts = postsData.filter(post => isCurrentUsersAuthor(post));
       const statusRecordPosts = myPosts.filter(post => post.board_type === 'retro');
 
       const daysByBoard = {
@@ -975,8 +1079,19 @@
         return;
       }
 
-      window.latestPostsData = postsData;
-      window.latestCommentsData = commentsData;
+      const normalizedPostsData = (postsData || []).map(post => ({
+        ...post,
+        effectiveAuthorId: getEffectiveAuthorId(post),
+        effectiveAuthorRole: getEffectiveAuthorRole(post)
+      }));
+      const normalizedCommentsData = (commentsData || []).map(comment => ({
+        ...comment,
+        effectiveAuthorId: getEffectiveAuthorId(comment),
+        effectiveAuthorRole: getEffectiveAuthorRole(comment)
+      }));
+
+      window.latestPostsData = normalizedPostsData;
+      window.latestCommentsData = normalizedCommentsData;
 
       // 게시판 컨테이너
       const boardOperation = document.querySelector('#board-free .feed-list');
@@ -997,11 +1112,11 @@
       let expertEntries = [];
       let freeEntries = [];
 
-      postsData.forEach(post => {
-        const postComments = commentsData.filter(c => c.post_id === post.id);
+      normalizedPostsData.forEach(post => {
+        const postComments = normalizedCommentsData.filter(c => c.post_id === post.id);
         let commentsHtml = postComments.map(c => `
           <div class="comment-item">
-            <span class="comment-author">${getAuthorDisplayHtml(c.author)}</span> ${c.content}
+            <span class="comment-author">${getAuthorDisplayHtml(c.author, c.effectiveAuthorRole)}</span> ${c.content}
           </div>
         `).join('');
         
@@ -1012,13 +1127,13 @@
         const tagsHtml = post.retro_tags ? post.retro_tags : '';
         const timeStr = new Date(post.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
         const contentText = `${tagsHtml ? tagsHtml.replace(/<[^>]+>/g, ' ') : ''} ${post.content.replace(/<[^>]+>/g, ' ')}`.replace(/\s+/g, ' ').trim();
-        const hasExpertReply = postComments.some(comment => isExpertAuthor(comment.author || ''));
+        const hasExpertReply = postComments.some(comment => isExpertAuthor(comment.author || '', comment.effectiveAuthorRole));
 
         const cardHtml = `
           <div class="feed-card" data-post-id="${post.id}">
             <div class="feed-header">
               <div class="feed-author">
-                <div class="author-avatar ${getAuthorAvatarClass(post.author)}">${post.author.charAt(0)}</div>
+                <div class="author-avatar ${getAuthorAvatarClass(post.author, post.effectiveAuthorRole)}">${post.author.charAt(0)}</div>
                 <span class="author-name">${post.author}</span>
                 <span class="feed-time">${timeStr}</span>
               </div>
@@ -1044,6 +1159,7 @@
         const entry = {
           postId: String(post.id),
           author: post.author,
+          effectiveAuthorId: post.effectiveAuthorId,
           contentText,
           time: timeStr,
           hasExpertReply,
@@ -1072,10 +1188,12 @@
       renderBoardPane('board-retro');
       updateTrustDashboardCounts();
       renderRewardDashboard();
+      fetchUserCoupons();
       if (typeof renderTrustActivityList === 'function') renderTrustActivityList();
     };
 
     renderRewardDashboard();
+    renderCouponGrid([]);
 
     // 로드 시 포스트 한번 불러오기
     fetchPosts();
@@ -1486,12 +1604,7 @@
         setText('h3', '\uBC1B\uC740 \uCFE0\uD3F0\uD568', couponHeader);
         setText('p', '\uCC38\uC5EC\uD615 \uB9AC\uC6CC\uB4DC(\uAE30\uD504\uD2F0\uCF58)\uAC00 \uBCF4\uAD00\uB418\uB294 \uACF3\uC785\uB2C8\uB2E4.', couponHeader);
       }
-      setText('.coupon-info', '\uC544\uBA54\uB9AC\uCE74\uB178 \uAD50\uD658\uAD8C');
       setAttr('#couponImageTarget', 'alt', '\uCFE0\uD3F0 \uC0C1\uC138 \uC774\uBBF8\uC9C0');
-      const emptyCoupons = document.querySelectorAll('.coupon-card.empty span');
-      if (emptyCoupons[0]) emptyCoupons[0].textContent = '\uCFE0\uD3F0\uC744 \uBAA8\uC544\uBCF4\uC138\uC694';
-      if (emptyCoupons[1]) emptyCoupons[1].textContent = '\uBE44\uC5B4\uC788\uC74C';
-      if (emptyCoupons[2]) emptyCoupons[2].textContent = '\uBE44\uC5B4\uC788\uC74C';
       setText('#kakaoConfirmTitle', '\uC804\uBB38\uAC00 \uC0C1\uB2F4 \uC548\uB0B4');
       setHtml('#kakaoConfirmDesc', '\uC0C1\uC138 \uC0C1\uB2F4\uC744 \uC704\uD574 \uCE74\uCE74\uC624\uD1A1 \uCC44\uB110\uB85C \uC774\uB3D9\uD569\uB2C8\uB2E4.<br>\uC774\uB3D9\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?');
       setText('#kakaoCancelBtn', '\uC544\uB2C8\uC624');
@@ -1919,8 +2032,8 @@
 
     function updateTrustDashboardCounts() {
       const boardEntries = window.boardEntries || {};
-      const myRetroCards = (boardEntries['board-free'] || []).filter(entry => isCurrentUsersAuthor(entry.author || ''));
-      const myExpertCards = (boardEntries['board-expert'] || []).filter(entry => isCurrentUsersAuthor(entry.author || ''));
+      const myRetroCards = (boardEntries['board-free'] || []).filter(entry => isCurrentUsersAuthor(entry));
+      const myExpertCards = (boardEntries['board-expert'] || []).filter(entry => isCurrentUsersAuthor(entry));
       const trustRetroCount = document.getElementById('trustRetroCount');
       const trustExpertCount = document.getElementById('trustExpertCount');
       if (trustRetroCount) trustRetroCount.textContent = String(myRetroCards.length) + '\uAC74';
@@ -1943,7 +2056,7 @@
             listTitle: '전문가 질문 목록',
             emptyText: '등록된 전문가 질문이 없습니다.',
             cards: (window.boardEntries?.['board-expert'] || []).filter(card => {
-              return isCurrentUsersAuthor(card.author || '');
+              return isCurrentUsersAuthor(card);
             })
           }
         : {
@@ -1953,7 +2066,7 @@
             listTitle: '운영기록 목록',
             emptyText: '등록된 운영기록이 없습니다.',
             cards: (window.boardEntries?.['board-free'] || []).filter(card => {
-              return isCurrentUsersAuthor(card.author || '');
+              return isCurrentUsersAuthor(card);
             })
           };
 
@@ -2113,6 +2226,8 @@
         const { error } = await supabaseClient.from('posts').insert([{
           board_type: 'expert',
           author: getCurrentUserDisplayName(),
+          author_id: getCurrentUserId(),
+          author_role: getCurrentUserRole(),
           content: `<strong>${title}</strong><br>${content.replace(/\n/g, '<br>')}`,
           retro_tags: null
         }]);
@@ -2195,14 +2310,18 @@
     // --- 4차 피드백: 쿠폰 딤드 뷰어 모달 ---
     const couponImageViewer = document.getElementById('couponImageViewer');
     const couponImageTarget = document.getElementById('couponImageTarget');
-    document.querySelectorAll('.coupon-card img').forEach(img => {
-      img.addEventListener('click', () => {
+    const couponGrid = document.getElementById('couponGrid');
+    if (couponGrid) {
+      couponGrid.addEventListener('click', (e) => {
+        const target = e.target;
+        if (!(target instanceof HTMLImageElement)) return;
+        if (!target.matches('[data-coupon-image="true"]')) return;
         if(couponImageViewer && couponImageTarget) {
-          couponImageTarget.src = img.src;
+          couponImageTarget.src = target.src;
           couponImageViewer.classList.add('active');
         }
       });
-    });
+    }
     if(couponImageViewer) {
       couponImageViewer.addEventListener('click', () => {
         couponImageViewer.classList.remove('active');
