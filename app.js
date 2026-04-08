@@ -924,7 +924,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="feed-header">
               <div class="feed-author">
                 <div class="author-avatar ${getAuthorAvatarClass(post.author)}">${post.author.charAt(0)}</div>
-                <span class="author-name">${getAuthorDisplayHtml(post.author)}</span>
+                <span class="author-name">${post.author}</span>
                 <span class="feed-time">${timeStr}</span>
               </div>
             </div>
@@ -1260,24 +1260,27 @@ document.addEventListener('DOMContentLoaded', () => {
           comment: '\uC720\uB3D9\uC778\uAD6C \uC99D\uAC00\uBA74 \uD64D\uBCF4 \uBC18\uC751\uB3C4 \uAC19\uC774 \uBCF4\uC154\uC57C\uACA0\uC5B4\uC694.'
         },
         {
-          avatar: '\uC804',
-          author: '\uC804\uBB38\uAC00',
+          avatar: '\uC0AC',
+          author: '\uBD04\uB0A0\uCE74\uD398',
+          commentAuthor: '\uC804\uBB38\uAC00',
           time: '\uC624\uB298 \uB2F5\uBCC0',
           tags: ['\uAD8C\uB9AC\uAE08 \uC0B0\uC815', '\uC2E4\uC0AC\uB840'],
           body: '<strong>Q.</strong> \uAD8C\uB9AC\uAE08 5\uCC9C vs \uB9E4\uCD9C 1,200, \uC801\uC815\uD55C \uAE08\uC561\uC77C\uAE4C\uC694?<br><span style=\"color: var(--text-muted);\">\uAD8C\uB9AC\uAE08\uC740 \uB9E4\uCD9C \uCD1D\uC561\uBCF4\uB2E4 \uC6B4\uC601 \uAD6C\uC870\uC640 \uC774\uD6C4 \uACE0\uC815\uBE44\uB97C \uAC19\uC774 \uBD10\uC57C \uD569\uB2C8\uB2E4.</span>',
           comment: '\uCD5C\uADFC 3\uAC1C\uC6D4 \uCD94\uC774\uD45C\uC640 \uACE0\uC815\uBE44 \uAD6C\uC870\uAC00 \uD568\uAED8 \uD655\uC778\uB3FC\uC57C \uC815\uD655\uD55C \uD310\uB2E8\uC774 \uAC00\uB2A5\uD569\uB2C8\uB2E4.'
         },
         {
-          avatar: '\uC804',
-          author: '\uC804\uBB38\uAC00',
+          avatar: '\uC0AC',
+          author: '\uB3D9\uB124\uBD84\uC2DD',
+          commentAuthor: '\uC804\uBB38\uAC00',
           time: '\uC5B4\uC81C \uB2F5\uBCC0',
           tags: ['\uD611\uC0C1 \uC804\uB7B5', '\uAD8C\uB9AC\uAE08 \uBCF4\uD638'],
           body: '<strong>Q.</strong> \uAD8C\uB9AC\uAE08 \uD611\uC0C1 \uC2DC \uBB34\uC5C7\uB9CC\uD07C\uC740 \uBA3C\uC800 \uAE4E\uC9C0 \uB9D0\uC544\uC57C \uD558\uB098\uC694?<br><span style=\"color: var(--text-muted);\">\uCD08\uBC18 \uAE30\uC900\uC810\uC744 \uB0AE\uCD94\uBA74 \uC774\uD6C4 \uD611\uC0C1\uB3C4 \uBB34\uB108\uC9D1\uB2C8\uB2E4.</span>',
           comment: '\uC2DC\uC124 \uC0C1\uD0DC\uC640 \uB2E8\uACE8 \uACE0\uAC1D \uAE30\uBC18\uCC98\uB7FC \uAE4E\uAE30 \uC5B4\uB824\uC6B4 \uADFC\uAC70\uBD80\uD130 \uBA3C\uC800 \uC815\uB9AC\uD558\uB294 \uAC83\uC774 \uC88B\uC2B5\uB2C8\uB2E4.'
         },
         {
-          avatar: '\uC804',
-          author: '\uC804\uBB38\uAC00',
+          avatar: '\uC0AC',
+          author: '\uC5ED\uC804\uAE40\uBC25',
+          commentAuthor: '\uC804\uBB38\uAC00',
           time: '\uC774\uBC88 \uC8FC',
           tags: ['\uC228\uC740 \uBE44\uC6A9', '\uC591\uC218\uC790 \uAD00\uC810'],
           body: '<strong>Q.</strong> \uC591\uC218\uC790\uAC00 \uB193\uCE58\uAE30 \uC26C\uC6B4 \uC228\uC740 \uBE44\uC6A9 3\uAC00\uC9C0\uB294 \uBB34\uC5C7\uC77C\uAE4C\uC694?<br><span style=\"color: var(--text-muted);\">\uBCF4\uC99D\uAE08 \uC678\uC5D0\uB3C4 \uC2E4\uC81C \uC778\uC218 \uC9C1\uC804\uC5D0 \uBE60\uB974\uAC8C \uBC1C\uC0DD\uD558\uB294 \uBE44\uC6A9\uC774 \uC788\uC2B5\uB2C8\uB2E4.</span>',
@@ -1305,12 +1308,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const textarea = card.querySelector('.comment-input');
         const submit = card.querySelector('.submit-comment');
         if (avatar) avatar.textContent = copy.avatar;
-        if (author && !author.querySelector('.author-badge')) author.textContent = copy.author;
-        if (author && author.querySelector('.author-badge')) {
-          author.childNodes[0].textContent = copy.author + ' ';
-          const badge = author.querySelector('.author-badge');
-          if (badge) badge.textContent = '\uC778\uC99D';
-        }
+        if (author) author.textContent = copy.author;
         if (time) time.textContent = copy.time;
         if (content && copy.body) content.innerHTML = copy.body;
         tags.forEach((tag, tagIndex) => {
@@ -1320,8 +1318,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (comment && copy.comment) {
           const authorSpan = comment.querySelector('.comment-author');
           if (authorSpan) {
-            authorSpan.textContent = copy.author;
-            comment.innerHTML = `<span class="comment-author">${authorSpan.textContent}</span>${copy.comment}`;
+            const commentAuthor = copy.commentAuthor || copy.author;
+            comment.innerHTML = `<span class="comment-author">${getAuthorDisplayHtml(commentAuthor)}</span> ${copy.comment}`;
           }
         }
         if (textarea) textarea.placeholder = '\uC9C8\uBB38\uC774\uB098 \uC758\uACAC\uC744 \uB0A8\uACA8\uBCF4\uC138\uC694';

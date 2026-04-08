@@ -760,6 +760,13 @@ body {
 
 #tab-community .community-section {
   border-bottom: none;
+  position: relative;
+  overflow: visible;
+  z-index: 0;
+}
+
+#tab-community .community-section:hover {
+  z-index: 1;
 }
 
 .intro-entry-section {
@@ -772,32 +779,49 @@ body {
   border: 1px solid #edf1f7;
   border-radius: 14px;
   background: #ffffff;
-  padding: 12px 14px;
+  padding: 11px 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
   text-align: left;
   cursor: pointer;
+  position: relative;
+  z-index: 0;
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.02);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background-color 0.22s ease;
+}
+
+.community-intro-card:hover {
+  transform: translateY(-1px);
+  border-color: #dbe6fb;
+  background: #fcfdff;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.045);
+  z-index: 3;
 }
 
 .community-intro-copy {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   min-width: 0;
   flex: 1;
+  flex-wrap: nowrap;
+  overflow: visible;
 }
 
 .community-intro-copy h3 {
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.3;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 28px;
   margin: 0;
   color: #50607a;
   flex: 1;
   min-width: 0;
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
 }
 
 .community-intro-copy p {
@@ -807,14 +831,18 @@ body {
 .community-intro-badge {
   display: inline-flex;
   align-items: center;
-  padding: 4px 8px;
+  justify-content: center;
+  align-self: center;
+  min-height: 28px;
+  padding: 0 10px;
   margin-bottom: 0;
   border-radius: 999px;
   background: rgba(45, 104, 255, 0.1);
   color: var(--primary);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   flex-shrink: 0;
+  line-height: 1;
 }
 
 .community-intro-arrow {
@@ -829,10 +857,17 @@ body {
   background: linear-gradient(180deg, #f7f9ff 0%, #eef4ff 100%);
   color: var(--primary);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+  transition: transform 0.22s ease, background-color 0.22s ease, border-color 0.22s ease;
 }
 
 .community-intro-arrow svg {
   display: block;
+}
+
+.community-intro-card:hover .community-intro-arrow {
+  transform: translateX(1px);
+  border-color: rgba(45, 104, 255, 0.18);
+  background: linear-gradient(180deg, #f2f6ff 0%, #e9f0ff 100%);
 }
 
 .section-header {
@@ -1058,6 +1093,7 @@ body {
   padding-bottom: 0;
   border-bottom: none;
   overflow-x: auto;
+  overflow-y: visible;
   scrollbar-width: none;
 }
 .board-tabs::-webkit-scrollbar {
@@ -1073,8 +1109,18 @@ body {
   color: var(--text-muted);
   cursor: pointer;
   position: relative;
+  z-index: 0;
   flex-shrink: 0;
   white-space: nowrap;
+  transition: transform 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+}
+.board-tab:hover {
+  transform: translateY(-1px);
+  color: #3559d7;
+  background: #f8fbff;
+  border-color: #dbe6fb;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.07);
+  z-index: 2;
 }
 .board-tab.active {
   color: var(--primary);
@@ -1110,7 +1156,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding-bottom: 30px; /* 怨듬갚 異뺤냼 */
+  padding-bottom: 30px;
+  overflow: visible;
 }
 
 .feed-card {
@@ -1119,11 +1166,15 @@ body {
   border-radius: 12px;
   background-color: var(--white);
   cursor: pointer;
-  transition: box-shadow 0.2s;
+  position: relative;
+  z-index: 0;
+  transition: box-shadow 0.2s, transform 0.2s;
 }
 
 .feed-card:hover {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+  z-index: 2;
 }
 
 .feed-header {
@@ -1166,12 +1217,16 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 2px 6px;
+  min-height: 18px;
+  padding: 0 7px;
   border-radius: 999px;
   background: #eaf1ff;
   color: var(--primary);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
+  line-height: 1;
+  vertical-align: middle;
+  transform: translateY(0);
 }
 
 .feed-time {
@@ -1201,7 +1256,7 @@ body {
 }
 .comment-item {
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1.55;
   color: var(--text-main);
   margin-bottom: 8px;
   word-break: keep-all;
@@ -1216,6 +1271,9 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  line-height: 18px;
+  vertical-align: middle;
+  white-space: nowrap;
 }
 .empty-comment {
   font-size: 13px;
@@ -1255,6 +1313,12 @@ body {
   border-radius: 8px;
   font-weight: 600;
   min-width: 80px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.submit-comment:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.18);
 }
 
 .action-btn {
@@ -1266,6 +1330,12 @@ body {
   display: flex;
   align-items: center;
   gap: 4px;
+  transition: color 0.18s ease, transform 0.18s ease;
+}
+
+.action-btn:hover {
+  color: var(--primary);
+  transform: translateY(-1px);
 }
 
 .action-btn.btn-like.active .icon {
@@ -1309,6 +1379,18 @@ body {
 
 .page-btn {
   cursor: pointer;
+  position: relative;
+  z-index: 0;
+  transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.page-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: #d6e2fb;
+  background: #f8fbff;
+  color: var(--primary);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.07);
+  z-index: 2;
 }
 
 .page-btn.active {
@@ -1334,12 +1416,17 @@ body {
 .comment-item {
   font-size: 13px;
   margin-bottom: 8px;
-  line-height: 1.4;
+  line-height: 1.55;
 }
 
 .comment-author {
   font-weight: 700;
   margin-right: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 18px;
+  white-space: nowrap;
 }
 
 .empty-comment {
@@ -2774,11 +2861,12 @@ body {
 }
 .trust-stat-button {
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 .trust-stat-button:hover {
   background-color: rgba(45, 104, 255, 0.04);
   transform: translateY(-1px);
+  box-shadow: inset 0 0 0 1px rgba(45, 104, 255, 0.06);
 }
 
 .trust-info-wrap {
@@ -2802,6 +2890,17 @@ body {
   font-weight: 700;
   cursor: pointer;
   line-height: 1;
+  position: relative;
+  z-index: 0;
+  transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.trust-tooltip-trigger:hover {
+  transform: translateY(-1px);
+  border-color: #cfdfff;
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.07);
+  z-index: 3;
 }
 
 .trust-tooltip-bubble {
@@ -2862,7 +2961,17 @@ body {
   border-radius: 16px;
   justify-content: center;
   background: linear-gradient(135deg, #1f63ff 0%, #4a86ff 100%);
+  position: relative;
+  z-index: 0;
   box-shadow: 0 6px 16px rgba(45,104,255,0.24);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.btn-hero-action.compact:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(45,104,255,0.22);
+  filter: saturate(1.04);
+  z-index: 2;
 }
 .trust-stat:not(:last-child)::after {
   content: "";
@@ -2965,9 +3074,17 @@ body {
   border-radius: 14px;
   background: #fafbff;
   border: 1px solid #edf1ff;
+  position: relative;
+  z-index: 0;
+  transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
 }
 .expert-related-links a:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  transform: translateY(-1px);
+  border-color: #dbe6fb;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.045);
+  z-index: 2;
 }
 
 .expert-section::after,
@@ -2978,7 +3095,7 @@ body {
   right: 20px;
   bottom: 0;
   height: 1px;
-  background: #e7edf5;
+  background: #f0f2f6;
 }
 .expert-actions {
   display: flex;
@@ -2994,6 +3111,8 @@ body {
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
+  position: relative;
+  z-index: 0;
   transition: all 0.2s;
   text-align: center;
   word-break: keep-all;
@@ -3001,6 +3120,9 @@ body {
 .btn-expert-action:hover {
   background-color: var(--primary);
   color: var(--white);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.16);
+  z-index: 2;
 }
 
 .insight-list {
