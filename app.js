@@ -183,6 +183,12 @@
     const demoAccounts = {
       boss: { id: 'boss', password: '1234', displayName: '내일 사장님', role: 'owner' },
       empty_owner: { id: 'empty_owner', password: '1234', displayName: '새로운 사장님', role: 'owner' },
+      test1: { id: 'test1', password: 'sodlftkwkd!', displayName: '현사장님', role: 'owner' },
+      ze7mra41: { id: 'ze7mra41', password: 'S!9qv#L2p@Rt', displayName: '여유로운 사자 사장님', role: 'owner' },
+      kq8vnp52: { id: 'kq8vnp52', password: 'H$4mn!X7q@Ke', displayName: '날렵한 흑표범 사장님', role: 'owner' },
+      hx4tdl63: { id: 'hx4tdl63', password: 'B!7zr@P3m#Lu', displayName: '성실한 꿀벌 사장님', role: 'owner' },
+      ru9wcb74: { id: 'ru9wcb74', password: 'T@6vk!N8c#Sa', displayName: '신중한 거북이 사장님', role: 'owner' },
+      mn6yfk85: { id: 'mn6yfk85', password: 'E#5qd!R9w@Zo', displayName: '지혜로운 코끼리 사장님', role: 'owner' },
       expert_guide: { id: 'expert_guide', password: 'Qna!2026Pro', displayName: '전문가', role: 'expert' }
     };
 
@@ -364,7 +370,7 @@
             switchTab('tab-community');
           }
         } else {
-          alert('존재하지 않는 아이디거나 비밀번호가 일치하지 않습니다.\n※ 테스트 계정: boss / 1234, empty_owner / 1234, expert_guide / Qna!2026Pro');
+          alert('존재하지 않는 아이디거나 비밀번호가 일치하지 않습니다.\n※ 테스트 계정 예시: boss / 1234, test1 / sodlftkwkd!, expert_guide / Qna!2026Pro');
         }
       });
     }
