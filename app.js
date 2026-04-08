@@ -1412,7 +1412,6 @@
             body: '사장님은 이미 알고 계십니다. 손님 입장에서 봐야 가게가 좋아진다는 걸요. 양도양수도 같습니다. 양수자는 매출이 아니라 <strong>“이 가게가 왜 유지되는지”</strong>를 봅니다.'
           },
           problem: {
-            chip: '문제 인식',
             title: '그래서 대부분의 매물이 비슷해 보입니다',
             lead: '매출도 있고, 사진도 있고, 설명도 있지만 양수자 입장에서는 이렇게 느껴집니다.',
             items: [
@@ -1423,7 +1422,6 @@
             quote: '인수 후에 운영을 했을 때 괜찮은 매장인지 상상이 되지 않습니다.'
           },
           criteria: {
-            chip: '양수자의 기준',
             title: '양수자는 이렇게 판단합니다',
             items: [
               '이 매출, 내가 이어갈 수 있을까?',
@@ -1434,7 +1432,6 @@
             quote: '이 질문에 답이 없으면 모든 매물은 비슷해 보입니다.'
           },
           solution: {
-            chip: '해결과 기록의 가치',
             title: '운영을 설명할 수 있는 기록을 남깁니다',
             lead: '매출을 더 좋아 보이게 만드는 기능이 아닙니다. 운영이 어떻게 돌아가는지 보이게 만드는 기록입니다.',
             values: [
@@ -1444,7 +1441,6 @@
             note: '그래서 기록 = 매출 유지 장치입니다.'
           },
           trust: {
-            chip: '신뢰',
             title: '신뢰는 증명하는 게 아니라, 의심을 줄이는 구조가 필요합니다',
             lead: '숫자가 아니라 흔적이 더 의심을 줄이고 신뢰를 줄 수 있습니다.',
             compare: [
@@ -1456,7 +1452,7 @@
           cta: {
             title: '기록하는 사장님만, 선택받습니다',
             body: '양수자 시선에서 내 매장을 설명할 근거를 커뮤니티에서 쌓아보세요.',
-            button: '지금 바로 시작하기'
+            button: '지금 바로 기록하기'
           }
         };
 
@@ -1465,7 +1461,6 @@
         setText('.intro-hero-panel h1', introCopy.hero.title, communityIntroPage);
         setHtml('.intro-hero-body', introCopy.hero.body, communityIntroPage);
 
-        setText('.intro-panel-problem .intro-chip', introCopy.problem.chip, communityIntroPage);
         setText('.intro-panel-problem h2', introCopy.problem.title, communityIntroPage);
         setText('.intro-panel-problem .intro-panel-lead', introCopy.problem.lead, communityIntroPage);
         const introProblemItems = communityIntroPage.querySelectorAll('.intro-problem-list li');
@@ -1474,7 +1469,6 @@
         });
         setText('.intro-panel-problem .intro-highlight-quote', introCopy.problem.quote, communityIntroPage);
 
-        setText('.intro-panel-criteria .intro-chip', introCopy.criteria.chip, communityIntroPage);
         setText('.intro-panel-criteria h2', introCopy.criteria.title, communityIntroPage);
         const introCriteriaItems = communityIntroPage.querySelectorAll('.intro-criteria-list li');
         introCopy.criteria.items.forEach((item, index) => {
@@ -1482,7 +1476,6 @@
         });
         setText('.intro-panel-criteria .intro-highlight-quote', introCopy.criteria.quote, communityIntroPage);
 
-        setText('.intro-panel-solution .intro-chip', introCopy.solution.chip, communityIntroPage);
         setText('.intro-panel-solution h2', introCopy.solution.title, communityIntroPage);
         setText('.intro-panel-solution .intro-panel-lead', introCopy.solution.lead, communityIntroPage);
         const introValueItems = communityIntroPage.querySelectorAll('.intro-value-item');
@@ -1491,7 +1484,6 @@
         });
         setText('.intro-reading-note', introCopy.solution.note, communityIntroPage);
 
-        setText('.intro-panel-trust .intro-chip', introCopy.trust.chip, communityIntroPage);
         setText('.intro-panel-trust h2', introCopy.trust.title, communityIntroPage);
         setText('.intro-panel-trust .intro-panel-lead', introCopy.trust.lead, communityIntroPage);
         const introCompareItems = communityIntroPage.querySelectorAll('.intro-compare-item');

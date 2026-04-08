@@ -3376,6 +3376,21 @@ body {
   letter-spacing: -0.01em;
 }
 
+.intro-article-card {
+  display: grid;
+  gap: 0;
+}
+
+.intro-article-section {
+  padding: 0;
+}
+
+.intro-article-section + .intro-article-section {
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 1px solid #e8edf7;
+}
+
 .intro-hero-panel h1 {
   margin: 14px 0 12px;
   font-size: 32px;
@@ -3401,7 +3416,7 @@ body {
   font-weight: 800;
   line-height: 1.35;
   color: #111827;
-  margin-bottom: 12px;
+  margin: 0 0 12px;
   letter-spacing: -0.02em;
 }
 
@@ -3542,6 +3557,11 @@ body {
 
   .intro-panel {
     padding: 24px 18px;
+  }
+
+  .intro-article-section + .intro-article-section {
+    margin-top: 24px;
+    padding-top: 24px;
   }
 }
 
