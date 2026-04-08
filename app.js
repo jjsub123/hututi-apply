@@ -891,14 +891,14 @@
 
       const couponCards = coupons.map((coupon) => {
         const title = coupon.title || '쿠폰';
-        const imageUrl = coupon.image_url || '';
+        const imageUrl = coupon.publicImageUrl || '';
         const status = coupon.status || 'issued';
         const statusLabel = status === 'used' ? '사용 완료' : status === 'expired' ? '만료됨' : '보관중';
 
         if (imageUrl) {
           return `
             <div class="coupon-card" data-coupon-status="${status}">
-              <img src="${imageUrl}" alt="${title}" data-coupon-image="true">
+              <img src="${imageUrl}" alt="${title}" data-coupon-image="true" data-coupon-title="${title}">
               <div class="coupon-info">${title}</div>
             </div>
           `;
@@ -918,6 +918,32 @@
       couponGrid.innerHTML = couponCards.join('');
     };
 
+    const normalizeCouponStoragePath = (path = '', bucket = 'coupon-images') => {
+      const rawPath = String(path || '').trim();
+      if (!rawPath) return '';
+
+      if (/^https?:\/\//i.test(rawPath)) {
+        return rawPath;
+      }
+
+      let normalizedPath = rawPath.replace(/^\/+/, '');
+
+      if (normalizedPath.startsWith(`${bucket}/`)) {
+        normalizedPath = normalizedPath.slice(bucket.length + 1);
+      }
+
+      return normalizedPath;
+    };
+
+    const getCouponPublicImageUrl = (coupon = {}) => {
+      const bucket = coupon.storage_bucket || 'coupon-images';
+      const normalizedPath = normalizeCouponStoragePath(coupon.storage_path, bucket);
+      if (!supabaseClient || !normalizedPath) return '';
+      if (/^https?:\/\//i.test(normalizedPath)) return normalizedPath;
+      const { data } = supabaseClient.storage.from(bucket).getPublicUrl(normalizedPath);
+      return data?.publicUrl || '';
+    };
+
     const fetchUserCoupons = async () => {
       if (!supabaseClient || !getCurrentUserId()) {
         renderCouponGrid([]);
@@ -926,7 +952,7 @@
 
       const { data, error } = await supabaseClient
         .from('user_coupons')
-        .select('id, user_id, title, image_url, status, issued_at')
+        .select('id, user_id, title, coupon_type, storage_bucket, storage_path, status, issued_at, expires_at')
         .eq('user_id', getCurrentUserId())
         .order('issued_at', { ascending: false });
 
@@ -936,7 +962,12 @@
         return;
       }
 
-      renderCouponGrid(data || []);
+      const normalizedCoupons = (data || []).map((coupon) => ({
+        ...coupon,
+        publicImageUrl: getCouponPublicImageUrl(coupon)
+      }));
+
+      renderCouponGrid(normalizedCoupons);
     };
 
     const refreshUserScopedUi = () => {
@@ -2312,6 +2343,19 @@
     const couponImageTarget = document.getElementById('couponImageTarget');
     const couponGrid = document.getElementById('couponGrid');
     if (couponGrid) {
+      couponGrid.addEventListener('error', (e) => {
+        const target = e.target;
+        if (!(target instanceof HTMLImageElement)) return;
+        if (!target.matches('[data-coupon-image="true"]')) return;
+
+        const card = target.closest('.coupon-card');
+        if (!card) return;
+
+        const title = target.getAttribute('data-coupon-title') || '쿠폰 이미지';
+        card.className = 'coupon-card empty';
+        card.innerHTML = `<span>${title} 이미지를 불러오지 못했습니다</span>`;
+      }, true);
+
       couponGrid.addEventListener('click', (e) => {
         const target = e.target;
         if (!(target instanceof HTMLImageElement)) return;
