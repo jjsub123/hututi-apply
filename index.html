@@ -430,7 +430,7 @@
         <section class="community-section aux-links-section" style="background-color: var(--bg-color); border: none; padding-top: 16px; padding-bottom: 24px;">
           <div style="display: flex; flex-direction: column; gap: 4px; padding-left: 8px;">
             <a href="#" class="text-link" id="btnConsulting" style="color: var(--text-muted); font-size: 13px; text-decoration: underline;">Expert 1:1 consult</a>
-            <a href="#" class="text-link" id="btnTemplate" style="color: var(--text-muted); font-size: 13px; text-decoration: underline;">Practical template guide</a>
+            <a href="#" class="text-link" id="btnTemplate" style="color: var(--text-muted); font-size: 13px; text-decoration: underline;">실전 템플릿 가이드</a>
           </div>
         </section>
 
@@ -792,7 +792,7 @@
       <button class="btn-icon" id="closeTemplateBtn">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-main)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
       </button>
-      <h3>Practical template</h3>
+      <h3>실전 템플릿</h3>
     </div>
 
     <div class="sub-page-content">
@@ -806,87 +806,42 @@
 
       <div class="template-guide-page">
         <section class="template-guide-hero">
-          <span class="template-guide-chip">Template guide</span>
-          <h1>Good listings are prepared in advance</h1>
-          <p>Most owners feel blocked here because the information is not ready yet.</p>
-          <div class="template-guide-note">Check what information you need before trying to write the listing.</div>
+          <span class="template-guide-chip">실전 템플릿</span>
+          <h1>실전 매물 소개 페이지 작성하기</h1>
+          <p class="template-guide-subcopy">좋은 매물 글은 잘 쓰는 것이 아니라, 이미 정리된 운영에서 나옵니다.</p>
+          <div class="template-guide-note">매물 글이 막막한 이유는 글을 못 써서가 아니라 운영이 정리되어 있지 않기 때문입니다.</div>
         </section>
 
-        <section class="template-guide-panel template-sheet-panel">
-          <div class="template-section-heading">
-            <span class="template-section-chip template-sheet-chip">Template sheet</span>
-            <h2 class="template-sheet-title">These are the core blocks that go into a strong listing</h2>
-            <p class="template-sheet-desc">Open each card to see what goes in the listing and what must be prepared first.</p>
+        <details class="template-example-accordion">
+          <summary class="template-example-summary">
+            <div class="template-example-summary-copy">
+              <span class="template-section-chip template-example-chip">완성 예시</span>
+              <strong class="template-example-summary-title">이렇게 정리된 매장은 설명이 됩니다</strong>
+              <p class="template-example-summary-desc">실제 예시를 먼저 보고, 같은 순서로 워크시트를 체크해보세요.</p>
+            </div>
+            <span class="template-example-toggle" data-closed-label="열어보기" data-open-label="닫기">열어보기</span>
+          </summary>
+          <div class="template-example-body">
+            <blockquote class="template-example-quote">“이 매장은 인근 오피스 상권의 점심 수요를 기반으로, 점심 단골과 배달 신규 유입이 반복되는 구조를 갖고 있습니다.”</blockquote>
+            <div class="template-example-sections"></div>
+            <blockquote class="template-example-closing">“매출이 아니라 이 매장이 어떻게 돌아가는지가 보입니다.”</blockquote>
           </div>
-          <div class="template-sheet-grid">
-            <div class="template-sheet-block">
-              <h4 class="template-sheet-block-title">Use this when</h4>
-              <ul class="template-sheet-list template-sheet-context-list">
-                <li>You want to draft a clean listing structure first</li>
-                <li>You have sales but the explanation is still vague</li>
-                <li>You need one page that organizes proof before writing</li>
-              </ul>
-            </div>
-            <div class="template-sheet-block">
-              <h4 class="template-sheet-block-title">What to prepare first</h4>
-              <ul class="template-sheet-list template-sheet-input-list">
-                <li>Monthly sales and profit summary</li>
-                <li>Customer mix and weekday/weekend flow</li>
-                <li>Staffing and operating difficulty</li>
-                <li>Store condition and premium logic</li>
-              </ul>
-            </div>
-            <div class="template-sheet-block template-sheet-example">
-              <h4 class="template-sheet-block-title">Example sentence</h4>
-              <p class="template-sheet-example-lead">Show the operating structure first, then let the number make sense.</p>
-              <div class="template-sheet-example-body">
-                <p>This store keeps stable weekday demand through loyal office workers and adds delivery volume on weekends.</p>
-                <p>Because staffing, fixed cost, and premium basis are already organized, the listing reads like proof instead of promotion.</p>
-              </div>
-            </div>
-            <div class="template-sheet-copy">
-              <span class="template-sheet-copy-label">Ready-to-use line</span>
-              <p class="template-sheet-copy-body">Monthly sales, loyal-customer mix, staffing, and store condition are already organized, so the buyer can understand not only the number but also the operating structure behind it.</p>
-            </div>
-          </div>
-        </section>
+        </details>
 
-        <section class="template-guide-panel template-checklist-panel">
+        <section class="template-worksheet">
           <div class="template-section-heading">
-            <span class="template-section-chip template-guide-check-chip">Writing guide</span>
-            <h2 class="template-guide-check-title">You can build this information gradually in the community</h2>
-            <p class="template-guide-check-desc">Instead of forcing the listing, leave records first and let the structure emerge.</p>
+            <span class="template-section-chip template-worksheet-chip">실제 템플릿</span>
+            <h2 class="template-worksheet-title">이 구조로 매물을 정리해보세요</h2>
+            <p class="template-worksheet-desc">입력 대신 체크하면서, 어떤 항목이 준비되어 있는지 워크시트처럼 점검할 수 있게 구성합니다.</p>
           </div>
-          <div class="template-checklist-layout">
-            <div class="template-checklist-block">
-              <h4 class="template-checklist-block-title">Writing order</h4>
-              <ol class="template-checklist-list template-checklist-steps">
-                <li>Record the current store status in the community.</li>
-                <li>Group the records into sales, customers, operations, and premium basis.</li>
-                <li>Rewrite only the verified points into the listing.</li>
-              </ol>
-            </div>
-            <div class="template-checklist-block">
-              <h4 class="template-checklist-block-title">Easy-to-miss checks</h4>
-              <ul class="template-checklist-list template-checklist-points">
-                <li>Do not lead with sales only. Add why those sales happen.</li>
-                <li>Organize fixed cost and staffing before talking about profit.</li>
-                <li>State what is included in premium and what is not.</li>
-                <li>Use recent records and photos instead of memory.</li>
-              </ul>
-            </div>
-            <div class="template-checklist-quote">
-              <strong class="template-checklist-quote-title">If the template feels difficult, recording comes first.</strong>
-              <p class="template-checklist-quote-body">Good listings are not written in one sitting. They are assembled from records that already explain the store.</p>
-            </div>
-          </div>
+          <div class="template-worksheet-groups"></div>
         </section>
       </div>
     </div>
 
     <div class="sub-page-actions template-guide-actions">
-      <p class="template-cta-note">If the information is not ready, recording comes before listing.</p>
-      <button id="btnTemplateStartRecord" class="btn btn-primary block-btn">Start recording in community</button>
+      <p class="template-cta-note">체크가 안 되는 항목부터 커뮤니티 기록으로 채워보세요.</p>
+      <button id="btnTemplateStartRecord" class="btn btn-primary block-btn">커뮤니티에서 기록 시작하기</button>
     </div>
   </div>
 <div class="sub-page-overlay" id="communityIntroPage">

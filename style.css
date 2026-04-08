@@ -3764,3 +3764,405 @@ body {
     padding-bottom: 28px;
   }
 }
+
+/* -------------------------------------
+   Template Page PDF Refresh
+-------------------------------------- */
+.template-guide-page {
+  display: grid;
+  gap: 18px;
+  padding: 24px 20px 32px;
+  background: linear-gradient(180deg, #fcfdff 0%, #f5f8ff 100%);
+}
+
+.template-guide-hero {
+  margin-bottom: 0;
+  padding: 4px 2px 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.template-guide-chip,
+.template-section-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: #edf3ff;
+  color: #294fb7;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.template-guide-hero h1 {
+  margin: 14px 0 12px;
+  font-size: 32px;
+  line-height: 1.3;
+  letter-spacing: -0.03em;
+  color: #101828;
+}
+
+.template-guide-subcopy {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.8;
+  font-weight: 700;
+  color: #25324a;
+}
+
+.template-guide-note {
+  margin-top: 14px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  border-left: 3px solid #8eaefe;
+  background: #f8fbff;
+  font-size: 14px;
+  line-height: 1.75;
+  color: #4a5d7b;
+  font-weight: 600;
+}
+
+.template-example-accordion,
+.template-worksheet {
+  background: #ffffff;
+  border: 1px solid #e8eef8;
+  border-radius: 26px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05);
+}
+
+.template-example-summary {
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 22px;
+  cursor: pointer;
+}
+
+.template-example-summary::-webkit-details-marker {
+  display: none;
+}
+
+.template-example-summary-copy strong {
+  display: block;
+  margin: 14px 0 8px;
+  font-size: 24px;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: #101828;
+}
+
+.template-example-summary-copy p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #667085;
+}
+
+.template-example-toggle {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: #f5f8ff;
+  color: #3154bf;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.template-example-toggle::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  margin-top: -2px;
+  transition: transform 0.2s ease;
+}
+
+.template-example-accordion[open] .template-example-toggle::after {
+  transform: rotate(225deg);
+  margin-top: 2px;
+}
+
+.template-example-body {
+  padding: 0 22px 24px;
+  border-top: 1px solid #edf2fa;
+}
+
+.template-example-quote,
+.template-example-closing {
+  margin: 20px 0 0;
+  padding: 18px 20px;
+  border-radius: 20px;
+  background: #f7faff;
+  border-left: 3px solid #93b0ff;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #22385f;
+  font-weight: 700;
+}
+
+.template-example-sections {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.template-example-section {
+  padding: 18px;
+  border-radius: 20px;
+  border: 1px solid #edf1f8;
+  background: #fcfdff;
+}
+
+.template-example-section h3 {
+  margin: 0 0 14px;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.4;
+  color: #182230;
+}
+
+.template-example-list {
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.template-example-row {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.template-example-row dt {
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.6;
+  color: #5f6d82;
+}
+
+.template-example-row dd {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #101828;
+  word-break: keep-all;
+}
+
+.template-example-row.is-quoted dd {
+  color: #26447f;
+  font-weight: 700;
+}
+
+.template-worksheet {
+  padding: 26px 22px;
+}
+
+.template-section-heading h2 {
+  margin: 14px 0 10px;
+  font-size: 28px;
+  line-height: 1.35;
+  letter-spacing: -0.03em;
+  color: #101828;
+}
+
+.template-section-heading p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.75;
+  color: #667085;
+}
+
+.template-worksheet-groups {
+  display: grid;
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.template-worksheet-group {
+  padding: 20px 18px;
+  border-radius: 22px;
+  border: 1px solid #e9eef7;
+  background: #fbfcff;
+}
+
+.template-worksheet-group-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.template-worksheet-group-title {
+  margin: 0 0 6px;
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.4;
+  color: #182230;
+}
+
+.template-worksheet-group-desc {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #667085;
+}
+
+.template-worksheet-check-caption {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 11px;
+  border-radius: 999px;
+  background: #eef3ff;
+  color: #3c5da7;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.template-field-list {
+  display: grid;
+  gap: 10px;
+}
+
+.template-field {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 14px;
+  border-radius: 16px;
+  border: 1px solid #e5ebf5;
+  background: #ffffff;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.template-field:hover {
+  border-color: #d7e2f7;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.04);
+  transform: translateY(-1px);
+}
+
+.template-field-copy {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.template-field-label {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #24324b;
+}
+
+.template-field-line {
+  display: block;
+  width: 100%;
+  height: 18px;
+  border-bottom: 1.5px dashed #d5deed;
+}
+
+.template-field-check {
+  position: relative;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+}
+
+.template-field-input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.template-field-box {
+  position: absolute;
+  inset: 0;
+  border-radius: 7px;
+  border: 1.5px solid #bfd0f5;
+  background: #ffffff;
+  box-shadow: inset 0 0 0 2px #ffffff;
+  transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.template-field.is-checked {
+  border-color: #cfe0ff;
+  background: #f7faff;
+  box-shadow: inset 0 0 0 1px rgba(45, 104, 255, 0.06);
+}
+
+.template-field.is-checked .template-field-label {
+  color: #1f4cc7;
+}
+
+.template-field.is-checked .template-field-line {
+  border-color: #8ea7ea;
+}
+
+.template-field.is-checked .template-field-box {
+  border-color: var(--primary);
+  background: linear-gradient(180deg, #2d68ff 0%, #4f86ff 100%);
+}
+
+.template-field.is-checked .template-field-box::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 3px;
+  width: 6px;
+  height: 11px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+@media (max-width: 480px) {
+  .template-guide-page {
+    padding: 22px 16px 28px;
+  }
+
+  .template-guide-hero h1,
+  .template-section-heading h2,
+  .template-example-summary-copy strong {
+    font-size: 24px;
+  }
+
+  .template-example-summary {
+    flex-direction: column;
+  }
+
+  .template-example-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .template-worksheet-group-head {
+    flex-direction: column;
+  }
+
+  .template-field {
+    align-items: flex-start;
+  }
+
+  .template-field-check {
+    margin-top: 2px;
+  }
+}

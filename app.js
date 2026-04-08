@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
   // 모달 제어 요소를 안전하게 가져오기 (try-catch로 전체 감싸기)
   try {
     // 1. 전역 Supabase 연동 변수 (본인 키로 변경 필요)
@@ -990,7 +990,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnTemplate = document.getElementById('btnTemplate');
     const templatePage = document.getElementById('templatePage');
     const closeTemplateBtn = document.getElementById('closeTemplateBtn');
-    const templateDoneBtn = document.getElementById('templateDoneBtn');
     const btnTemplateStartRecord = document.getElementById('btnTemplateStartRecord');
     const btnOpenCommunityIntro = document.getElementById('btnOpenCommunityIntro');
     const communityIntroPage = document.getElementById('communityIntroPage');
@@ -1029,59 +1028,103 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
         hero: {
           header: "\uC2E4\uC804 \uD15C\uD50C\uB9BF",
-          chip: "\uC591\uB3C4\uC790 \uC804\uC6A9 \uC2E4\uC804 \uAC00\uC774\uB4DC",
-          title: "\uB9E4\uBB3C \uAE00\uC740 \uD558\uB8E8 \uB9CC\uC5D0 \uC4F0\uC9C0\uB9CC,<br>\uC88B\uC740 \uB9E4\uBB3C\uC740 \uBBF8\uB9AC \uC900\uBE44\uD574\uC57C \uB9CC\uB4E4\uC5B4\uC9D1\uB2C8\uB2E4",
-          desc: "\uC544\uB798 \uD56D\uBAA9\uC774 \uB9C9\uD788\uC2E0\uB2E4\uBA74 \uC815\uC0C1\uC785\uB2C8\uB2E4. \uB300\uBD80\uBD84 \uC900\uBE44\uAC00 \uC548 \uB41C \uC0C1\uD0DC\uC5D0\uC11C \uC4F0\uB824\uACE0 \uD558\uAE30 \uB54C\uBB38\uC785\uB2C8\uB2E4.",
-          note: "\uC2E4\uC804 \uD15C\uD50C\uB9BF\uC744 \uC4F0\uAE30 \uC804\uC5D0, \uBA3C\uC800 \uC5B4\uB5A4 \uC815\uBCF4\uAC00 \uD544\uC694\uD55C\uC9C0 \uD655\uC778\uD574\uBCF4\uC138\uC694."
+          chip: "\uC591\uB3C4\uC790 \uC804\uC6A9 \uC2E4\uC804 \uD15C\uD50C\uB9BF",
+          title: "\uC2E4\uC804 \uB9E4\uBB3C \uC18C\uAC1C \uD398\uC774\uC9C0 \uC791\uC131\uD558\uAE30",
+          desc: "\uC88B\uC740 \uB9E4\uBB3C \uAE00\uC740 \uC798 \uC4F0\uB294 \uAC83\uC774 \uC544\uB2C8\uB77C, \uC774\uBBF8 \uC815\uB9AC\uB41C \uC6B4\uC601\uC5D0\uC11C \uB098\uC635\uB2C8\uB2E4.",
+          note: "\uB9E4\uBB3C \uAE00\uC774 \uB9C9\uB9C9\uD55C \uC774\uC720\uB294 \uAE00\uC744 \uBABB \uC368\uC11C\uAC00 \uC544\uB2C8\uB77C \uC6B4\uC601\uC774 \uC815\uB9AC\uB418\uC5B4 \uC788\uC9C0 \uC54A\uAE30 \uB54C\uBB38\uC785\uB2C8\uB2E4."
         },
-        sheet: {
-          chip: "\uD15C\uD50C\uB9BF \uC2DC\uD2B8",
-          title: "\uC88B\uC740 \uB9E4\uBB3C \uAE00\uC740 \uACB0\uAD6D \uC900\uBE44\uB41C \uC815\uBCF4\uC5D0\uC11C \uC2DC\uC791\uB429\uB2C8\uB2E4",
-          desc: "\uC2E4\uBB34\uC5D0\uC11C \uBC14\uB85C \uC4F8 \uC218 \uC788\uB3C4\uB85D, \uC4F0\uC784\uC0C8\uC640 \uD575\uC2EC \uC815\uBCF4\uB97C \uD55C \uBC88\uC5D0 \uC815\uB9AC\uD55C \uC2DC\uD2B8\uB85C \uBCF4\uC138\uC694.",
-          contextTitle: "\uC774\ub7F0 \uB54C \uC4F0\uC138\uC694",
-          contexts: [
-            "\uB9E4\uBB3C \uC18C\uAC1C \uAD6C\uC870\uB97C \uBA3C\uC800 \uC7A1\uACE0 \uC2F6\uC744 \uB54C",
-            "\uB9E4\uCD9C\uC740 \uC788\uC9C0\uB9CC \uC124\uBA85\uC740 \uC544\uC9C1 \uB9C9\uB9C9\uD560 \uB54C",
-            "\uC591\uC218\uC790\uAC00 \uBCF4\uB294 \uADFC\uAC70\uB97C \uD55C \uC7A5\uC73C\uB85C \uC815\uB9AC\uD558\uACE0 \uC2F6\uC744 \uB54C"
-          ],
-          inputTitle: "\uBA3C\uC800 \uC815\uB9AC\uD560 \uD56D\uBAA9",
-          inputs: [
-            "\uC6D4 \uB9E4\uCD9C\uACFC \uC21C\uC218\uC775 \uC694\uC57D",
-            "\uB2E8\uACE8 \uBE44\uC911\uACFC \uD3C9\uC77C/\uC8FC\uB9D0 \uD750\uB984",
-            "\uC778\uB825 \uAD6C\uC131\uACFC \uC6B4\uC601 \uB09C\uC774\uB3C4",
-            "\uB9E4\uC7A5 \uC0C1\uD0DC\uC640 \uAD8C\uB9AC\uAE08 \uADFC\uAC70"
-          ],
-          exampleTitle: "\uC608\uC2DC \uBB38\uC7A5",
-          exampleLead: "\uC22B\uC790\uBCF4\uB2E4 \uBA3C\uC800, \uC6B4\uC601 \uAD6C\uC870\uAC00 \uBCF4\uC774\uAC8C \uC4F0\uB294 \uAC8C \uD3EC\uC778\uD2B8\uC785\uB2C8\uB2E4.",
-          exampleParagraphs: [
-            "\uC774 \uB9E4\uC7A5\uC740 \uD3C9\uC77C\uC5D0\uB294 \uC624\uD53C\uC2A4 \uB2E8\uACE8 \uC218\uC694\uAC00 \uC548\uC815\uC801\uC73C\uB85C \uBC1B\uCCD0\uC8FC\uACE0, \uC8FC\uB9D0\uC5D0\uB294 \uBC30\uB2EC \uBE44\uC911\uC73C\uB85C \uCD94\uAC00 \uB9E4\uCD9C\uC744 \uB9CC\uB4ED\uB2C8\uB2E4.",
-            "\uC9C1\uC6D0 \uAD6C\uC131, \uACE0\uC815\uBE44, \uB9E4\uC7A5 \uCEE8\uB514\uC158, \uAD8C\uB9AC\uAE08 \uADFC\uAC70\uAE4C\uC9C0 \uC815\uB9AC\uB3FC \uC788\uC5B4 \uD64D\uBCF4\uC131 \uBB38\uAD6C\uBCF4\uB2E4 \uADFC\uAC70 \uC911\uC2EC \uC18C\uAC1C\uB85C \uC77D\uD799\uB2C8\uB2E4."
-          ],
-          copyLabel: "\uBC14\uB85C \uBCF5\uBD99\uC6A9 \uC18C\uAC1C \uBB38\uC7A5",
-          copyBody: "\uC6D4 \uB9E4\uCD9C, \uB2E8\uACE8 \uBE44\uC911, \uC778\uB825 \uAD6C\uC131, \uB9E4\uC7A5 \uC0C1\uD0DC\uAE4C\uC9C0 \uC6B4\uC601 \uAD6C\uC870\uAC00 \uC815\uB9AC\uB3FC \uC788\uC5B4, \uC591\uC218\uC790\uAC00 \uC22B\uC790 \uB4A4\uC758 \uC6B4\uC601 \uADFC\uAC70\uAE4C\uC9C0 \uD568\uAED8 \uC774\uD574\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+        example: {
+          chip: "\uC644\uC131 \uC608\uC2DC",
+          title: "\uC774\uB807\uAC8C \uC815\uB9AC\uB41C \uB9E4\uC7A5\uC740 \uC124\uBA85\uC774 \uB429\uB2C8\uB2E4",
+          desc: "\uC2E4\uC81C \uC608\uC2DC\uB97C \uBA3C\uC800 \uBCF4\uACE0, \uAC19\uC740 \uC21C\uC11C\uB85C \uC6CC\uD06C\uC2DC\uD2B8\uB97C \uCCB4\uD06C\uD574\uBCF4\uC138\uC694.",
+          toggleClosed: "\uC5F4\uC5B4\uBCF4\uAE30",
+          toggleOpen: "\uB2EB\uAE30",
+          quote: "\u201C\uC774 \uB9E4\uC7A5\uC740 \uC778\uADFC \uC624\uD53C\uC2A4 \uC0C1\uAD8C\uC758 \uC810\uC2EC \uC218\uC694\uB97C \uAE30\uBC18\uC73C\uB85C, \uC810\uC2EC \uB2E8\uACE8\uACFC \uBC30\uB2EC \uC2E0\uADDC \uC720\uC785\uC774 \uBC18\uBCF5\uB418\uB294 \uAD6C\uC870\uB97C \uAC16\uACE0 \uC788\uC2B5\uB2C8\uB2E4.\u201D",
+          closing: "\u201C\uB9E4\uCD9C\uC774 \uC544\uB2C8\uB77C \uC774 \uB9E4\uC7A5\uC774 \uC5B4\uB5BB\uAC8C \uB3CC\uC544\uAC00\uB294\uC9C0\uAC00 \uBCF4\uC785\uB2C8\uB2E4.\u201D",
+          sections: [
+            {
+              title: "1. \uB9E4\uCD9C \uAD6C\uC870",
+              items: [
+                { label: "\uC6D4 \uB9E4\uCD9C", value: "\uC57D 3,200\uB9CC\uC6D0" },
+                { label: "\uC6D4 \uC21C\uC218\uC775", value: "\uC57D 900\uB9CC\uC6D0" },
+                { label: "\uC131\uC218\uAE30 / \uBE44\uC218\uAE30", value: "\uC5EC\uB984 (\uBC30\uB2EC \uC99D\uAC00), \uACA8\uC6B8 (\uD640 \uBE44\uC911 \uC99D\uAC00)" },
+                { label: "\uB9E4\uCD9C\uC774 \uC624\uB974\uB294 \uC2DC\uC810", value: "\uD3C9\uC77C \uC810\uC2EC / \uAE08\uC694\uC77C \uC800\uB141" },
+                { label: "\uB9E4\uCD9C\uC774 \uB5A8\uC5B4\uC9C0\uB294 \uC2DC\uC810", value: "\uC6D4\uC694\uC77C \uC800\uB141, \uBE44 \uC624\uB294 \uB0A0" }
+              ]
+            },
+            {
+              title: "2. \uACE0\uAC1D \uAD6C\uC870",
+              items: [
+                { label: "\uB2E8\uACE8 \uBE44\uC911", value: "\uC57D 60%" },
+                { label: "\uC2E0\uADDC \uACE0\uAC1D \uC720\uC785 \uACBD\uB85C", value: "\uBC30\uB2EC\uC571 (70%), \uB124\uC774\uBC84 \uAC80\uC0C9 (30%)" },
+                { label: "\uC8FC\uC694 \uACE0\uAC1D \uC5F0\uB839\uB300", value: "30~40\uB300 \uC9C1\uC7A5\uC778" },
+                { label: "\uACE0\uAC1D\uC774 \uC790\uC8FC \uCC3E\uB294 \uC774\uC720", value: "\uBE60\uB978 \uC870\uB9AC, \uC810\uC2EC \uD68C\uC804\uC728, \uC77C\uC815\uD55C \uB9DB", quoted: true },
+                { label: "\uACE0\uAC1D\uC774 \uC774\uD0C8\uD558\uB294 \uC774\uC720", value: "\uB300\uAE30\uC2DC\uAC04 \uAE38\uC5B4\uC9C8 \uB54C", quoted: true }
+              ]
+            },
+            {
+              title: "3. \uC6B4\uC601 \uAD6C\uC870",
+              items: [
+                { label: "\uC9C1\uC6D0 \uAD6C\uC131", value: "\uC8FC\uBC29 1\uBA85, \uD640 / \uD3EC\uC7A5 1\uBA85" },
+                { label: "\uADFC\uBB34 \uBC29\uC2DD", value: "\uC810\uC2EC \uC9D1\uC911 \uC6B4\uC601 / \uC800\uB141 \uCD95\uC18C \uC6B4\uC601" },
+                { label: "\uC0AC\uC7A5 \uAC1C\uC785\uB3C4", value: "\uC810\uC2EC \uD53C\uD06C\uB9CC \uC9C1\uC811 \uCC38\uC5EC" },
+                { label: "\uC6B4\uC601 \uB09C\uC774\uB3C4", value: "\uB808\uC2DC\uD53C \uB2E8\uC21C / 1\uC8FC\uC77C \uB0B4 \uAD50\uC721 \uAC00\uB2A5" },
+                { label: "\uC778\uC218 \uD6C4 \uBC14\uB85C \uC6B4\uC601 \uAC00\uB2A5 \uC5EC\uBD80", value: "\uAC00\uB2A5 (\uAE30\uC874 \uC9C1\uC6D0 \uC720\uC9C0 \uC2DC \uC548\uC815\uC801)" }
+              ]
+            },
+            {
+              title: "4. \uB9E4\uCD9C \uBC1C\uC0DD \uAD6C\uC870",
+              items: [
+                { label: "\uC774 \uB9E4\uCD9C\uC774 \uB098\uC624\uB294 \uAC00\uC7A5 \uD070 \uC774\uC720", value: "\uC778\uADFC \uC624\uD53C\uC2A4 \uC0C1\uAD8C \uC810\uC2EC \uC218\uC694 \uC9D1\uC911" },
+                { label: "\uB9E4\uCD9C\uC774 \uC720\uC9C0\uB418\uB294 \uAD6C\uC870", value: "\uC810\uC2EC \uB2E8\uACE8 + \uBC30\uB2EC \uC2E0\uADDC \uC720\uC785 \uBC18\uBCF5 \uAD6C\uC870", quoted: true },
+                { label: "\uC774 \uAD6C\uC870\uAC00 \uAE68\uC9C8 \uC218 \uC788\uB294 \uB9AC\uC2A4\uD06C", value: "\uC778\uADFC \uAC74\uBB3C \uACF5\uC2E4 \uC99D\uAC00 \uC2DC \uC810\uC2EC \uC218\uC694 \uAC10\uC18C" }
+              ]
+            },
+            {
+              title: "5. \uC591\uC218\uC790 \uAD00\uC810",
+              items: [
+                { label: "\uC778\uC218 \uD6C4 \uADF8\uB300\uB85C \uC720\uC9C0 \uAC00\uB2A5\uD55C \uC694\uC18C", value: "\uC810\uC2EC \uC911\uC2EC \uC6B4\uC601 \uAD6C\uC870" },
+                { label: "\uBC18\uB4DC\uC2DC \uC774\uC5B4\uBC1B\uC544\uC57C \uD558\uB294 \uC6B4\uC601 \uBC29\uC2DD", value: "\uBE60\uB978 \uD68C\uC804 / \uBA54\uB274 \uB2E8\uC21C\uD654", quoted: true },
+                { label: "\uAC1C\uC120\uD558\uBA74 \uB354 \uC88B\uC544\uC9C8 \uBD80\uBD84", value: "\uBC30\uB2EC \uBA54\uB274 \uD655\uC7A5 / \uC800\uB141 \uB9E4\uCD9C \uBCF4\uC644", quoted: true }
+              ]
+            }
+          ]
         },
-        guide: {
-          chip: "\uC791\uC131 \uAC00\uC774\uB4DC",
-          title: "\uB9C9\uD788\uB294 \uD56D\uBAA9\uC740 \uAE30\uB85D\uC73C\uB85C \uBA3C\uC800 \uD480\uBA74 \uB429\uB2C8\uB2E4",
-          desc: "\uB9E4\uBB3C \uAE00\uC744 \uC5B5\uC9C0\uB85C \uC4F0\uB824\uACE0 \uD558\uC9C0 \uB9D0\uACE0, \uCEE4\uBBA4\uB2C8\uD2F0 \uAE30\uB85D\uC744 \uC313\uC740 \uB4A4 \uC815\uB9AC\uD558\uBA74 \uB354 \uC27D\uAC8C \uC5F0\uACB0\uB429\uB2C8\uB2E4.",
-          stepsTitle: "\uC774 \uC21C\uC11C\uB85C \uC791\uC131\uD558\uC138\uC694",
-          steps: [
-            "\uC624\uB298 \uB9E4\uC7A5 \uC0C1\uD0DC\uB97C \uCEE4\uBBA4\uB2C8\uD2F0\uC5D0 \uC9E7\uAC8C \uAE30\uB85D\uD569\uB2C8\uB2E4.",
-            "\uB204\uC801\uB41C \uAE30\uB85D\uC744 \uB9E4\uCD9C, \uACE0\uAC1D, \uC6B4\uC601, \uAD8C\uB9AC\uAE08 \uADFC\uAC70\uB85C \uBB36\uC2B5\uB2C8\uB2E4.",
-            "\uD655\uC778\uB41C \uADFC\uAC70\uB9CC \uB9E4\uBB3C \uC18C\uAC1C\uAE00\uC5D0 \uC62E\uACA8 \uC801\uC2B5\uB2C8\uB2E4."
-          ],
-          pointsTitle: "\uB193\uCE58\uAE30 \uC26C\uC6B4 \uD3EC\uC778\uD2B8",
-          points: [
-            "\uB9E4\uCD9C\uB9CC \uC55E\uC138\uC6B0\uC9C0 \uB9D0\uACE0, \uC65C \uADF8 \uB9E4\uCD9C\uC774 \uB098\uC624\uB294\uC9C0\uB97C \uD568\uAED8 \uC4F0\uC138\uC694.",
-            "\uC21C\uC218\uC775\uC740 \uACE0\uC815\uBE44\uC640 \uC778\uB825 \uAD6C\uC131\uC744 \uAC19\uC774 \uC815\uB9AC\uD55C \uB4A4 \uC81C\uC2DC\uD558\uC138\uC694.",
-            "\uAD8C\uB9AC\uAE08\uC740 \uD3EC\uD568 \uD56D\uBAA9\uACFC \uC81C\uC678 \uD56D\uBAA9\uC744 \uD568\uAED8 \uC124\uBA85\uD558\uC138\uC694.",
-            "\uAE30\uC5B5\uBCF4\uB2E4 \uCD5C\uADFC \uAE30\uB85D\uACFC \uC0AC\uC9C4\uC744 \uAE30\uC900\uC73C\uB85C \uC4F0\uC138\uC694."
-          ],
-          quoteTitle: "\uD15C\uD50C\uB9BF\uC774 \uB9C9\uB9C9\uD558\uB2E4\uBA74 \uAE30\uB85D\uC774 \uBA3C\uC800\uC785\uB2C8\uB2E4",
-          quoteBody: "\uC88B\uC740 \uB9E4\uBB3C\uC740 \uD55C \uBC88\uC5D0 \uC644\uC131\uB418\uB294 \uAC8C \uC544\uB2D9\uB2C8\uB2E4. \uB9E4\uC77C \uB0A8\uAE34 \uAE30\uB85D\uC774 \uBAA8\uC5EC \uB9E4\uC7A5\uC744 \uC124\uBA85\uD558\uB294 \uADFC\uAC70\uAC00 \uB429\uB2C8\uB2E4."
+        template: {
+          chip: "\uC2E4\uC81C \uD15C\uD50C\uB9BF",
+          title: "\uC774 \uAD6C\uC870\uB85C \uB9E4\uBB3C\uC744 \uC815\uB9AC\uD574\uBCF4\uC138\uC694",
+          desc: "\uC785\uB825 \uB300\uC2E0 \uCCB4\uD06C\uD558\uBA74\uC11C, \uC5B4\uB290 \uD56D\uBAA9\uC774 \uC900\uBE44\uB418\uC5B4 \uC788\uB294\uC9C0 \uC6CC\uD06C\uC2DC\uD2B8\uCC98\uB7FC \uC810\uAC80\uD560 \uC218 \uC788\uAC8C \uAD6C\uC131\uD588\uC2B5\uB2C8\uB2E4.",
+          checkCaption: "\uC900\uBE44 \uCCB4\uD06C",
+          sections: [
+            {
+              title: "1. \uB9E4\uCD9C \uAD6C\uC870",
+              desc: "\uB9E4\uCD9C \uD06C\uAE30\uB9CC \uB9D0\uD558\uC9C0 \uB9D0\uACE0 \uD750\uB984\uACFC \uBCC0\uB3D9 \uC774\uC720\uAE4C\uC9C0 \uBCF4\uC774\uAC8C \uC815\uB9AC\uD569\uB2C8\uB2E4.",
+              fields: ["\uC6D4 \uB9E4\uCD9C", "\uC6D4 \uC21C\uC218\uC775", "\uC131\uC218\uAE30 / \uBE44\uC218\uAE30", "\uB9E4\uCD9C\uC774 \uC624\uB974\uB294 \uC2DC\uC810", "\uB9E4\uCD9C\uC774 \uB5A8\uC5B4\uC9C0\uB294 \uC2DC\uC810"]
+            },
+            {
+              title: "2. \uACE0\uAC1D \uAD6C\uC870",
+              desc: "\uACE0\uAC1D\uC774 \uB204\uAD6C\uACE0 \uC65C \uC624\uB294\uC9C0\uAC00 \uBCF4\uC5EC\uC57C \uC591\uC218\uC790\uB3C4 \uADFC\uAC70\uB97C \uC774\uD574\uD569\uB2C8\uB2E4.",
+              fields: ["\uB2E8\uACE8 \uBE44\uC911", "\uC2E0\uADDC \uACE0\uAC1D \uC720\uC785 \uACBD\uB85C", "\uC8FC\uC694 \uACE0\uAC1D \uC5F0\uB839\uB300", "\uACE0\uAC1D\uC774 \uC790\uC8FC \uCC3E\uB294 \uC774\uC720", "\uACE0\uAC1D\uC774 \uC774\uD0C8\uD558\uB294 \uC774\uC720"]
+            },
+            {
+              title: "3. \uC6B4\uC601 \uAD6C\uC870",
+              desc: "\uB0B4\uAC00 \uBE60\uC9C0\uBA74 \uB9E4\uC7A5\uC774 \uC5B4\uB5BB\uAC8C \uB3CC\uC544\uAC00\uB294\uC9C0 \uBCF4\uC5EC\uC8FC\uB294 \uC601\uC5ED\uC785\uB2C8\uB2E4.",
+              fields: ["\uC9C1\uC6D0 \uAD6C\uC131", "\uADFC\uBB34 \uBC29\uC2DD", "\uC0AC\uC7A5 \uAC1C\uC785\uB3C4", "\uC6B4\uC601 \uB09C\uC774\uB3C4", "\uC778\uC218 \uD6C4 \uBC14\uB85C \uC6B4\uC601 \uAC00\uB2A5 \uC5EC\uBD80"]
+            },
+            {
+              title: "4. \uB9E4\uCD9C \uBC1C\uC0DD \uAD6C\uC870",
+              desc: "\uC22B\uC790 \uB4A4\uC5D0 \uC788\uB294 \uC0C1\uAD8C, \uACE0\uAC1D, \uC6B4\uC601 \uBC18\uBCF5 \uAD6C\uC870\uB97C \uC815\uB9AC\uD569\uB2C8\uB2E4.",
+              fields: ["\uC774 \uB9E4\uCD9C\uC774 \uB098\uC624\uB294 \uAC00\uC7A5 \uD070 \uC774\uC720", "\uB9E4\uCD9C\uC774 \uC720\uC9C0\uB418\uB294 \uAD6C\uC870", "\uC774 \uAD6C\uC870\uAC00 \uAE68\uC9C8 \uC218 \uC788\uB294 \uB9AC\uC2A4\uD06C"]
+            },
+            {
+              title: "5. \uC591\uC218\uC790 \uAD00\uC810",
+              desc: "\uC591\uC218\uC790\uAC00 \uADF8\uB300\uB85C \uC774\uC5B4\uBC1B\uC744 \uAC83\uACFC \uAC1C\uC120\uD560 \uAC83\uC744 \uAD6C\uBD84\uD574 \uBCF4\uC5EC\uC8FC\uB294 \uAD6C\uAC04\uC785\uB2C8\uB2E4.",
+              fields: ["\uC778\uC218 \uD6C4 \uADF8\uB300\uB85C \uC720\uC9C0 \uAC00\uB2A5\uD55C \uC694\uC18C", "\uBC18\uB4DC\uC2DC \uC774\uC5B4\uBC1B\uC544\uC57C \uD558\uB294 \uC6B4\uC601 \uBC29\uC2DD", "\uAC1C\uC120\uD558\uBA74 \uB354 \uC88B\uC544\uC9C8 \uBD80\uBD84"]
+            }
+          ]
         },
         cta: {
-          note: "\uC544\uC9C1 \uC815\uB9AC\uAC00 \uC548 \uB410\uB2E4\uBA74, \uB9E4\uBB3C \uB4F1\uB85D\uBCF4\uB2E4 \uAE30\uB85D\uC774 \uBA3C\uC800\uC785\uB2C8\uB2E4.",
+          note: "\uCCB4\uD06C\uAC00 \uC548 \uB418\uB294 \uD56D\uBAA9\uBD80\uD130 \uCEE4\uBBA4\uB2C8\uD2F0 \uAE30\uB85D\uC73C\uB85C \uCC44\uC6CC\uBCF4\uC138\uC694.",
           button: "\uCEE4\uBBA4\uB2C8\uD2F0\uC5D0\uC11C \uAE30\uB85D \uC2DC\uC791\uD558\uAE30"
         }
       };
@@ -1435,56 +1478,80 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const heroChip = templatePage.querySelector('.template-guide-chip');
       const heroTitle = templatePage.querySelector('.template-guide-hero h1');
-      const heroDesc = templatePage.querySelector('.template-guide-hero p');
+      const heroDesc = templatePage.querySelector('.template-guide-subcopy');
       const heroNote = templatePage.querySelector('.template-guide-note');
       if (heroChip) heroChip.textContent = t.hero.chip;
-      if (heroTitle) heroTitle.innerHTML = t.hero.title;
+      if (heroTitle) heroTitle.textContent = t.hero.title;
       if (heroDesc) heroDesc.textContent = t.hero.desc;
       if (heroNote) heroNote.textContent = t.hero.note;
 
-      const sheetChip = templatePage.querySelector('.template-sheet-chip');
-      const sheetTitle = templatePage.querySelector('.template-sheet-title');
-      const sheetDesc = templatePage.querySelector('.template-sheet-desc');
-      const contextTitle = templatePage.querySelector('.template-sheet-block:nth-child(1) .template-sheet-block-title');
-      const contextList = templatePage.querySelector('.template-sheet-context-list');
-      const inputTitle = templatePage.querySelector('.template-sheet-block:nth-child(2) .template-sheet-block-title');
-      const inputList = templatePage.querySelector('.template-sheet-input-list');
-      const exampleTitle = templatePage.querySelector('.template-sheet-example .template-sheet-block-title');
-      const exampleLead = templatePage.querySelector('.template-sheet-example-lead');
-      const exampleBody = templatePage.querySelector('.template-sheet-example-body');
-      const copyLabel = templatePage.querySelector('.template-sheet-copy-label');
-      const copyBody = templatePage.querySelector('.template-sheet-copy-body');
-      if (sheetChip) sheetChip.textContent = t.sheet.chip;
-      if (sheetTitle) sheetTitle.textContent = t.sheet.title;
-      if (sheetDesc) sheetDesc.textContent = t.sheet.desc;
-      if (contextTitle) contextTitle.textContent = t.sheet.contextTitle;
-      if (contextList) contextList.innerHTML = t.sheet.contexts.map((item) => `<li>${item}</li>`).join('');
-      if (inputTitle) inputTitle.textContent = t.sheet.inputTitle;
-      if (inputList) inputList.innerHTML = t.sheet.inputs.map((item) => `<li>${item}</li>`).join('');
-      if (exampleTitle) exampleTitle.textContent = t.sheet.exampleTitle;
-      if (exampleLead) exampleLead.textContent = t.sheet.exampleLead;
-      if (exampleBody) exampleBody.innerHTML = t.sheet.exampleParagraphs.map((item) => `<p>${item}</p>`).join('');
-      if (copyLabel) copyLabel.textContent = t.sheet.copyLabel;
-      if (copyBody) copyBody.textContent = t.sheet.copyBody;
+      const exampleChip = templatePage.querySelector('.template-example-chip');
+      const exampleTitle = templatePage.querySelector('.template-example-summary-title');
+      const exampleDesc = templatePage.querySelector('.template-example-summary-desc');
+      const exampleToggle = templatePage.querySelector('.template-example-toggle');
+      const exampleQuote = templatePage.querySelector('.template-example-quote');
+      const exampleSections = templatePage.querySelector('.template-example-sections');
+      const exampleClosing = templatePage.querySelector('.template-example-closing');
+      if (exampleChip) exampleChip.textContent = t.example.chip;
+      if (exampleTitle) exampleTitle.textContent = t.example.title;
+      if (exampleDesc) exampleDesc.textContent = t.example.desc;
+      if (exampleToggle) {
+        exampleToggle.dataset.closedLabel = t.example.toggleClosed;
+        exampleToggle.dataset.openLabel = t.example.toggleOpen;
+        exampleToggle.textContent = t.example.toggleClosed;
+      }
+      if (exampleQuote) exampleQuote.textContent = t.example.quote;
+      if (exampleSections) {
+        exampleSections.innerHTML = t.example.sections.map((section) => `
+          <section class="template-example-section">
+            <h3>${section.title}</h3>
+            <dl class="template-example-list">
+              ${section.items.map((item) => `
+                <div class="template-example-row${item.quoted ? ' is-quoted' : ''}">
+                  <dt>${item.label}</dt>
+                  <dd>${item.quoted ? `“${item.value}”` : item.value}</dd>
+                </div>
+              `).join('')}
+            </dl>
+          </section>
+        `).join('');
+      }
+      if (exampleClosing) exampleClosing.textContent = t.example.closing;
 
-      const guideChip = templatePage.querySelector('.template-guide-check-chip');
-      const guideTitle = templatePage.querySelector('.template-guide-check-title');
-      const guideDesc = templatePage.querySelector('.template-guide-check-desc');
-      const stepsTitle = templatePage.querySelector('.template-checklist-block:nth-child(1) .template-checklist-block-title');
-      const stepsList = templatePage.querySelector('.template-checklist-steps');
-      const pointsTitle = templatePage.querySelector('.template-checklist-block:nth-child(2) .template-checklist-block-title');
-      const pointsList = templatePage.querySelector('.template-checklist-points');
-      const quoteTitle = templatePage.querySelector('.template-checklist-quote-title');
-      const quoteBody = templatePage.querySelector('.template-checklist-quote-body');
-      if (guideChip) guideChip.textContent = t.guide.chip;
-      if (guideTitle) guideTitle.textContent = t.guide.title;
-      if (guideDesc) guideDesc.textContent = t.guide.desc;
-      if (stepsTitle) stepsTitle.textContent = t.guide.stepsTitle;
-      if (stepsList) stepsList.innerHTML = t.guide.steps.map((item) => `<li>${item}</li>`).join('');
-      if (pointsTitle) pointsTitle.textContent = t.guide.pointsTitle;
-      if (pointsList) pointsList.innerHTML = t.guide.points.map((item) => `<li>${item}</li>`).join('');
-      if (quoteTitle) quoteTitle.textContent = t.guide.quoteTitle;
-      if (quoteBody) quoteBody.textContent = t.guide.quoteBody;
+      const worksheetChip = templatePage.querySelector('.template-worksheet-chip');
+      const worksheetTitle = templatePage.querySelector('.template-worksheet-title');
+      const worksheetDesc = templatePage.querySelector('.template-worksheet-desc');
+      const worksheetGroups = templatePage.querySelector('.template-worksheet-groups');
+      if (worksheetChip) worksheetChip.textContent = t.template.chip;
+      if (worksheetTitle) worksheetTitle.textContent = t.template.title;
+      if (worksheetDesc) worksheetDesc.textContent = t.template.desc;
+      if (worksheetGroups) {
+        worksheetGroups.innerHTML = t.template.sections.map((section) => `
+          <section class="template-worksheet-group">
+            <div class="template-worksheet-group-head">
+              <div>
+                <h3 class="template-worksheet-group-title">${section.title}</h3>
+                <p class="template-worksheet-group-desc">${section.desc}</p>
+              </div>
+              <span class="template-worksheet-check-caption">${t.template.checkCaption}</span>
+            </div>
+            <div class="template-field-list">
+              ${section.fields.map((field) => `
+                <label class="template-field">
+                  <span class="template-field-copy">
+                    <strong class="template-field-label">${field}</strong>
+                    <span class="template-field-line" aria-hidden="true"></span>
+                  </span>
+                  <span class="template-field-check">
+                    <input type="checkbox" class="template-field-input" />
+                    <span class="template-field-box" aria-hidden="true"></span>
+                  </span>
+                </label>
+              `).join('')}
+            </div>
+          </section>
+        `).join('');
+      }
 
       const ctaNote = templatePage.querySelector('.template-cta-note');
       if (ctaNote) ctaNote.textContent = t.cta.note;
@@ -1492,6 +1559,39 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     hydrateTemplateGuideCopy();
+
+    const syncTemplateExampleToggle = () => {
+      if (!templatePage) return;
+      const accordion = templatePage.querySelector('.template-example-accordion');
+      const toggle = templatePage.querySelector('.template-example-toggle');
+      if (!accordion || !toggle) return;
+      toggle.textContent = accordion.open ? toggle.dataset.openLabel : toggle.dataset.closedLabel;
+    };
+
+    const syncTemplateChecklistState = () => {
+      if (!templatePage) return;
+      templatePage.querySelectorAll('.template-field').forEach((field) => {
+        const input = field.querySelector('.template-field-input');
+        field.classList.toggle('is-checked', Boolean(input && input.checked));
+      });
+    };
+
+    syncTemplateExampleToggle();
+    syncTemplateChecklistState();
+
+    if (templatePage && !templatePage.dataset.templateUiBound) {
+      const exampleAccordion = templatePage.querySelector('.template-example-accordion');
+      if (exampleAccordion) {
+        exampleAccordion.addEventListener('toggle', syncTemplateExampleToggle);
+      }
+      templatePage.addEventListener('change', (e) => {
+        if (!(e.target instanceof HTMLInputElement)) return;
+        if (!e.target.classList.contains('template-field-input')) return;
+        const field = e.target.closest('.template-field');
+        if (field) field.classList.toggle('is-checked', e.target.checked);
+      });
+      templatePage.dataset.templateUiBound = 'true';
+    }
 
     if (btnTemplate) {
       btnTemplate.addEventListener('click', () => {
@@ -1546,7 +1646,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     if (closeTemplateBtn) closeTemplateBtn.addEventListener('click', closeTemplateView);
-    if (templateDoneBtn) templateDoneBtn.addEventListener('click', closeTemplateView);
     if (btnTemplateStartRecord) {
       btnTemplateStartRecord.addEventListener('click', () => {
         closeTemplateView();
@@ -1972,3 +2071,4 @@ document.addEventListener('DOMContentLoaded', () => {
     console.warn("모달 초기화 중 에러 발생:", err);
   }
 });
+
