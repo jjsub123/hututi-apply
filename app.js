@@ -489,15 +489,16 @@ document.addEventListener('DOMContentLoaded', () => {
         btnLike.addEventListener('click', (e) => {
           e.stopPropagation();
           const countSpan = btnLike.querySelector('.count');
+          const iconSpan = btnLike.querySelector('.icon');
           const isActived = btnLike.classList.contains('active');
           
           if(isActived) {
             btnLike.classList.remove('active');
-            btnLike.querySelector('.icon').textContent = '🤍';
+            if (iconSpan) iconSpan.innerHTML = '<i class="ri-heart-3-line" aria-hidden="true"></i>';
             if(countSpan) countSpan.textContent = parseInt(countSpan.textContent) - 1;
           } else {
             btnLike.classList.add('active');
-            btnLike.querySelector('.icon').textContent = '❤️';
+            if (iconSpan) iconSpan.innerHTML = '<i class="ri-heart-3-fill" aria-hidden="true"></i>';
             if(countSpan) countSpan.textContent = parseInt(countSpan.textContent) + 1;
           }
         });
@@ -933,8 +934,8 @@ document.addEventListener('DOMContentLoaded', () => {
               ${post.content}
             </div>
             <div class="feed-actions">
-              <button class="action-btn btn-like"><span class="icon">🤍</span> <span class="count">0</span></button>
-              <button class="action-btn btn-comment"><span class="icon">💬</span> <span class="count">${postComments.length}</span></button>
+              <button class="action-btn btn-like"><span class="icon"><i class="ri-heart-3-line" aria-hidden="true"></i></span> <span class="count">0</span></button>
+              <button class="action-btn btn-comment"><span class="icon"><i class="ri-chat-3-line" aria-hidden="true"></i></span> <span class="count">${postComments.length}</span></button>
             </div>
             <div class="feed-comments" style="display: none;">
               <div class="comment-list">${commentsHtml}</div>
@@ -1209,11 +1210,11 @@ document.addEventListener('DOMContentLoaded', () => {
       setAttr('#questionContent', 'placeholder', '\uC0C1\uD669\uACFC \uC9C8\uBB38\uC744 \uAD6C\uCCB4\uC801\uC73C\uB85C \uC801\uC5B4\uC8FC\uC138\uC694.');
       setText('#submitQuestionBtn', '\uB4F1\uB85D\uD558\uAE30');
 
-      setText('.community-intro-badge', '\uD83D\uDCD8 \uCEE4\uBBA4\uB2C8\uD2F0 \uAC00\uC774\uB4DC');
+      setHtml('.community-intro-badge', '<i class="ri-book-open-line" aria-hidden="true"></i> \uCEE4\uBBA4\uB2C8\uD2F0 \uAC00\uC774\uB4DC');
       setText('.community-intro-copy h3', '\uB9E4\uC77C \uB9E4\uC7A5 \uC0C1\uD0DC\uB97C \uAE30\uB85D\uD574\uC57C \uD558\uB294 \uC774\uC720');
       setText('.community-intro-copy p', '\uC591\uC218\uC790\uC758 \uC2DC\uC120\uC73C\uB85C \uC65C \uC6B4\uC601\uAE30\uB85D\uC774 \uAD8C\uB9AC\uAE08\uACFC \uC2E0\uB8B0\uB97C \uBC14\uAFB8\uB294\uC9C0 \uBA3C\uC800 \uD655\uC778\uD574\uBCF4\uC138\uC694.');
 
-      setText('#statusCheckSection .hero-title', '\uD83D\uDCDD \uC624\uB298 \uB9E4\uC7A5 \uC0C1\uD0DC \uAE30\uB85D\uD558\uAE30');
+      setText('#statusCheckSection .hero-title', '\uC624\uB298 \uB9E4\uC7A5 \uC0C1\uD0DC \uAE30\uB85D\uD558\uAE30');
       setText('#statusCheckSection .hero-subtitle', '\uC791\uC740 \uAE30\uB85D\uC774 \uC313\uC77C\uC218\uB85D \uB0B4 \uB178\uB825\uACFC \uC131\uACFC\uAC00 \uB354 \uBD84\uBA85\uD558\uAC8C \uB0A8\uC2B5\uB2C8\uB2E4.');
       setText('#statusCheckSection .trust-tooltip-trigger', '\uC9D1\uACC4 \uAE30\uC900 \uBCF4\uAE30');
       setText('#statusCheckSection .trust-tooltip-bubble', '\uB204\uC801 \uC9D1\uACC4 \uAE30\uC900\uC73C\uB85C \uB0B4\uAC00 \uB0A8\uAE34 \uC6B4\uC601\uAE30\uB85D\uACFC \uC804\uBB38\uAC00 \uC9C8\uBB38 \uC218\uB97C \uBCF4\uC5EC\uC90D\uB2C8\uB2E4. \uCE74\uB4DC\uB97C \uB204\uB974\uBA74 \uC804\uCCB4 \uBAA9\uB85D\uC744 \uD655\uC778\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.');
@@ -1221,7 +1222,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setText('#statusCheckSection .trust-stat:nth-child(2) .stat-label', '\uC804\uBB38\uAC00 \uC9C8\uBB38');
       if (btnOpenLogModal) btnOpenLogModal.textContent = '\uC624\uB298\uC758 \uB9E4\uC7A5 \uC0C1\uD0DC 1\uBD84 \uAE30\uB85D\uD558\uAE30';
 
-      setText('.expert-header h3', '\uD83D\uDC68\u200D\uD83D\uDCBC \uC804\uBB38\uAC00 Q&A');
+      setText('.expert-header h3', '\uC804\uBB38\uAC00 Q&A');
       setText('.expert-header p', '\uC804\uBB38\uAC00\uAC00 \uC9C1\uC811 \uB2F5\uBCC0\uD574 \uB4DC\uB9BD\uB2C8\uB2E4.');
       setHtml('.expert-card .expert-question', '<span class=\"q-mark\">Q.</span> \uAD8C\uB9AC\uAE08 5\uCC9C vs \uB9E4\uCD9C 1,200, \uC801\uC815\uD55C \uAE08\uC561\uC77C\uAE4C\uC694?');
       setHtml('.expert-card .expert-answer', '<span class=\"a-mark\">A.</span> \uAD8C\uB9AC\uAE08\uC740 \uB9E4\uCD9C \uCD1D\uC561\uBCF4\uB2E4 \uC6B4\uC601 \uAD6C\uC870\uC640 \uC774\uD6C4 \uACE0\uC815\uBE44\uB97C \uD568\uAED8 \uBD10\uC57C \uD569\uB2C8\uB2E4. \uAC8C\uC2DC\uD310\uC5D0\uC11C \uC804\uCCB4 \uB2F5\uBCC0\uC744 \uD655\uC778\uD574\uBCF4\uC138\uC694.');
@@ -1230,14 +1231,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (expertLinks[1]) expertLinks[1].textContent = '\uC804\uBB38\uAC00 Q&A | \uC591\uC218\uC790\uAC00 \uB193\uCE58\uAE30 \uC26C\uC6B4 \uC228\uC740 \uBE44\uC6A9 3\uAC00\uC9C0';
       setText('.btn-expert-action', '\uB0B4 \uC0C1\uD669 \uC804\uBB38\uAC00\uC5D0\uAC8C \uC9C8\uBB38\uD558\uAE30');
 
-      setText('.insight-section .section-header h3', '\uD83D\uDD0E \uC0AC\uC7A5\uB2D8\uB4E4\uC774 \uB9CE\uC774 \uBCF4\uB294 \uAE30\uC900');
+      setText('.insight-section .section-header h3', '\uC0AC\uC7A5\uB2D8\uB4E4\uC774 \uB9CE\uC774 \uBCF4\uB294 \uAE30\uC900');
       const boardHeader = document.querySelector('.board-group-header');
       if (boardHeader) {
-        setText('h3', '\uD83D\uDDD2\uFE0F \uCEE4\uBBA4\uB2C8\uD2F0 \uAC8C\uC2DC\uD310', boardHeader);
+        setText('h3', '\uCEE4\uBBA4\uB2C8\uD2F0 \uAC8C\uC2DC\uD310', boardHeader);
         setText('p', '\uB9E4\uC7A5 \uC6B4\uC601 \uD750\uB984\uC744 \uC313\uACE0, \uC804\uBB38\uAC00 \uB2F5\uBCC0\uC744 \uBC1B\uACE0, \uBE44\uC2B7\uD55C \uACE0\uBBFC\uC744 \uB098\uB204\uB294 \uACF5\uAC04\uC785\uB2C8\uB2E4.', boardHeader);
       }
       const boardTabs = document.querySelectorAll('#boardTabs .board-tab');
-      if (boardTabs[0]) boardTabs[0].textContent = '\uC6B4\uC601\uAE30\uB85D';
+      if (boardTabs[0]) boardTabs[0].textContent = '\uC6B4\uC601 \uAE30\uB85D';
       if (boardTabs[1]) boardTabs[1].textContent = '\uC804\uBB38\uAC00 Q&A';
       if (boardTabs[2]) boardTabs[2].textContent = '\uC790\uC720/\uC9C8\uBB38';
 
