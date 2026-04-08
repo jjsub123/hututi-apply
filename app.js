@@ -1408,7 +1408,10 @@
         const introCopy = {
           hero: {
             eyebrow: '커뮤니티 소개',
-            title: '손님처럼 고민해 가게를 바꿨다면, 양수자 관점으로는 설명해보셨나요?',
+            title: '매장 상태를 기록해야 하는 이유',
+            subtitle: '손님처럼 고민해 가게를 바꿨다면, 양수자 관점으로는 설명해보셨나요?'
+          },
+          context: {
             body: '사장님은 이미 알고 계십니다. 손님 입장에서 봐야 가게가 좋아진다는 걸요. 양도양수도 같습니다. 양수자는 매출이 아니라 <strong>“이 가게가 왜 유지되는지”</strong>를 봅니다.'
           },
           problem: {
@@ -1459,7 +1462,8 @@
         setText('.sub-page-header h3', '커뮤니티 소개', communityIntroPage);
         setText('.intro-eyebrow', introCopy.hero.eyebrow, communityIntroPage);
         setText('.intro-hero-panel h1', introCopy.hero.title, communityIntroPage);
-        setHtml('.intro-hero-body', introCopy.hero.body, communityIntroPage);
+        setText('.intro-hero-subtitle', introCopy.hero.subtitle, communityIntroPage);
+        setHtml('.intro-article-intro', introCopy.context.body, communityIntroPage);
 
         setText('.intro-panel-problem h2', introCopy.problem.title, communityIntroPage);
         setText('.intro-panel-problem .intro-panel-lead', introCopy.problem.lead, communityIntroPage);
