@@ -1451,7 +1451,6 @@
 
     async function applyAuthenticatedSession(session, { navigateAfterLogin = false } = {}) {
       applySessionState(session);
-      await refreshAuthenticatedUi();
       closeLoginModal({ preserveRoute: true });
       clearRouteLock();
 
@@ -1466,27 +1465,32 @@
         } else {
           switchTab('tab-community');
         }
-        return;
+      } else {
+        applyRoute(parseHashRoute(window.location.hash), { updateHash: !window.location.hash, allowLockedView: false });
       }
 
-      applyRoute(parseHashRoute(window.location.hash), { updateHash: !window.location.hash, allowLockedView: false });
+      await refreshAuthenticatedUi();
     }
 
     async function handleSignedOutSession() {
       applySessionState(null);
-      pendingProtectedRoute = null;
       clearRouteLock();
       closeLoginModal({ preserveRoute: true });
-      await refreshAuthenticatedUi();
-      if (isProtectedSection(parseHashRoute(window.location.hash).section)) {
-        switchTab('tab-home');
+      const currentRoute = parseHashRoute(window.location.hash);
+      if (isProtectedSection(currentRoute.section)) {
+        pendingProtectedRoute = currentRoute.fullHash;
+      } else {
+        pendingProtectedRoute = null;
       }
+      applyRoute(currentRoute, { updateHash: !window.location.hash, allowLockedView: false });
+      await refreshAuthenticatedUi();
     }
 
     async function initializeAuthSession() {
       if (!supabaseClient) {
         authInitialized = true;
         syncBasicAuthUi();
+        applyRoute(parseHashRoute(window.location.hash), { updateHash: !window.location.hash, allowLockedView: false });
         await fetchPosts();
         return;
       }
@@ -1497,14 +1501,13 @@
       }
 
       applySessionState(data?.session || null);
-      await refreshAuthenticatedUi();
       applyRoute(parseHashRoute(window.location.hash), { updateHash: !window.location.hash, allowLockedView: false });
+      await refreshAuthenticatedUi();
 
       supabaseClient.auth.onAuthStateChange((_event, session) => {
         window.setTimeout(async () => {
           if (session?.access_token) {
-            applySessionState(session);
-            await refreshAuthenticatedUi();
+            await applyAuthenticatedSession(session, { navigateAfterLogin: false });
             return;
           }
 
