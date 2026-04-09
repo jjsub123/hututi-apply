@@ -185,6 +185,26 @@
     let currentUser = null;
     let authSession = null;
     let authInitialized = false;
+    let lastTrackedSection = null;
+    let pendingRouteAnalyticsSource = null;
+
+    const trackAnalyticsEvent = (name, data = {}) => {
+      if (typeof window === 'undefined' || typeof window.va !== 'function') return;
+
+      try {
+        window.va('event', {
+          name,
+          data
+        });
+      } catch (error) {
+        console.warn('Vercel Analytics event tracking failed.', error);
+      }
+    };
+    const trackTabView = (section = '', source = 'route_apply') => {
+      if (!section || section === lastTrackedSection) return;
+      lastTrackedSection = section;
+      trackAnalyticsEvent('Tab Viewed', { section, source });
+    };
 
     const getCurrentAuthUser = () => authSession?.user || currentUser || null;
     const getAuthMetadata = (user = getCurrentAuthUser()) => {
@@ -399,9 +419,10 @@
       if (scrollTop) window.scrollTo(0, 0);
     };
 
-    const applyRoute = (inputRoute, { updateHash = false, fromPopstate = false, allowLockedView = true } = {}) => {
+    const applyRoute = (inputRoute, { updateHash = false, fromPopstate = false, allowLockedView = true, analyticsSource = 'route_apply' } = {}) => {
       const route = normalizeRoute(inputRoute);
       if (updateHash && window.location.hash !== route.fullHash) {
+        pendingRouteAnalyticsSource = analyticsSource;
         window.location.hash = route.fullHash;
         return;
       }
@@ -419,12 +440,13 @@
       pendingProtectedRoute = null;
       clearRouteLock();
       renderTab(targetId, { scrollTop: !fromPopstate });
+      trackTabView(route.section, analyticsSource);
     };
 
     // 탭 전환 함수
-    const switchTab = (targetId) => {
+    const switchTab = (targetId, { analyticsSource = 'tab_click' } = {}) => {
       const section = TAB_ID_TO_SECTION[targetId] || 'intro';
-      applyRoute({ section, rest: [], fullHash: `#${section}` }, { updateHash: true });
+      applyRoute({ section, rest: [], fullHash: `#${section}` }, { updateHash: true, analyticsSource });
     };
 
     // 탭 클릭 이벤트
@@ -432,15 +454,17 @@
       tab.addEventListener('click', (e) => {
         e.preventDefault();
         const targetId = tab.getAttribute('data-tab');
-        switchTab(targetId);
+        switchTab(targetId, { analyticsSource: 'tab_click' });
       });
     });
 
     window.addEventListener('hashchange', () => {
-      applyRoute(parseHashRoute(window.location.hash), { fromPopstate: true, allowLockedView: false });
+      const analyticsSource = pendingRouteAnalyticsSource || 'hashchange';
+      pendingRouteAnalyticsSource = null;
+      applyRoute(parseHashRoute(window.location.hash), { fromPopstate: true, allowLockedView: false, analyticsSource });
     });
 
-    applyRoute(parseHashRoute(window.location.hash), { updateHash: true, allowLockedView: false });
+    applyRoute(parseHashRoute(window.location.hash), { updateHash: true, allowLockedView: false, analyticsSource: 'initial_load' });
 
     // --- 신규 기능: 데일리 상태 체크 로직 ---
     const statusChecks = [
@@ -1461,9 +1485,9 @@
 
       if (navigateAfterLogin) {
         if (resumeRoute) {
-          applyRoute(resumeRoute, { updateHash: true, allowLockedView: false });
+          applyRoute(resumeRoute, { updateHash: true, allowLockedView: false, analyticsSource: 'post_login_redirect' });
         } else {
-          switchTab('tab-community');
+          switchTab('tab-community', { analyticsSource: 'post_login_redirect' });
         }
       } else {
         applyRoute(parseHashRoute(window.location.hash), { updateHash: !window.location.hash, allowLockedView: false });
