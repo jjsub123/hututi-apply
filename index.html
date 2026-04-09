@@ -183,10 +183,10 @@
           </div>
           <div class="expert-card" style="cursor: pointer;" onclick="openExpertBoard('expert-1')">
             <div class="expert-question">
-              <span class="q-mark">Q.</span> 권리금 5천 vs 매출 1,200, 적정한 금액일까요?
+              <span class="q-mark">Q.</span> [질문] 지인(옆 가게 사장님)과 직접 권리금 계약을 하려는데, 꼭 부동산을 껴야 하나요?
             </div>
             <div class="expert-answer">
-              <span class="a-mark">A.</span> 권리금은 매출 총액보다 운영 구조와 이후 고정비를 함께 봐야 합니다. 게시판에서 전체 답변을 확인해보세요.
+              <span class="a-mark">A.</span> [전문가 답변] 네, 당사자 간 직접 계약도 법적 효력은 동일합니다.
             </div>
           </div>
           <div class="expert-related-links" style="margin-top: 12px;">
@@ -306,11 +306,12 @@
                 </div>
                 <div class="feed-content">
                   <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;">
-                    <span class="tag tag-blue">Premium</span>
-                    <span class="tag tag-mint">Case</span>
+                    <span class="tag tag-blue">권리금</span>
+                    <span class="tag tag-mint">직거래</span>
                   </div>
-                  <strong>Q.</strong> Is 50M premium fair for 12M sales?<br>
-                  <span style="color: var(--text-muted);">Structure matters more than sales alone.</span>
+                  <strong>Q. [질문]</strong> 지인(옆 가게 사장님)과 직접 권리금 계약을 하려는데, 꼭 부동산을 껴야 하나요?<br><br>
+                  안녕하세요. 이번에 옆 가게 사장님께 제 매장을 양도하기로 협의를 마쳤습니다. 건물주분과도 이야기가 잘 된 상태고요.<br><br>
+                  내일 당장 권리금 계약서를 쓰기로 했는데, 굳이 부동산(공인중개사)에 가지 않고 우리끼리 직접 작성해도 법적인 효력에 문제가 없을까요? 아니면 나중을 위해서라도 비용을 내고 중개업소를 거치는 게 안전할지 고민입니다.
                 </div>
                 <div class="feed-actions">
                   <button class="action-btn btn-like"><span class="icon"><i class="ri-heart-3-line" aria-hidden="true"></i></span> <span class="count">4</span></button>
@@ -318,7 +319,7 @@
                 </div>
                 <div class="feed-comments" style="display: none;">
                   <div class="comment-list">
-                    <div class="comment-item"><span class="comment-author">전문가 <span class="author-badge">인증</span></span> Check the last 3 months and fixed-cost structure before judging the premium.</div>
+                    <div class="comment-item"><span class="comment-author">전문가 <span class="author-badge">인증</span></span> <strong>A. [전문가 답변]</strong> 네, 당사자 간 직접 계약도 법적 효력은 동일합니다.<br><br>권리금 계약의 주체는 기존 임차인(양도인)과 신규 임차인(양수인)입니다. 공인중개사는 필수 당사자가 아니므로, 합의 내용만 명확하다면 직접 작성하셔도 무방합니다.<br><br>표준양식 사용: '상가건물 권리금 표준계약서'를 활용하세요.<br>조건부 명시: "건물주와의 임대차 계약이 무산될 경우, 본 권리금 계약은 무효로 하고 계약금은 즉시 반환한다"는 특약을 반드시 넣으세요.<br>시설 목록: 인계할 비품과 시설 범위를 명확히 기재해야 추후 분쟁이 없습니다.</div>
                   </div>
                   <div class="comment-input-area">
                     <textarea class="comment-input" rows="1" placeholder="Leave a comment"></textarea>
@@ -444,10 +445,10 @@
             <span class="profile-avatar-check" aria-hidden="true"><i class="ri-checkbox-circle-line"></i></span>
           </div>
           <div class="profile-info">
-            <h3 id="displayUserId">Login required</h3>
+            <h3 id="displayUserId">로그인이 필요해요</h3>
             <p>We are in this together today.</p>
           </div>
-          <button id="btnLogout" class="btn-logout" style="display: none;">Logout</button>
+          <button id="btnLogout" class="btn-logout" style="display: none;">로그아웃</button>
         </div>
 
         <section class="mypage-section reward-dashboard">
@@ -550,15 +551,15 @@
         <h3 id="loginModalTitle">로그인이 필요합니다</h3>
         <button class="close-modal-btn" id="closeLoginBtn">&times;</button>
       </div>
-      <p class="modal-desc" id="loginModalDesc">인증된 사용자만 이 페이지에 접근할 수 있습니다.</p>
+      <p class="modal-desc" id="loginModalDesc">초대받은 사용자만 이메일과 비밀번호로 로그인할 수 있습니다.</p>
       <form id="loginForm" class="modal-body">
         <div class="form-group">
-          <label for="userId" id="userIdLabel">ID</label>
-          <input type="text" id="userId" required placeholder="Enter your ID">
+          <label for="userEmail" id="userEmailLabel">Email</label>
+          <input type="email" id="userEmail" required autocomplete="username" placeholder="Enter your email">
         </div>
         <div class="form-group">
           <label for="userPw" id="userPwLabel">Password</label>
-          <input type="password" id="userPw" required placeholder="Enter your password">
+          <input type="password" id="userPw" required autocomplete="current-password" placeholder="Enter your password">
         </div>
 
         <div class="modal-actions">
@@ -566,8 +567,8 @@
         </div>
 
         <div class="login-help">
-          <p id="loginHelpText">If you forgot your account, contact the operator.</p>
-          <a href="https://open.kakao.com/o/sometestlink" target="_blank" class="text-link" id="loginHelpLink">Ask by 1:1 Kakao chat</a>
+          <p id="loginHelpText">계정 발급이나 비밀번호 재안내가 필요하면 운영자에게 문의해주세요.</p>
+          <a href="https://open.kakao.com/o/sauYbxpi" target="_blank" rel="noopener noreferrer" class="text-link" id="loginHelpLink">운영자에게 1:1 카톡 문의하기</a>
         </div>
       </form>
     </div>
@@ -829,7 +830,7 @@
             <h2 class="template-worksheet-title">이 구조로 매물을 정리해보세요</h2>
             <p class="template-worksheet-desc">입력 대신 체크하면서, 어떤 항목이 준비되어 있는지 워크시트처럼 점검할 수 있게 구성했습니다.</p>
             <div class="template-section-actions">
-              <a href="practical_listing_template.pdf" download="실전 매물 소개 템플릿.pdf" id="btnTemplateDownload" class="btn btn-secondary template-inline-download">PDF 템플릿 다운로드</a>
+              <a href="practical_listing_template.pdf" target="_blank" rel="noopener noreferrer" id="btnTemplateDownload" class="btn btn-secondary template-inline-download">PDF 템플릿 다운로드</a>
             </div>
           </div>
           <div class="template-worksheet-groups"></div>

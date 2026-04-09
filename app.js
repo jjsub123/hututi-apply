@@ -180,51 +180,41 @@
     }
 
     // --- 신규 기능: 로그인 및 탭 전환 로직 ---
-    const demoAccounts = {
-      boss: { id: 'boss', password: '1234', displayName: '내일 사장님', role: 'owner' },
-      empty_owner: { id: 'empty_owner', password: '1234', displayName: '새로운 사장님', role: 'owner' },
-      test1: { id: 'test1', password: 'sodlftkwkd!', displayName: '현사장님', role: 'owner' },
-      ze7mra41: { id: 'ze7mra41', password: 'S!9qv#L2p@Rt', displayName: '여유로운 사자 사장님', role: 'owner' },
-      kq8vnp52: { id: 'kq8vnp52', password: 'H$4mn!X7q@Ke', displayName: '날렵한 흑표범 사장님', role: 'owner' },
-      hx4tdl63: { id: 'hx4tdl63', password: 'B!7zr@P3m#Lu', displayName: '성실한 꿀벌 사장님', role: 'owner' },
-      ru9wcb74: { id: 'ru9wcb74', password: 'T@6vk!N8c#Sa', displayName: '신중한 거북이 사장님', role: 'owner' },
-      mn6yfk85: { id: 'mn6yfk85', password: 'E#5qd!R9w@Zo', displayName: '지혜로운 코끼리 사장님', role: 'owner' },
-      expert_guide: { id: 'expert_guide', password: 'Qna!2026Pro', displayName: '전문가', role: 'expert' }
-    };
-
-    let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const defaultLoggedOutText = '로그인이 필요해요';
+    let isLoggedIn = false;
     let currentUser = null;
-    try {
-      currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
-    } catch (error) {
-      currentUser = null;
-    }
-    if (isLoggedIn && !currentUser) currentUser = demoAccounts.boss;
+    let authSession = null;
+    let authInitialized = false;
 
-    const LEGACY_AUTHOR_ID_MAP = {
-      '내일 사장님': 'boss',
-      '내일사장': 'boss',
-      'Owner': 'boss',
-      '전문가': 'expert_guide'
+    const getCurrentAuthUser = () => authSession?.user || currentUser || null;
+    const getAuthMetadata = (user = getCurrentAuthUser()) => {
+      if (!user) return {};
+      const userMetadata = user.user_metadata && typeof user.user_metadata === 'object' ? user.user_metadata : {};
+      const appMetadata = user.app_metadata && typeof user.app_metadata === 'object' ? user.app_metadata : {};
+      return {
+        ...userMetadata,
+        role: appMetadata.role || userMetadata.role || ''
+      };
     };
-
-    const getCurrentUserId = () => currentUser?.id || '';
-    const getCurrentUserDisplayName = () => currentUser?.displayName || '내일 사장님';
-    const getCurrentUserRole = () => currentUser?.role || 'owner';
-    const resolveLegacyAuthorId = (author = '') => LEGACY_AUTHOR_ID_MAP[String(author || '').trim()] || null;
-    const getEffectiveAuthorId = (recordOrAuthor = '', fallbackRole = '') => {
+    const getCurrentUserId = () => getCurrentAuthUser()?.id || '';
+    const getCurrentUserDisplayName = () => {
+      const user = getCurrentAuthUser();
+      const metadata = getAuthMetadata(user);
+      return metadata.display_name || user?.email || defaultLoggedOutText;
+    };
+    const getCurrentUserRole = () => getAuthMetadata().role || 'owner';
+    const getEffectiveAuthorId = (recordOrAuthor = '') => {
       if (recordOrAuthor && typeof recordOrAuthor === 'object') {
         return recordOrAuthor.effectiveAuthorId
           || recordOrAuthor.author_id
-          || resolveLegacyAuthorId(recordOrAuthor.author || '');
+          || null;
       }
-      return resolveLegacyAuthorId(String(recordOrAuthor || '').trim());
+      return null;
     };
     const getEffectiveAuthorRole = (record = {}, fallbackRole = '') => {
-      if (record.author_role) return record.author_role;
-      const effectiveAuthorId = getEffectiveAuthorId(record);
-      if (effectiveAuthorId === 'expert_guide') return 'expert';
-      if (effectiveAuthorId) return 'owner';
+      if (record.effectiveAuthorRole) return record.effectiveAuthorRole;
+      if (record.author_id && record.author_id === getCurrentUserId()) return getCurrentUserRole();
+      if (String(record.author || '').trim().startsWith('전문가')) return 'expert';
       return fallbackRole || '';
     };
     const isExpertAuthor = (author = '', authorRole = '') => authorRole === 'expert' || String(author || '').startsWith('전문가');
@@ -243,11 +233,13 @@
     const loginForm = document.getElementById('loginForm');
     const btnLogout = document.getElementById('btnLogout');
     const displayUserId = document.getElementById('displayUserId');
-    
-    if(isLoggedIn) {
-      if(btnLogout) btnLogout.style.display = 'block';
-      if(displayUserId) displayUserId.textContent = getCurrentUserDisplayName();
+
+    function syncBasicAuthUi() {
+      if (btnLogout) btnLogout.style.display = isLoggedIn ? 'block' : 'none';
+      if (displayUserId) displayUserId.textContent = isLoggedIn ? getCurrentUserDisplayName() : defaultLoggedOutText;
     }
+
+    syncBasicAuthUi();
 
     const tabs = document.querySelectorAll('.nav-tabs .tab');
     const tabPanes = document.querySelectorAll('.tab-pane');
@@ -263,7 +255,7 @@
     let pendingProtectedRoute = null;
     let lockedRouteTabId = null;
 
-    const canAccessProtectedTabs = () => isLoggedIn;
+    const canAccessProtectedTabs = () => authInitialized && isLoggedIn;
     const isProtectedSection = (section = 'intro') => section !== 'intro';
     const parseHashRoute = (hash = window.location.hash) => {
       const raw = String(hash || '').replace(/^#/, '').trim();
@@ -302,6 +294,11 @@
     const openLoginModal = () => {
       if (loginModal) loginModal.classList.add('active');
     };
+    const ensureAuthenticated = () => {
+      if (isLoggedIn) return true;
+      openLoginModal();
+      return false;
+    };
 
     // 로그인 모달 닫기
     const closeLoginModal = ({ preserveRoute = false } = {}) => {
@@ -321,57 +318,54 @@
     }
     
     if (btnLogout) {
-      btnLogout.addEventListener('click', () => {
-        localStorage.removeItem('isLoggedIn');
-        localStorage.removeItem('currentUser');
-        isLoggedIn = false;
-        currentUser = null;
-        pendingProtectedRoute = null;
-        clearRouteLock();
-        btnLogout.style.display = 'none';
-        if(displayUserId) displayUserId.textContent = '로그인이 필요해요';
+      btnLogout.addEventListener('click', async () => {
+        if (!supabaseClient) return;
+        const { error } = await supabaseClient.auth.signOut();
+        if (error) {
+          console.error(error);
+          alert('로그아웃 중 오류가 발생했습니다.');
+          return;
+        }
         alert('로그아웃 되었습니다.');
-        refreshUserScopedUi();
-        switchTab('tab-home');
       });
     }
 
-    // 로그인 폼 제출 (단순 가짜 로그인 처리)
+    // 로그인 폼 제출
     if (loginForm) {
-      loginForm.addEventListener('submit', (e) => {
+      loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const userId = document.getElementById('userId').value;
+        const userEmail = document.getElementById('userEmail').value.trim();
         const userPw = document.getElementById('userPw').value;
 
-        const matchedAccount = Object.values(demoAccounts).find(account => {
-          return account.id === userId && account.password === userPw;
-        });
-        
-        if (matchedAccount) {
-          isLoggedIn = true;
-          localStorage.setItem('isLoggedIn', 'true');
-          currentUser = matchedAccount;
-          localStorage.setItem('currentUser', JSON.stringify(matchedAccount));
-          alert(`로그인되었습니다. ${matchedAccount.displayName}님 환영합니다!`);
-          
-          if (displayUserId) displayUserId.textContent = matchedAccount.displayName;
-          if (btnLogout) btnLogout.style.display = 'block';
-          refreshUserScopedUi();
-
-          const resumeRoute = pendingProtectedRoute ? parseHashRoute(pendingProtectedRoute) : null;
-          pendingProtectedRoute = null;
-          clearRouteLock();
-          closeLoginModal({ preserveRoute: true });
-
-          if (resumeRoute) {
-            applyRoute(resumeRoute, { updateHash: true });
-          } else {
-            // 일반 로그인은 기존처럼 커뮤니티 탭으로 연결
-            switchTab('tab-community');
-          }
-        } else {
-          alert('존재하지 않는 아이디거나 비밀번호가 일치하지 않습니다.\n※ 테스트 계정 예시: boss / 1234, test1 / sodlftkwkd!, expert_guide / Qna!2026Pro');
+        if (!supabaseClient) {
+          alert('데이터베이스(Supabase) 설정이 완료되지 않았습니다.');
+          return;
         }
+
+        const submitButton = loginForm.querySelector('button[type="submit"]');
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = '로그인 중...';
+        }
+
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+          email: userEmail,
+          password: userPw
+        });
+
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = '로그인';
+        }
+
+        if (error || !data?.session) {
+          console.error(error);
+          alert('이메일 또는 비밀번호가 올바르지 않습니다.');
+          return;
+        }
+
+        await applyAuthenticatedSession(data.session, { navigateAfterLogin: true });
+        alert(`로그인되었습니다. ${getCurrentUserDisplayName()}님 환영합니다!`);
       });
     }
 
@@ -416,9 +410,9 @@
 
       if (isProtectedSection(route.section) && !canAccessProtectedTabs()) {
         pendingProtectedRoute = route.fullHash;
-        renderTab(targetId, { scrollTop: !fromPopstate });
-        if (allowLockedView) lockRoutePane(targetId);
-        openLoginModal();
+        renderTab('tab-home', { scrollTop: !fromPopstate });
+        clearRouteLock();
+        if (authInitialized) openLoginModal();
         return;
       }
 
@@ -443,10 +437,10 @@
     });
 
     window.addEventListener('hashchange', () => {
-      applyRoute(parseHashRoute(window.location.hash), { fromPopstate: true, allowLockedView: true });
+      applyRoute(parseHashRoute(window.location.hash), { fromPopstate: true, allowLockedView: false });
     });
 
-    applyRoute(parseHashRoute(window.location.hash), { updateHash: true, allowLockedView: true });
+    applyRoute(parseHashRoute(window.location.hash), { updateHash: true, allowLockedView: false });
 
     // --- 신규 기능: 데일리 상태 체크 로직 ---
     const statusChecks = [
@@ -525,7 +519,7 @@
 
     // 모달 열기/닫기
     const openLogModal = () => {
-      if (!isLoggedIn) { if (loginModal) loginModal.classList.add('active'); return; }
+      if (!ensureAuthenticated()) return;
       // 항상 1단계부터 시작
       document.getElementById('logStep1').style.display = 'block';
       document.getElementById('logStep2').style.display = 'none';
@@ -572,7 +566,6 @@
             board_type: 'retro',
             author: getCurrentUserDisplayName(),
             author_id: getCurrentUserId(),
-            author_role: getCurrentUserRole(),
             content: `<strong>오늘 매장 상태 기록</strong><br>${combinedText.trim().replace(/\n/g, '<br>')}`,
             retro_tags: retro_tags ? `<div style="background:var(--bg-color); padding:10px; border-radius:8px; margin-bottom:12px; font-size:13px; color:var(--text-main); line-height:1.4;">${retro_tags}</div>` : null
           }]);
@@ -614,21 +607,67 @@
 
       // 좋아요 로직
       if (btnLike) {
-        btnLike.addEventListener('click', (e) => {
+        btnLike.addEventListener('click', async (e) => {
           e.stopPropagation();
+          if (!ensureAuthenticated()) return;
+          if (!supabaseClient) {
+            alert('DB 연결이 필요합니다.');
+            return;
+          }
+
+          const postKey = String(card.getAttribute('data-post-id') || '').trim();
+          if (!postKey) return;
+
           const countSpan = btnLike.querySelector('.count');
           const iconSpan = btnLike.querySelector('.icon');
           const isActived = btnLike.classList.contains('active');
-          
+
+          btnLike.disabled = true;
+
           if(isActived) {
-            btnLike.classList.remove('active');
-            if (iconSpan) iconSpan.innerHTML = '<i class="ri-heart-3-line" aria-hidden="true"></i>';
-            if(countSpan) countSpan.textContent = parseInt(countSpan.textContent) - 1;
+            const { error } = await supabaseClient
+              .from('post_likes')
+              .delete()
+              .eq('post_key', postKey)
+              .eq('user_id', getCurrentUserId());
+
+            if (error) {
+              console.error(error);
+              if (isMissingRelationError(error)) {
+                hasPostLikesTable = false;
+                alert(getEngagementSetupMessage('좋아요'));
+              } else {
+                alert('좋아요를 취소하지 못했습니다.');
+              }
+              btnLike.disabled = false;
+              return;
+            }
           } else {
-            btnLike.classList.add('active');
-            if (iconSpan) iconSpan.innerHTML = '<i class="ri-heart-3-fill" aria-hidden="true"></i>';
-            if(countSpan) countSpan.textContent = parseInt(countSpan.textContent) + 1;
+            const { error } = await supabaseClient.from('post_likes').insert([{
+              post_key: postKey,
+              user_id: getCurrentUserId()
+            }]);
+
+            if (error) {
+              console.error(error);
+              if (isMissingRelationError(error)) {
+                hasPostLikesTable = false;
+                alert(getEngagementSetupMessage('좋아요'));
+              } else {
+                alert('좋아요를 저장하지 못했습니다.');
+              }
+              btnLike.disabled = false;
+              return;
+            }
           }
+
+          const currentCount = parseInt(countSpan?.textContent || '0', 10) || 0;
+          const nextCount = isActived ? Math.max(0, currentCount - 1) : currentCount + 1;
+          btnLike.classList.toggle('active', !isActived);
+          if (iconSpan) iconSpan.innerHTML = createLikeIconHtml(!isActived);
+          if(countSpan) countSpan.textContent = String(nextCount);
+          btnLike.disabled = false;
+          if(typeof fetchPosts === 'function') fetchPosts();
         });
       }
 
@@ -649,6 +688,7 @@
       if (submitCommentBtn && commentInput && commentList && commentCountSpan) {
         submitCommentBtn.addEventListener('click', async (e) => {
           e.stopPropagation();
+          if (!ensureAuthenticated()) return;
           const commentText = commentInput.value;
           if(!commentText.trim()) return;
           
@@ -657,54 +697,53 @@
             return;
           }
 
-          const postId = card.getAttribute('data-post-id');
-          // UUID는 36자이므로 짧으면 더미 카드(1, 2)로 간주
-          if(!postId || postId.length < 30) {
-            // 더미 카드의 경우 로컬로만 추가
-            const emptyNode = commentList.querySelector('.empty-comment');
-            if(emptyNode) emptyNode.remove();
-
-            const newComment = document.createElement('div');
-            newComment.className = 'comment-item';
-            newComment.innerHTML = `
-              <span class="comment-author">${getCurrentAuthorHtml()}</span> ${commentText}
-            `;
-            commentList.appendChild(newComment);
-            commentCountSpan.textContent = parseInt(commentCountSpan.textContent) + 1;
-            commentInput.value = '';
-            return;
-          }
+          const postId = String(card.getAttribute('data-post-id') || '').trim();
+          if(!postId) return;
 
           submitCommentBtn.disabled = true;
           submitCommentBtn.textContent = '등록중';
 
-          const { error } = await supabaseClient.from('comments').insert([{
-            post_id: postId,
-            author: getCurrentUserDisplayName(),
-            author_id: getCurrentUserId(),
-            author_role: getCurrentUserRole(),
-            content: commentText
-          }]);
+          let error = null;
+          if (hasCommunityCommentsTable) {
+            const result = await supabaseClient.from('community_comments').insert([{
+              post_key: postId,
+              author: getCurrentUserDisplayName(),
+              author_id: getCurrentUserId(),
+              content: commentText
+            }]);
+            error = result.error;
+          }
+
+          if (error && isMissingRelationError(error)) {
+            hasCommunityCommentsTable = false;
+            error = null;
+          }
+
+          if (!hasCommunityCommentsTable) {
+            if (isUuidPostId(postId)) {
+              const fallbackResult = await supabaseClient.from('comments').insert([{
+                post_id: postId,
+                author: getCurrentUserDisplayName(),
+                author_id: getCurrentUserId(),
+                content: commentText
+              }]);
+              error = fallbackResult.error;
+            } else {
+              error = { message: getEngagementSetupMessage('샘플 게시글 댓글') };
+            }
+          }
 
           if (error) {
             console.error(error);
-            alert('댓글 작성 중 오류가 발생했습니다.');
+            if (!hasCommunityCommentsTable && !isUuidPostId(postId)) {
+              alert(getEngagementSetupMessage('샘플 게시글 댓글'));
+            } else {
+              alert('댓글 작성 중 오류가 발생했습니다.');
+            }
             submitCommentBtn.disabled = false;
             submitCommentBtn.textContent = '등록';
             return;
           }
-
-          // 로컬 DOM에 즉시 반영
-          const emptyNode = commentList.querySelector('.empty-comment');
-          if(emptyNode) emptyNode.remove();
-          
-          const newComment = document.createElement('div');
-          newComment.className = 'comment-item';
-          newComment.innerHTML = `
-            <span class="comment-author">${getCurrentAuthorHtml()}</span> ${commentText}
-          `;
-          commentList.appendChild(newComment);
-          if(commentCountSpan) commentCountSpan.textContent = parseInt(commentCountSpan.textContent) + 1;
 
           commentInput.value = '';
           submitCommentBtn.disabled = false;
@@ -732,10 +771,7 @@
     
     if (fabWriteBtn) {
       fabWriteBtn.addEventListener('click', () => {
-        if (!isLoggedIn) {
-          if (loginModal) loginModal.classList.add('active');
-          return;
-        }
+        if (!ensureAuthenticated()) return;
         if (writeActionSheet) writeActionSheet.classList.add('active');
       });
     }
@@ -791,7 +827,6 @@
           board_type: board_type,
           author: getCurrentUserDisplayName(),
           author_id: getCurrentUserId(),
-          author_role: getCurrentUserRole(),
           content: finalContent,
           retro_tags: retro_tags
         }]);
@@ -861,6 +896,105 @@
       'board-expert': 1,
       'board-retro': 1
     };
+    let hasCommunityCommentsTable = true;
+    let hasPostLikesTable = true;
+    const isMissingRelationError = (error = {}) => {
+      const message = String(error?.message || '').toLowerCase();
+      return error?.code === '42P01'
+        || message.includes('does not exist')
+        || message.includes('could not find the table')
+        || message.includes('relation')
+        || message.includes('schema cache');
+    };
+    const getEngagementSetupMessage = (featureName = '기능') => `${featureName} 기능을 사용하려면 Supabase에서 supabase/02_community_engagement.sql을 먼저 실행해야 합니다.`;
+    const createLikeIconHtml = (isActive = false) => isActive
+      ? '<i class="ri-heart-3-fill" aria-hidden="true"></i>'
+      : '<i class="ri-heart-3-line" aria-hidden="true"></i>';
+    const isUuidPostId = (postId = '') => /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(String(postId || '').trim());
+    const renderPersistedCommentHtml = (comment = {}) => `
+      <div class="comment-item">
+        <span class="comment-author">${getAuthorDisplayHtml(comment.author, comment.effectiveAuthorRole)}</span> ${comment.content}
+      </div>
+    `;
+    const combineCommentHtml = (baseCommentsHtml = [], appendedComments = []) => {
+      const persistedHtml = appendedComments.map(renderPersistedCommentHtml);
+      const combined = [...baseCommentsHtml, ...persistedHtml];
+      return combined.length ? combined.join('') : '<div class="empty-comment">첫 댓글을 남겨보세요.</div>';
+    };
+    const applyEngagementStateToCard = (card, { baseLikeCount = 0, likesCount = 0, likedByCurrentUser = false, baseCommentsHtml = [], appendedComments = [] } = {}) => {
+      if (!card) return;
+
+      const btnLike = card.querySelector('.btn-like');
+      const likeCountSpan = btnLike?.querySelector('.count');
+      const likeIconSpan = btnLike?.querySelector('.icon');
+      const likeTotal = baseLikeCount + likesCount;
+
+      if (btnLike) btnLike.classList.toggle('active', likedByCurrentUser);
+      if (likeIconSpan) likeIconSpan.innerHTML = createLikeIconHtml(likedByCurrentUser);
+      if (likeCountSpan) likeCountSpan.textContent = String(likeTotal);
+
+      const commentList = card.querySelector('.comment-list');
+      const commentCountSpan = card.querySelector('.btn-comment .count');
+      const totalCommentCount = baseCommentsHtml.length + appendedComments.length;
+      if (commentList) commentList.innerHTML = combineCommentHtml(baseCommentsHtml, appendedComments);
+      if (commentCountSpan) commentCountSpan.textContent = String(totalCommentCount);
+    };
+    const buildMockEntryWithEngagement = (entry, { comments = [], likesCount = 0, likedByCurrentUser = false } = {}) => {
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = entry.html.trim();
+      const card = wrapper.firstElementChild;
+      applyEngagementStateToCard(card, {
+        baseLikeCount: entry.baseLikeCount || 0,
+        likesCount,
+        likedByCurrentUser,
+        baseCommentsHtml: entry.baseCommentsHtml || [],
+        appendedComments: comments
+      });
+
+      return {
+        ...entry,
+        hasExpertReply: entry.hasExpertReply || comments.some((comment) => isExpertAuthor(comment.author || '', comment.effectiveAuthorRole)),
+        html: card ? card.outerHTML : entry.html
+      };
+    };
+    const buildPersistedFeedCardHtml = (post = {}, { comments = [], likesCount = 0, likedByCurrentUser = false } = {}) => {
+      const tagsHtml = post.retro_tags ? post.retro_tags : '';
+      const timeStr = new Date(post.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+      const commentsHtml = combineCommentHtml([], comments);
+      const likeClassName = likedByCurrentUser ? 'action-btn btn-like active' : 'action-btn btn-like';
+
+      return {
+        timeStr,
+        contentText: `${tagsHtml ? tagsHtml.replace(/<[^>]+>/g, ' ') : ''} ${post.content.replace(/<[^>]+>/g, ' ')}`.replace(/\s+/g, ' ').trim(),
+        hasExpertReply: comments.some((comment) => isExpertAuthor(comment.author || '', comment.effectiveAuthorRole)),
+        html: `
+          <div class="feed-card" data-post-id="${post.id}">
+            <div class="feed-header">
+              <div class="feed-author">
+                <div class="author-avatar ${getAuthorAvatarClass(post.author, post.effectiveAuthorRole)}">${post.author.charAt(0)}</div>
+                <span class="author-name">${post.author}</span>
+                <span class="feed-time">${timeStr}</span>
+              </div>
+            </div>
+            <div class="feed-content">
+              ${tagsHtml}
+              ${post.content}
+            </div>
+            <div class="feed-actions">
+              <button class="${likeClassName}"><span class="icon">${createLikeIconHtml(likedByCurrentUser)}</span> <span class="count">${likesCount}</span></button>
+              <button class="action-btn btn-comment"><span class="icon"><i class="ri-chat-3-line" aria-hidden="true"></i></span> <span class="count">${comments.length}</span></button>
+            </div>
+            <div class="feed-comments" style="display: none;">
+              <div class="comment-list">${commentsHtml}</div>
+              <div class="comment-input-area">
+                <textarea class="comment-input" rows="1" placeholder="따뜻한 한마디를 입력해주세요"></textarea>
+                <button class="btn btn-primary submit-comment">등록</button>
+              </div>
+            </div>
+          </div>
+        `
+      };
+    };
 
     const getBoardEntryFromCard = (card) => {
       const author = card.querySelector('.author-name')?.textContent || '';
@@ -868,7 +1002,9 @@
       const time = card.querySelector('.feed-time')?.textContent || '';
       const postId = card.getAttribute('data-post-id') || `mock-${Math.random().toString(36).slice(2, 10)}`;
       const hasExpertReply = [...card.querySelectorAll('.comment-author')].some(node => node.textContent.includes('전문가'));
-      const effectiveAuthorId = resolveLegacyAuthorId(author);
+      const effectiveAuthorId = null;
+      const baseLikeCount = parseInt(card.querySelector('.btn-like .count')?.textContent || '0', 10) || 0;
+      const baseCommentsHtml = [...card.querySelectorAll('.comment-item')].map((node) => node.outerHTML);
 
       return {
         postId,
@@ -877,6 +1013,8 @@
         contentText,
         time,
         hasExpertReply,
+        baseLikeCount,
+        baseCommentsHtml,
         html: card.outerHTML
       };
     };
@@ -1093,8 +1231,43 @@
     }
 
     // --- DB에서 포스트 & 댓글 불러와서 렌더링 ---
+    const ensureMockBoardEntries = () => {
+      if (window.mockBoardEntries) return;
+
+      const boardOperation = document.querySelector('#board-free .feed-list');
+      const boardExpert = document.querySelector('#board-expert .feed-list');
+      const boardFree = document.querySelector('#board-retro .feed-list');
+
+      window.mockBoardEntries = {
+        'board-free': boardOperation ? [...boardOperation.querySelectorAll('.feed-card')].map(getBoardEntryFromCard) : [],
+        'board-expert': boardExpert ? [...boardExpert.querySelectorAll('.feed-card')].map(getBoardEntryFromCard) : [],
+        'board-retro': boardFree ? [...boardFree.querySelectorAll('.feed-card')].map(getBoardEntryFromCard) : []
+      };
+    };
+
+    const resetBoardEntriesToMock = () => {
+      ensureMockBoardEntries();
+      window.latestPostsData = [];
+      window.latestCommentsData = [];
+      window.boardEntries = {
+        'board-free': [...(window.mockBoardEntries['board-free'] || [])],
+        'board-expert': [...(window.mockBoardEntries['board-expert'] || [])],
+        'board-retro': [...(window.mockBoardEntries['board-retro'] || [])]
+      };
+      renderBoardPane('board-free');
+      renderBoardPane('board-expert');
+      renderBoardPane('board-retro');
+      updateTrustDashboardCounts();
+      renderRewardDashboard();
+      if (typeof renderTrustActivityList === 'function') renderTrustActivityList();
+    };
+
     window.fetchPosts = async () => {
-      if(!supabaseClient) return;
+      ensureMockBoardEntries();
+      if(!supabaseClient || !isLoggedIn) {
+        resetBoardEntriesToMock();
+        return;
+      }
 
       const { data: postsData, error: postsError } = await supabaseClient
         .from('posts')
@@ -1103,6 +1276,7 @@
 
       if (postsError) {
         console.error("게시글 불러오기 실패:", postsError);
+        resetBoardEntriesToMock();
         return;
       }
 
@@ -1113,7 +1287,47 @@
 
       if (commentsError) {
         console.error("댓글 불러오기 실패:", commentsError);
+        resetBoardEntriesToMock();
         return;
+      }
+
+      let communityCommentsData = [];
+      if (hasCommunityCommentsTable) {
+        const communityCommentsResult = await supabaseClient
+          .from('community_comments')
+          .select('*')
+          .order('created_at', { ascending: true });
+
+        if (communityCommentsResult.error) {
+          console.error("커뮤니티 댓글 불러오기 실패:", communityCommentsResult.error);
+          if (isMissingRelationError(communityCommentsResult.error)) {
+            hasCommunityCommentsTable = false;
+          } else {
+            resetBoardEntriesToMock();
+            return;
+          }
+        } else {
+          communityCommentsData = communityCommentsResult.data || [];
+        }
+      }
+
+      let postLikesData = [];
+      if (hasPostLikesTable) {
+        const postLikesResult = await supabaseClient
+          .from('post_likes')
+          .select('post_key, user_id');
+
+        if (postLikesResult.error) {
+          console.error("좋아요 불러오기 실패:", postLikesResult.error);
+          if (isMissingRelationError(postLikesResult.error)) {
+            hasPostLikesTable = false;
+          } else {
+            resetBoardEntriesToMock();
+            return;
+          }
+        } else {
+          postLikesData = postLikesResult.data || [];
+        }
       }
 
       const normalizedPostsData = (postsData || []).map(post => ({
@@ -1126,81 +1340,58 @@
         effectiveAuthorId: getEffectiveAuthorId(comment),
         effectiveAuthorRole: getEffectiveAuthorRole(comment)
       }));
+      const normalizedCommunityCommentsData = (communityCommentsData || []).map(comment => ({
+        ...comment,
+        effectiveAuthorId: getEffectiveAuthorId(comment),
+        effectiveAuthorRole: getEffectiveAuthorRole(comment)
+      }));
+
+      const communityCommentsByPostKey = normalizedCommunityCommentsData.reduce((acc, comment) => {
+        const postKey = String(comment.post_key || '').trim();
+        if (!postKey) return acc;
+        if (!acc[postKey]) acc[postKey] = [];
+        acc[postKey].push(comment);
+        return acc;
+      }, {});
+      const likeCountByPostKey = (postLikesData || []).reduce((acc, like) => {
+        const postKey = String(like.post_key || '').trim();
+        if (!postKey) return acc;
+        acc[postKey] = (acc[postKey] || 0) + 1;
+        return acc;
+      }, {});
+      const likedPostKeys = new Set(
+        (postLikesData || [])
+          .filter((like) => like.user_id === getCurrentUserId())
+          .map((like) => String(like.post_key || '').trim())
+          .filter(Boolean)
+      );
 
       window.latestPostsData = normalizedPostsData;
-      window.latestCommentsData = normalizedCommentsData;
-
-      // 게시판 컨테이너
-      const boardOperation = document.querySelector('#board-free .feed-list');
-      const boardExpert = document.querySelector('#board-expert .feed-list');
-      const boardFree = document.querySelector('#board-retro .feed-list');
-      
-      // 목업 더미 카드는 남겨두기 위해 기존 innerHTML 백업 (또는 렌더 전 목업 찾기)
-      // 초기에만 백업하고 관리하도록 설계
-      if (!window.mockBoardEntries) {
-        window.mockBoardEntries = {
-          'board-free': boardOperation ? [...boardOperation.querySelectorAll('.feed-card')].map(getBoardEntryFromCard) : [],
-          'board-expert': boardExpert ? [...boardExpert.querySelectorAll('.feed-card')].map(getBoardEntryFromCard) : [],
-          'board-retro': boardFree ? [...boardFree.querySelectorAll('.feed-card')].map(getBoardEntryFromCard) : []
-        };
-      }
+      window.latestCommentsData = [...normalizedCommentsData, ...normalizedCommunityCommentsData];
 
       let operationEntries = [];
       let expertEntries = [];
       let freeEntries = [];
 
       normalizedPostsData.forEach(post => {
-        const postComments = normalizedCommentsData.filter(c => c.post_id === post.id);
-        let commentsHtml = postComments.map(c => `
-          <div class="comment-item">
-            <span class="comment-author">${getAuthorDisplayHtml(c.author, c.effectiveAuthorRole)}</span> ${c.content}
-          </div>
-        `).join('');
-        
-        if (commentsHtml === '') {
-          commentsHtml = '<div class="empty-comment">첫 댓글을 남겨보세요.</div>';
-        }
-
-        const tagsHtml = post.retro_tags ? post.retro_tags : '';
-        const timeStr = new Date(post.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-        const contentText = `${tagsHtml ? tagsHtml.replace(/<[^>]+>/g, ' ') : ''} ${post.content.replace(/<[^>]+>/g, ' ')}`.replace(/\s+/g, ' ').trim();
-        const hasExpertReply = postComments.some(comment => isExpertAuthor(comment.author || '', comment.effectiveAuthorRole));
-
-        const cardHtml = `
-          <div class="feed-card" data-post-id="${post.id}">
-            <div class="feed-header">
-              <div class="feed-author">
-                <div class="author-avatar ${getAuthorAvatarClass(post.author, post.effectiveAuthorRole)}">${post.author.charAt(0)}</div>
-                <span class="author-name">${post.author}</span>
-                <span class="feed-time">${timeStr}</span>
-              </div>
-            </div>
-            <div class="feed-content">
-              ${tagsHtml}
-              ${post.content}
-            </div>
-            <div class="feed-actions">
-              <button class="action-btn btn-like"><span class="icon"><i class="ri-heart-3-line" aria-hidden="true"></i></span> <span class="count">0</span></button>
-              <button class="action-btn btn-comment"><span class="icon"><i class="ri-chat-3-line" aria-hidden="true"></i></span> <span class="count">${postComments.length}</span></button>
-            </div>
-            <div class="feed-comments" style="display: none;">
-              <div class="comment-list">${commentsHtml}</div>
-              <div class="comment-input-area">
-                <textarea class="comment-input" rows="1" placeholder="따뜻한 한마디를 입력해주세요"></textarea>
-                <button class="btn btn-primary submit-comment">등록</button>
-              </div>
-            </div>
-          </div>
-        `;
+        const postKey = String(post.id);
+        const legacyPostComments = normalizedCommentsData.filter(c => c.post_id === post.id);
+        const communityPostComments = communityCommentsByPostKey[postKey] || [];
+        const postComments = [...legacyPostComments, ...communityPostComments];
+        const renderedCard = buildPersistedFeedCardHtml(post, {
+          comments: postComments,
+          likesCount: likeCountByPostKey[postKey] || 0,
+          likedByCurrentUser: likedPostKeys.has(postKey)
+        });
 
         const entry = {
-          postId: String(post.id),
+          postId: postKey,
           author: post.author,
           effectiveAuthorId: post.effectiveAuthorId,
-          contentText,
-          time: timeStr,
-          hasExpertReply,
-          html: cardHtml
+          contentText: renderedCard.contentText,
+          time: renderedCard.timeStr,
+          hasExpertReply: renderedCard.hasExpertReply,
+          html: renderedCard.html
         };
 
         if (post.board_type === 'retro') {
@@ -1212,12 +1403,28 @@
         }
       });
 
-      // DB 렌더링 뒤에 더미를 붙이기
+      const hydratedMockEntries = {
+        'board-free': (window.mockBoardEntries['board-free'] || []).map((entry) => buildMockEntryWithEngagement(entry, {
+          comments: communityCommentsByPostKey[String(entry.postId)] || [],
+          likesCount: likeCountByPostKey[String(entry.postId)] || 0,
+          likedByCurrentUser: likedPostKeys.has(String(entry.postId))
+        })),
+        'board-expert': (window.mockBoardEntries['board-expert'] || []).map((entry) => buildMockEntryWithEngagement(entry, {
+          comments: communityCommentsByPostKey[String(entry.postId)] || [],
+          likesCount: likeCountByPostKey[String(entry.postId)] || 0,
+          likedByCurrentUser: likedPostKeys.has(String(entry.postId))
+        })),
+        'board-retro': (window.mockBoardEntries['board-retro'] || []).map((entry) => buildMockEntryWithEngagement(entry, {
+          comments: communityCommentsByPostKey[String(entry.postId)] || [],
+          likesCount: likeCountByPostKey[String(entry.postId)] || 0,
+          likedByCurrentUser: likedPostKeys.has(String(entry.postId))
+        }))
+      };
 
       window.boardEntries = {
-        'board-free': [...operationEntries, ...(window.mockBoardEntries['board-free'] || [])],
-        'board-expert': [...expertEntries, ...(window.mockBoardEntries['board-expert'] || [])],
-        'board-retro': [...freeEntries, ...(window.mockBoardEntries['board-retro'] || [])]
+        'board-free': [...operationEntries, ...hydratedMockEntries['board-free']],
+        'board-expert': [...expertEntries, ...hydratedMockEntries['board-expert']],
+        'board-retro': [...freeEntries, ...hydratedMockEntries['board-retro']]
       };
 
       renderBoardPane('board-free');
@@ -1229,11 +1436,86 @@
       if (typeof renderTrustActivityList === 'function') renderTrustActivityList();
     };
 
+    async function refreshAuthenticatedUi() {
+      refreshUserScopedUi();
+      await fetchPosts();
+    }
+
+    function applySessionState(session) {
+      authSession = session || null;
+      currentUser = authSession?.user || null;
+      isLoggedIn = Boolean(currentUser);
+      authInitialized = true;
+      syncBasicAuthUi();
+    }
+
+    async function applyAuthenticatedSession(session, { navigateAfterLogin = false } = {}) {
+      applySessionState(session);
+      await refreshAuthenticatedUi();
+      closeLoginModal({ preserveRoute: true });
+      clearRouteLock();
+
+      if (!isLoggedIn) return;
+
+      const resumeRoute = pendingProtectedRoute ? parseHashRoute(pendingProtectedRoute) : null;
+      pendingProtectedRoute = null;
+
+      if (navigateAfterLogin) {
+        if (resumeRoute) {
+          applyRoute(resumeRoute, { updateHash: true, allowLockedView: false });
+        } else {
+          switchTab('tab-community');
+        }
+        return;
+      }
+
+      applyRoute(parseHashRoute(window.location.hash), { updateHash: !window.location.hash, allowLockedView: false });
+    }
+
+    async function handleSignedOutSession() {
+      applySessionState(null);
+      pendingProtectedRoute = null;
+      clearRouteLock();
+      closeLoginModal({ preserveRoute: true });
+      await refreshAuthenticatedUi();
+      if (isProtectedSection(parseHashRoute(window.location.hash).section)) {
+        switchTab('tab-home');
+      }
+    }
+
+    async function initializeAuthSession() {
+      if (!supabaseClient) {
+        authInitialized = true;
+        syncBasicAuthUi();
+        await fetchPosts();
+        return;
+      }
+
+      const { data, error } = await supabaseClient.auth.getSession();
+      if (error) {
+        console.error('세션 불러오기 실패:', error);
+      }
+
+      applySessionState(data?.session || null);
+      await refreshAuthenticatedUi();
+      applyRoute(parseHashRoute(window.location.hash), { updateHash: !window.location.hash, allowLockedView: false });
+
+      supabaseClient.auth.onAuthStateChange((_event, session) => {
+        window.setTimeout(async () => {
+          if (session?.access_token) {
+            applySessionState(session);
+            await refreshAuthenticatedUi();
+            return;
+          }
+
+          await handleSignedOutSession();
+        }, 0);
+      });
+    }
+
     renderRewardDashboard();
     renderCouponGrid([]);
-
-    // 로드 시 포스트 한번 불러오기
-    fetchPosts();
+    initializeAuthSession();
 
     // --- 실전 템플릿 서브페이지 로직 ---
     const btnTemplate = document.getElementById('btnTemplate');
@@ -1410,13 +1692,13 @@
       setAttr('#scrollToTopBtn', 'aria-label', '\uCD5C\uC0C1\uB2E8\uC73C\uB85C \uC774\uB3D9');
 
       setText('#loginModalTitle', '\uB85C\uADF8\uC778\uC774 \uD544\uC694\uD569\uB2C8\uB2E4');
-      setText('#loginModalDesc', '\uC778\uC99D\uB41C \uC0AC\uC6A9\uC790\uB9CC \uC774 \uD398\uC774\uC9C0\uC5D0 \uC811\uADFC\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.');
-      setText('#userIdLabel', '\uC544\uC774\uB514');
+      setText('#loginModalDesc', '\uCD08\uB300\uBC1B\uC740 \uC0AC\uC6A9\uC790\uB9CC \uC774\uBA54\uC77C\uACFC \uBE44\uBC00\uBC88\uD638\uB85C \uB85C\uADF8\uC778\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.');
+      setText('#userEmailLabel', '\uC774\uBA54\uC77C');
       setText('#userPwLabel', '\uBE44\uBC00\uBC88\uD638');
-      setAttr('#userId', 'placeholder', '\uC544\uC774\uB514\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694');
+      setAttr('#userEmail', 'placeholder', '\uC774\uBA54\uC77C\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694');
       setAttr('#userPw', 'placeholder', '\uBE44\uBC00\uBC88\uD638\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694');
       setText('#loginSubmitBtn', '\uB85C\uADF8\uC778');
-      setText('#loginHelpText', '\uC544\uC774\uB514\uB098 \uBE44\uBC00\uBC88\uD638\uAC00 \uAC00\uBB3C\uAC00\uBB3C\uD558\uC2E0\uAC00\uC694?');
+      setText('#loginHelpText', '\uACC4\uC815 \uBC1C\uAE09\uC774\uB098 \uBE44\uBC00\uBC88\uD638 \uC7AC\uC548\uB0B4\uAC00 \uD544\uC694\uD558\uBA74 \uC6B4\uC601\uC790\uC5D0\uAC8C \uBB38\uC758\uD574\uC8FC\uC138\uC694.');
       setText('#loginHelpLink', '\uC6B4\uC601\uC790\uC5D0\uAC8C 1:1 \uCE74\uD1A1 \uBB38\uC758\uD558\uAE30');
 
       setText('#applyModalTitle', '\uCEE4\uBBA4\uB2C8\uD2F0 \uC785\uC7A5 \uC2E0\uCCAD');
@@ -1887,19 +2169,13 @@
 
     if (btnTemplate) {
       btnTemplate.addEventListener('click', () => {
-        if (!isLoggedIn) {
-          if (loginModal) loginModal.classList.add('active');
-          return;
-        }
+        if (!ensureAuthenticated()) return;
         if (templatePage) templatePage.classList.add('active');
       });
     }
 
     const openCommunityIntroPage = () => {
-      if (!isLoggedIn) {
-        if (loginModal) loginModal.classList.add('active');
-        return;
-      }
+      if (!ensureAuthenticated()) return;
       if (communityIntroPage) communityIntroPage.classList.add('active');
     };
 
@@ -1925,10 +2201,7 @@
     const btnScrollToInsight = document.getElementById('btnScrollToInsight');
     if (btnScrollToInsight) {
       btnScrollToInsight.addEventListener('click', () => {
-        if (!isLoggedIn) {
-          if (loginModal) loginModal.classList.add('active');
-          return;
-        }
+        if (!ensureAuthenticated()) return;
         if (templatePage) templatePage.classList.add('active');
       });
     }
@@ -1975,10 +2248,7 @@
     const btnRandomMissionActive = document.getElementById('btnRandomMissionActive');
     
     const applyRandomMissions = () => {
-      if (!isLoggedIn) {
-        if (loginModal) loginModal.classList.add('active');
-        return;
-      }
+      if (!ensureAuthenticated()) return;
       if(!missionPool || missionPool.length === 0) return;
       let arr = [...missionPool];
       arr.sort(() => Math.random() - 0.5);
@@ -2185,10 +2455,7 @@
     };
 
     window.openExpertBoard = (postId) => {
-      if(!isLoggedIn) {
-        if(loginModal) loginModal.classList.add('active');
-        return;
-      }
+      if (!ensureAuthenticated()) return;
 
       const targetEntries = window.boardEntries?.['board-expert'] || [];
       const targetIndex = targetEntries.findIndex(entry => entry.postId === postId);
@@ -2220,10 +2487,7 @@
     };
 
     window.openQuestionModal = () => {
-      if(!isLoggedIn) {
-        if(loginModal) loginModal.classList.add('active');
-        return;
-      }
+      if (!ensureAuthenticated()) return;
       const modal = document.getElementById('questionModal');
       const questionTitle = document.getElementById('questionTitle');
       const questionContent = document.getElementById('questionContent');
@@ -2264,7 +2528,6 @@
           board_type: 'expert',
           author: getCurrentUserDisplayName(),
           author_id: getCurrentUserId(),
-          author_role: getCurrentUserRole(),
           content: `<strong>${title}</strong><br>${content.replace(/\n/g, '<br>')}`,
           retro_tags: null
         }]);
@@ -2310,7 +2573,7 @@
 
     if(kakaoConfirmBtn) {
       kakaoConfirmBtn.addEventListener('click', () => {
-        window.open('https://pf.kakao.com/_Txdlrxj/chat', '_blank');
+        window.open('https://open.kakao.com/o/sauYbxpi', '_blank');
         closeKakaoModal();
       });
     }
@@ -2318,7 +2581,7 @@
     // --- 4차 피드백: 템플릿 서브페이지 최상단 스크롤 ---
     const scrollToTopSubBtn = document.getElementById('scrollToTopSubBtn');
     if(scrollToTopSubBtn) {
-      const subContent = document.querySelector('.sub-page-content');
+      const subContent = templatePage ? templatePage.querySelector('.sub-page-content') : null;
       scrollToTopSubBtn.addEventListener('click', () => {
         if(subContent) subContent.scrollTo({top: 0, behavior: 'smooth'});
       });
