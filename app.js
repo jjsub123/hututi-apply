@@ -187,6 +187,21 @@
     let authInitialized = false;
     let lastTrackedSection = null;
     let pendingRouteAnalyticsSource = null;
+    const isLocalPreview = ['file:', 'http:', 'https:'].includes(window.location.protocol)
+      && (
+        window.location.protocol === 'file:'
+        || ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname)
+      );
+    const localPreviewUser = {
+      id: 'local-preview-user',
+      email: 'preview@naeilsajang.local',
+      user_metadata: {
+        display_name: '미리보기 사용자'
+      },
+      app_metadata: {
+        role: 'owner'
+      }
+    };
 
     const trackAnalyticsEvent = (name, data = {}) => {
       if (typeof window === 'undefined' || typeof window.va !== 'function') return;
@@ -206,7 +221,7 @@
       trackAnalyticsEvent('Tab Viewed', { section, source });
     };
 
-    const getCurrentAuthUser = () => authSession?.user || currentUser || null;
+    const getCurrentAuthUser = () => authSession?.user || currentUser || (isLocalPreview ? localPreviewUser : null);
     const getAuthMetadata = (user = getCurrentAuthUser()) => {
       if (!user) return {};
       const userMetadata = user.user_metadata && typeof user.user_metadata === 'object' ? user.user_metadata : {};
@@ -255,8 +270,9 @@
     const displayUserId = document.getElementById('displayUserId');
 
     function syncBasicAuthUi() {
+      const canPreview = isLocalPreview && !isLoggedIn;
       if (btnLogout) btnLogout.style.display = isLoggedIn ? 'block' : 'none';
-      if (displayUserId) displayUserId.textContent = isLoggedIn ? getCurrentUserDisplayName() : defaultLoggedOutText;
+      if (displayUserId) displayUserId.textContent = (isLoggedIn || canPreview) ? getCurrentUserDisplayName() : defaultLoggedOutText;
     }
 
     syncBasicAuthUi();
@@ -275,7 +291,7 @@
     let pendingProtectedRoute = null;
     let lockedRouteTabId = null;
 
-    const canAccessProtectedTabs = () => authInitialized && isLoggedIn;
+    const canAccessProtectedTabs = () => authInitialized && (isLoggedIn || isLocalPreview);
     const isProtectedSection = (section = 'intro') => section !== 'intro';
     const parseHashRoute = (hash = window.location.hash) => {
       const raw = String(hash || '').replace(/^#/, '').trim();
@@ -315,7 +331,7 @@
       if (loginModal) loginModal.classList.add('active');
     };
     const ensureAuthenticated = () => {
-      if (isLoggedIn) return true;
+      if (isLoggedIn || isLocalPreview) return true;
       openLoginModal();
       return false;
     };
@@ -1553,6 +1569,7 @@
     const communityIntroPage = document.getElementById('communityIntroPage');
     const closeCommunityIntroBtn = document.getElementById('closeCommunityIntroBtn');
     const btnIntroStart = document.getElementById('btnIntroStart');
+    const templateDocumentUrl = 'practical_listing_template.html';
 
     const hydrateTemplateGuideCopy = () => {
       const setText = (selector, value, root = document) => {
@@ -1569,13 +1586,13 @@
       };
 
       const t = {
-        templateGuideLink: "\uC2E4\uC804 \uD15C\uD50C\uB9BF \uAC00\uC774\uB4DC",
+        templateGuideLink: "\uC2E4\uC804 \uD15C\uD50C\uB9BF \uBB38\uC11C",
         insight: [
           {
             kicker: "템플릿",
             title: "\uC2E4\uC804 \uD15C\uD50C\uB9BF",
             desc: "\uC591\uB3C4 \uAE00\uC5D0 \uBC14\uB85C \uC4F8 \uD575\uC2EC \uD56D\uBAA9\uACFC \uC608\uC2DC \uBB38\uC7A5\uC744 \uD55C \uBC88\uC5D0 \uC815\uB9AC\uD55C \uBB38\uC11C\uC785\uB2C8\uB2E4.",
-            cta: "\uD15C\uD50C\uB9BF \uC2DC\uD2B8 \uBCF4\uAE30"
+            cta: "\uD15C\uD50C\uB9BF \uBB38\uC11C \uBCF4\uAE30"
           },
           {
             kicker: "\uCE7C\uB7FC",
@@ -2194,10 +2211,20 @@
       templatePage.dataset.templateUiBound = 'true';
     }
 
+    const openTemplateDocument = () => {
+      const openedWindow = window.open(templateDocumentUrl, '_blank');
+      if (openedWindow) {
+        openedWindow.opener = null;
+        return;
+      }
+      window.location.href = templateDocumentUrl;
+    };
+
     if (btnTemplate) {
-      btnTemplate.addEventListener('click', () => {
+      btnTemplate.addEventListener('click', (e) => {
+        e.preventDefault();
         if (!ensureAuthenticated()) return;
-        if (templatePage) templatePage.classList.add('active');
+        openTemplateDocument();
       });
     }
 
@@ -2229,7 +2256,7 @@
     if (btnScrollToInsight) {
       btnScrollToInsight.addEventListener('click', () => {
         if (!ensureAuthenticated()) return;
-        if (templatePage) templatePage.classList.add('active');
+        openTemplateDocument();
       });
     }
     

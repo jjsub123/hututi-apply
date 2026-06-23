@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>실전 매물 소개 템플릿 | 내일사장</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f4f7fb;
+      color: #101828;
+      font-family: "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", Arial, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    .template-document {
+      padding: 28px 24px;
+    }
+
+    .page {
+      width: 794px;
+      min-height: 1123px;
+      margin: 0 auto 22px;
+      padding: 68px 60px 56px;
+      background: #ffffff;
+      box-shadow: 0 18px 45px rgba(16, 24, 40, 0.12);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page + .page {
+      page-break-before: always;
+    }
+
+    .page-header {
+      padding-bottom: 38px;
+    }
+
+    .page-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #101828;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .brand-mark img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .page-count {
+      color: #667085;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 32px;
+      line-height: 1.25;
+      letter-spacing: 0;
+      color: #101828;
+    }
+
+    .intro-copy {
+      margin-top: 14px;
+      color: #4b5565;
+      font-size: 14px;
+    }
+
+    .content {
+      flex: 1;
+      padding-top: 42px;
+    }
+
+    .section {
+      break-inside: avoid;
+      padding-bottom: 34px;
+    }
+
+    .section + .section {
+      padding-top: 24px;
+    }
+
+    .section h2 {
+      font-size: 22px;
+      line-height: 1.35;
+      color: #101828;
+    }
+
+    .section-desc {
+      margin-top: 7px;
+      color: #4b5565;
+      font-size: 13px;
+    }
+
+    .field-list {
+      margin-top: 15px;
+      display: block;
+      gap: 7px;
+    }
+
+    .field {
+      display: flex;
+      gap: 14px;
+      align-items: end;
+      min-height: 62px;
+      padding: 14px 0 12px;
+    }
+
+    .field-main {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .field-label {
+      display: block;
+      color: #24324b;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .write-line {
+      display: flex;
+      align-items: flex-end;
+      gap: 7px;
+      height: 17px;
+      margin-top: 11px;
+      overflow: hidden;
+    }
+
+    .dash-segment {
+      display: block;
+      width: 11px;
+      height: 1.5px;
+      background: #ced8ea;
+      flex: 0 0 11px;
+    }
+
+    .check-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex: 0 0 24px;
+      padding-bottom: 1px;
+    }
+
+    .checkbox {
+      width: 18px;
+      height: 18px;
+      border: 1.25px solid #9db2e4;
+      border-radius: 5px;
+      background: #ffffff;
+      flex: 0 0 auto;
+    }
+
+    .document-label {
+      margin-top: auto;
+      padding-top: 24px;
+      color: #8a94a6;
+      font-size: 10px;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    @media print {
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      body {
+        background: #ffffff;
+      }
+
+      .template-document {
+        padding: 0;
+      }
+
+      .page {
+        width: 794px;
+        min-height: 1123px;
+        margin: 0;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="template-document">
+    <section class="page">
+      <header class="page-header">
+        <div class="page-header-row">
+          <span class="brand-mark"><img src="logo.png" alt="내일사장 로고">내일사장</span>
+          <span class="page-count">1 page</span>
+        </div>
+        <h1>실전 매물 소개 템플릿</h1>
+        <p class="intro-copy">매물 소개 전에 운영 구조를 이 순서로 정리해보세요.<br>출력하거나 공유해서 쓰기 쉬운 체크형 템플릿으로 구성했습니다.</p>
+      </header>
+
+      <div class="content">
+        <section class="section">
+          <h2>1. 매출 구조</h2>
+          <p class="section-desc">매출 크기만 말하지 말고 흐름과 변동 이유까지 보이게 정리합니다.</p>
+          <div class="field-list">
+            <div class="field"><div class="field-main"><span class="field-label">월 매출</span><span class="write-line"></span></div><span class="check-wrap"><span class="checkbox"></span></span></div>
+            <div class="field"><div class="field-main"><span class="field-label">월 순수익</span><span class="write-line"></span></div><span class="check-wrap"><span class="checkbox"></span></span></div>
+            <div class="field"><div class="field-main"><span class="field-label">성수기 / 비수기</span><span class="write-line"></span></div><span class="check-wrap"><span class="checkbox"></span></span></div>
+            <div class="field"><div class="field-main"><span class="field-label">매출이 오르는 시점</span><span class="write-line"></span></div><span class="check-wrap"><span class="checkbox"></span></span></div>
+            <div class="field"><div class="field-main"><span class="field-label">매출이 떨어지는 시점</span><span class="write-line"></span></div><span class="check-wrap"><span class="checkbox"></span></span></div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>2. 고객 구조</h2>
+          <p class="section-desc">고객이 누구고 왜 오는지가 보여야 양수자도 근거를 이해합니다.</p>
+          <div class="field-list">
+            <div class="field"><div class="field-main"><span class="field-label">단골 비중</span><span class="write-line"></span></div><span class="check-wrap"><span class="checkbox"></span></span></div>
+            <div class="field"><div class="field-main"><span class="field-label">신규 고객 유입 경로</span><span class="write-line"></span></div><span class="check-wrap"><span class="checkbox"></span></span></div>
+            <div class="field"><div class="field-main"><span class="field-label">주요 고객 연령대</span><span class="write-line"></span></div><span class="check-wrap"><span class="checkbox"></span></span></div>
+            <div class="field"><div class="field-main"><span class="field-label">고객이 자주 찾는 이유</span><span class="write-line"></span></div><span class="check-wrap"><span class="checkbox"></span></span></div>
+            <div class="field"><div class="field-main"><span class="field-label">고객이 이탈하는 이유</span><span class="write-line"></span></div><span class="check-wrap"><span class="checkbox"></span></span></div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>3. 운영 구조</h2>
+          <p class="section-desc">내가 빠지면 매장이 어떻게 돌아가는지 보여주는 영역입니다.</p>
+          <div class="field-list">
+            <div class="field"><div class="field-main"><span class="field-label">직원 구성</span><span class="write-line"></span></div><span class="check-wrap"><span class="checkbox"></span></span></div>
+            <div class="field"><div class="field-main"><span class="field-label">근무 방식</span><span class="write-line"></span></div><span class="check-wrap"><span class="checkbox"></span></span></div>
+            <div class="field"><div class="field-main"><span class="field-label">사장 개입도</span><span class="write-line"></span></div><span class="check-wrap"><span class="checkbox"></span></span></div>
+            <div class="field"><div class="field-main"><span class="field-label">운영 난이도</span><span class="write-line"></span></div><span class="check-wrap"><span class="checkbox"></span></span></div>
+            <div class="field"><div class="field-main"><span class="field-label">인수 후 바로 운영 가능 여부</span><span class="write-line"></span></div><span class="check-wrap"><span class="checkbox"></span></span></div>
+          </div>
+        </section>
+      </div>
+      <div class="document-label">실전 매물 소개 템플릿</div>
+    </section>
+
+    <section class="page">
+      <header class="page-header">
+        <div class="page-header-row">
+          <span class="brand-mark"><img src="logo.png" alt="내일사장 로고">내일사장</span>
+          <span class="page-count">2 page</span>
+        </div>
+      </header>
+
+      <div class="content">
+        <section class="section">
+          <h2>4. 매출 발생 구조</h2>
+          <p class="section-desc">숫자 뒤에 있는 상권, 고객, 운영 반복 구조를 정리합니다.</p>
+          <div class="field-list">
+            <div class="field"><div class="field-main"><span class="field-label">이 매출이 나오는 가장 큰 이유</span><span class="write-line"></span></div><span class="check-wrap"><span class="checkbox"></span></span></div>
+            <div class="field"><div class="field-main"><span class="field-label">매출이 유지되는 구조</span><span class="write-line"></span></div><span class="check-wrap"><span class="checkbox"></span></span></div>
+            <div class="field"><div class="field-main"><span class="field-label">이 구조가 깨질 수 있는 리스크</span><span class="write-line"></span></div><span class="check-wrap"><span class="checkbox"></span></span></div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>5. 양수자 관점</h2>
+          <p class="section-desc">양수자가 그대로 이어받을 것과 개선할 것을 구분해 보여주는 구간입니다.</p>
+          <div class="field-list">
+            <div class="field"><div class="field-main"><span class="field-label">인수 후 그대로 유지 가능한 요소</span><span class="write-line"></span></div><span class="check-wrap"><span class="checkbox"></span></span></div>
+            <div class="field"><div class="field-main"><span class="field-label">반드시 이어받아야 하는 운영 방식</span><span class="write-line"></span></div><span class="check-wrap"><span class="checkbox"></span></span></div>
+            <div class="field"><div class="field-main"><span class="field-label">개선하면 더 좋아질 부분</span><span class="write-line"></span></div><span class="check-wrap"><span class="checkbox"></span></span></div>
+          </div>
+        </section>
+      </div>
+      <div class="document-label">실전 매물 소개 템플릿</div>
+    </section>
+  </main>
+  <script>
+    document.querySelectorAll('.write-line').forEach((line) => {
+      if (line.children.length) return;
+      for (let i = 0; i < 48; i += 1) {
+        const dash = document.createElement('span');
+        dash.className = 'dash-segment';
+        dash.setAttribute('aria-hidden', 'true');
+        line.appendChild(dash);
+      }
+    });
+  </script>
+</body>
+</html>
